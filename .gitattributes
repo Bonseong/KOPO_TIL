@@ -1,5 +1,6 @@
 * linguist-vendored
 *.java linguist-vendored=false
 *.sh linguist-vendored=false
-#*.sql linguist-detectable=true
-*.sql linguist-language=sql
+*.sql linguist-language=false
+*.r linguist-language=false
+*.py linguist-language=false
