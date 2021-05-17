@@ -1,3 +1,1 @@
-
-jest.config.html linguist-vendored
-KOPO_TIL-*.html linguist-vendored
+KOPO_TIL/*.html linguist-vendored
