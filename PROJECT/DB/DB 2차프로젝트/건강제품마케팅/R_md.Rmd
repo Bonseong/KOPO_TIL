@@ -1,0 +1,107 @@
+---
+title: "DB 2nd Project"
+author: "Ku, Bonseong"
+date: '2021 5 9 '
+output: html_document
+---
+
+## 라이브러리 로드, DB 연결
+
+```{r, warning=FALSE, message=FALSE}
+library(DBI)
+library(RODBC)
+library(tidyverse)
+library(scales)
+
+db <- odbcConnect("DSN", uid="scott", pwd="tiger")
+temp_query<-"
+DROP TABLE SEOUL_RANK;
+"
+sqlQuery(db, temp_query)
+temp_query<-"
+DROP TABLE CUSTOMER_SEOUL;
+"
+sqlQuery(db, temp_query)
+```
+
+## 데이터 전처리
+
+```{r, warning=FALSE, message=FALSE}
+query<-"CREATE TABLE SEOUL_RANK AS
+(SELECT 지역구, COUNT(지역구) AS 갯수, RANK() OVER (ORDER BY COUNT(지역구) DESC) AS 순위
+FROM (
+SELECT NVL(TRIM(SUBSTR(소재지전체주소, INSTR(소재지전체주소, ' ', 1, 1), INSTR(소재지전체주소, ' ', 1, 2)-INSTR(소재지전체주소, ' ', 1, 1))),
+TRIM(SUBSTR(도로명전체주소, INSTR(도로명전체주소, ' ', 1, 1), INSTR(도로명전체주소, ' ', 1, 2)-INSTR(도로명전체주소, ' ', 1, 1)))) AS 지역구
+FROM SEOUL
+WHERE TRIM(SUBSTR(소재지전체주소, 0, INSTR(소재지전체주소, ' ', 1, 1))) = '서울특별시' OR
+    TRIM(SUBSTR(도로명전체주소, 0, INSTR(도로명전체주소, ' ', 1, 1))) = '서울특별시') 
+    GROUP BY 지역구);"
+sqlQuery(db,query)
+```
+
+- 서울특별시에 존재하는 시설 중에 한정하여 데이터 분석 및 시각화
+- 데이터 중 '소재지전체주소 ' 나 '도로명전체주소' 중 하나의 값만 가지고 있고 하나는 null인 경우가 있었음
+- 둘 중 하나의 데이터만 사용해도 무관하기 때문에 NVL을 통해 처리
+
+```{r}
+query2<-"SELECT * FROM SEOUL_RANK;"
+seoul_rank<-sqlQuery(db, query2)
+seoul_rank
+```
+
+
+```{r}
+query3<-"SELECT * FROM(
+SELECT ROWNUM AS 순번, TRIM(SUBSTR(소재지전체주소, INSTR(소재지전체주소, ' ', 1, 1), INSTR(소재지전체주소, ' ', 1, 2)-INSTR(소재지전체주소, ' ', 1, 1))) AS 소재지지역구,
+TRIM(SUBSTR(도로명전체주소, INSTR(도로명전체주소, ' ', 1, 1), INSTR(도로명전체주소, ' ', 1, 2)-INSTR(도로명전체주소, ' ', 1, 1))) AS 도로명지역구 FROM SEOUL
+WHERE 소재지전체주소 LIKE '서울특별시%' OR 도로명전체주소 LIKE '서울특별시%')
+WHERE 소재지지역구 != 도로명지역구;"
+seoul_outlier<-sqlQuery(db, query3)
+seoul_outlier
+```
+
+- 데이터 중 당진시, 광산구, 경주시 데이터가 섞인 것을 확인할 수 있음 (각 1건)
+- 이 데이터에 대해서 어느 지역이라고 판단할 수 있는 근거가 부족하다고 판단하여 제거
+
+```{r}
+seoul_rank<-seoul_rank[1:25,]
+seoul_rank
+```
+
+## 데이터시각화
+```{r}
+ggplot(seoul_rank, aes(x=reorder(지역구,-갯수), y=갯수))+geom_bar(stat='identity', fill='skyblue')+geom_text(aes(y=갯수, label=갯수), vjust=-0.5)+
+  xlab('지역구')+ylab('대기오염물질배출사업장 갯수')+ggtitle('서울 지역구별  대기오염물질배출사업장 현황')+
+  theme(axis.text.x=element_text(angle=30))+theme(plot.title = element_text(family = "serif", face = "bold", hjust = 0.5, size = 15, color = "darkblue"))
+  
+```
+
+- 각 지역구 별 대기오염물질배출사업장의 갯수를 Bar Graph로 표현
+- 성동구, 금천구, 구로구 순으로 순서를 이뤘음
+
+
+## Join을 이용한 마케팅 대상자 추출
+```{r, warning=FALSE, message=FALSE}
+
+query4<-"CREATE TABLE CUSTOMER_SEOUL AS
+    (SELECT NAME, MOBILE_NO, TRIM(SUBSTR(ADDRESS1, INSTR(ADDRESS1, ' ', 1, 1), INSTR(ADDRESS1, ' ', 1, 2)-INSTR(ADDRESS1, ' ', 1, 1))) AS 지역구
+    FROM CUSTOMER
+    WHERE SUBSTR(ADDRESS1, 0, 2) = '서울');"
+sqlQuery(db,query4)
+```
+
+- CUSTOMER 테이블에서 서울특별시에 살고있는 회원을 대상으로 선정
+- 지역구에 대해 우선순위를 매길 예정
+
+```{r}
+
+query5<-"SELECT C.NAME, C.MOBILE_NO, R.순위, R.지역구 FROM SEOUL_RANK R, CUSTOMER_SEOUL C
+    WHERE (R.지역구 = C.지역구) AND R.순위<4
+    ORDER BY R.순위;"
+
+output<-sqlQuery(db,query5)
+write.csv(output, 'D:/DB Project/DB 2차프로젝트/서울시 마케팅 대상자.csv')
+```
+
+- JOIN을 이용해 SEOUL_RANK 테이블과 CUSTOMER_SEOUL간 공통의 데이터를 가진 대상자 선정
+- 지역구별 1, 2, 3 순위 지역을 대상으로 마케팅 진행
