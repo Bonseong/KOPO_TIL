@@ -1,8 +1,0 @@
-package kr.ac.kopo.week3.day12;
-
-public class ExceptionMain01 {
-	public static void main(String[] args) {
-		System.out.println("main start....");
-		System.out.println("main end....");
-	}
-}
