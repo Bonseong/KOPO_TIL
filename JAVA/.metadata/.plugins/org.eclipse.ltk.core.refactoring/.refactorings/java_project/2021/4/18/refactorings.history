@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 7 elements from project &apos;java_project&apos;&#x0D;&#x0A;- Original project: &apos;java_project&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     library.Book.java&#x0D;&#x0A;     library.BookMain.java&#x0D;&#x0A;     library.BookManager.java&#x0D;&#x0A;     library.DateUtils.java&#x0D;&#x0A;     library.UserInfo.java&#x0D;&#x0A;     library.UserManager.java&#x0D;&#x0A;     library.UserMenu.java" description="Delete elements" element1="/src&lt;library{BookMain.java" element2="/src&lt;library{DateUtils.java" element3="/src&lt;library{UserMenu.java" element4="/src&lt;library{Book.java" element5="/src&lt;library{BookManager.java" element6="/src&lt;library{UserInfo.java" element7="/src&lt;library{UserManager.java" elements="7" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1619769298825" subPackages="false" version="1.0"/>
+</session>

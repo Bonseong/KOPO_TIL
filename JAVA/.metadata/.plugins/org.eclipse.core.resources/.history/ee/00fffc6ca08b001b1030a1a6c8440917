@@ -1,0 +1,15 @@
+package kr.ac.kopo.week3.day12;
+
+import java.util.Random;
+
+public class ExceptionMain01 {
+	public static void main(String[] args) {
+		System.out.println("main start....");
+		
+		Random r = new Random();
+		int num = r.nextInt(3); // 0~2
+		System.out.println(10 / num);
+		System.out.println("main end....");
+		
+	}
+}
