@@ -1,9 +1,0 @@
-book_title_1	genre_1	true	test	2021-04-30	1	
-book_title_2	genre_2	false	null	null	0	
-book_title_3	genre_3	false	null	null	0	
-book_title_4	genre_1	false	null	null	0	
-book_title_5	genre_2	false	null	null	0	
-book_title_6	genre_3	false	null	null	0	
-book_title_7	genre_1	false	null	null	0	
-book_title_8	genre_2	false	null	null	0	
-book_title_9	genre_3	false	null	null	0	

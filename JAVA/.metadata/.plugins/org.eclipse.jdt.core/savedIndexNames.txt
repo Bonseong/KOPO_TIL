@@ -1,2 +1,0 @@
-INDEX VERSION 1.131+C:\Users\HP\Documents\KOPO_TIL\JAVA\.metadata\.plugins\org.eclipse.jdt.core
-370407191.index
