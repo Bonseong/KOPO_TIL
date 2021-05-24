@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+C:\Users\HP\Documents\KOPO_TIL\JAVA\java-workspace\.metadata\.plugins\org.eclipse.jdt.core
-1420544325.index
-370407191.index
-1704979481.index
