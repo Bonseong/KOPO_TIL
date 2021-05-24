@@ -1,0 +1,20 @@
+package kr.ac.kopo.week4.day16;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class temp {
+public static void main(String[] args) {
+	UserVO user = new UserVO("홍길동", 26, "010-1111-2222", "서울시 서초구");
+	UserVO user2 = new UserVO("구길동", 30, "010-3333-4444", "경기도 광명시 철산동");
+	UserVO user3 = new UserVO("윤길동", 28, "010-5555-6666", "서울시 송파구");
+
+	List<UserVO> list = new ArrayList<UserVO>();
+
+	list.add(user);
+	list.add(user2);
+	list.add(user3);
+	
+	System.out.println(list.size());
+}
+}
