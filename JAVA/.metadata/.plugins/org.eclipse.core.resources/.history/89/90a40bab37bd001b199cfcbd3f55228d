@@ -1,0 +1,68 @@
+package kr.ac.kopo.week4.day17.homework;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class PrnEmpSalary {
+	public static void main(String[] args) {
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			String url = "jdbc:oracle:thin:@192.168.217.57:1522:xe";
+			String user = "hr";
+			String password = "hr";
+
+			conn = DriverManager.getConnection(url, user, password);
+
+			String sql = "SELECT J.JOB_TITLE, AVG(E.SALARY) AS AVG_SAL FROM EMPLOYEES E, JOBS J WHERE J.JOB_ID = E.JOB_ID GROUP BY J.JOB_TITLE ORDER BY AVG_SAL DESC";
+			pstmt = conn.prepareStatement(sql);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			Scanner sc = new Scanner(System.in);
+			System.out.print("급여를 입력하시오 : ");
+			int inputSal = sc.nextInt();
+			int cnt = 0;
+
+			while (rs.next()) {
+
+				String job_title = rs.getString("job_title");
+				int avg_sal = rs.getInt("avg_sal");
+
+				if (avg_sal >= inputSal) {
+					System.out.println("[" + job_title + "] " + avg_sal);
+					cnt++;
+				}
+			}
+			System.out.println("총 [" + cnt + "]명이 검색되었습니다.");
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (conn != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+	}
+}

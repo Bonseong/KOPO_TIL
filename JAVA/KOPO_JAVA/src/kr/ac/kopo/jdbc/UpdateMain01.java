@@ -35,12 +35,13 @@ public class UpdateMain01 {
 			System.out.print("수정할 이름을 입력 : ");
 			String name = sc.nextLine();
 			
+			StringBuilder sql = new StringBuilder();
+			sql.append(" UPDATE T_TEST ");
+			sql.append(" SET NAME = ? ");
+			sql.append(" WHERE ID = ? ");
 			
-			String sql = "UPDATE T_TEST ";
-			sql += " SET NAME = ? ";
-			sql += " WHERE ID = ? ";
+			pstmt = conn.prepareStatement(sql.toString()); // toString() 는 Object 클래스에 정의된 메소드
 			
-			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, name);
 			pstmt.setString(2, id);
 			

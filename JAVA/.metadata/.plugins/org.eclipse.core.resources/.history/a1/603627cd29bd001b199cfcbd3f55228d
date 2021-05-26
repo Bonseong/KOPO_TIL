@@ -1,0 +1,9 @@
+package kr.ac.kopo.week4.day17;
+
+import java.net.InetAddress;
+
+public class InetAddressMain {
+	public static void main(String[] args) {
+		InetAddress.getLocalHost();
+	}
+}

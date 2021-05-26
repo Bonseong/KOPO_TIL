@@ -1,0 +1,12 @@
+package ex;
+
+import java.io.File;
+
+public class ExMain {
+
+	public static void main(String[] args) {
+		ExUI ui = new ExUI();
+		ui.showUI();
+
+	}
+}
