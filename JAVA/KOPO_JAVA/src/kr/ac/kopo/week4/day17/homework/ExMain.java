@@ -5,7 +5,7 @@ import java.io.File;
 public class ExMain {
 
 	public static void main(String[] args) {
-		ExUI ui = new ExUI();
+		ExUI2 ui = new ExUI2();
 		ui.showUI();
 
 	}
