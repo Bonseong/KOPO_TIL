@@ -24,13 +24,13 @@ public class ExUI2 {
 	}
 
 	public void changeList() {
-		list = dirObj.listFiles();
+		list = dirObj.listFiles(); // 리스트 갱신
 	}
 
 	void showUI() {
-
 		boolean isRunning = true;
 		while (isRunning) {
+			changeList();
 			isRunning = menuShow();
 		}
 	}
@@ -93,7 +93,7 @@ public class ExUI2 {
 		File newFolder = new File(dirObj.getName() + "\\" + sc.nextLine());
 		boolean bool = newFolder.mkdir();
 		System.out.println(bool ? "폴더를 생성하였습니다" : "이미 존재하는 폴더입니다");
-		changeList();
+
 	}
 
 	void changeName() {
@@ -102,50 +102,46 @@ public class ExUI2 {
 		String beforeName = sc.nextLine();
 
 		boolean chk = false;
-		for (File name : list) {
 
-			if (beforeName.equals(name.getName())) {
+		check1: for (File checkbeforeName : list) {
+
+			if (beforeName.equals(checkbeforeName.getName())) {
 
 				System.out.print("원하는 파일 이름을 입력하세요 : ");
 				String afterName = sc.nextLine();
 				File fileNew = new File(dirObj.getName() + "\\" + afterName);
-				name.renameTo(fileNew);
+
+				for (File checkafterName : list) {
+					if (afterName.equals(checkafterName.getName())) {
+						System.out.println("[" + afterName + "]은 이미 존재하는 파일 또는 폴더입니다.");
+						chk = true;
+						break check1;
+					}
+
+				}
+
+				checkbeforeName.renameTo(fileNew);
+
 				chk = true;
-				changeList();
+				System.out.println("[" + beforeName + "]을 [" + afterName + "] 으로 변경했습니다.");
 				break;
 
 			}
 		}
 
 		if (chk == false) {
-			System.out.println("파일이 존재하지 않습니다");
+			System.out.println("[" + beforeName + "] 파일이 존재하지 않습니다");
 		}
-		
 
 	}
 
-	void deleteObject() { 
+	void deleteObject() {
 
 		System.out.print("삭제하고자 하는 파일이나 폴더 이름을 입력하세요 : ");
 		String deleteName = sc.nextLine();
+		File delFile = new File(dirObj.getName() + "\\" + deleteName);
+		System.out.println(delFile.delete() ? "파일 삭제에 성공했습니다." : "삭제하고자 하는 파일이나 폴더가 존재하지 않습니다.");
 
-		boolean chk = false;
-		for (File name : list) {
-
-			if (deleteName.equals(name.getName())) {
-				name.delete();
-
-				chk = true;
-				changeList();
-				break;
-
-			}
-		}
-
-		if (chk == false) {
-			System.out.println("삭제하고자 하는 파일이나 폴더가 존재하지 않습니다");
-		}
-		
 	}
 
 	void enterParentDir() {
@@ -155,7 +151,6 @@ public class ExUI2 {
 		} catch (NullPointerException e) {
 			System.out.println("최상위 폴더입니다.");
 		}
-		changeList();
 
 	}
 
@@ -163,7 +158,6 @@ public class ExUI2 {
 		list = dirObj.listFiles();
 
 		System.out.print("이동할 하위폴더 이름을 입력하세요 : ");
-
 		String addr_append = sc.nextLine();
 
 		boolean chk = false;
@@ -185,7 +179,6 @@ public class ExUI2 {
 		if (chk == false) {
 			System.out.println("해당 하위폴더가 존재하지 않습니다");
 		}
-		changeList();
 
 	}
 }
