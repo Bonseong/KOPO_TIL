@@ -82,7 +82,7 @@ class SyncThread extends Thread {
 	}
 }
 
-public class JavaDonation {
+public class DonationMain {
 
 	public static void main(String[] args) {
 

@@ -169,7 +169,7 @@ public class ExUI2 {
 					chk = true;
 					break;
 				} else {
-					System.out.println("폴더가 아니라 파일입니다.");
+					System.out.println("[" + addr_append + "는 폴더가 아니라 파일입니다.");
 					chk = true;
 				}
 
@@ -177,7 +177,7 @@ public class ExUI2 {
 		}
 
 		if (chk == false) {
-			System.out.println("해당 하위폴더가 존재하지 않습니다");
+			System.out.println("[" + addr_append + "] 하위폴더가 존재하지 않습니다");
 		}
 
 	}
