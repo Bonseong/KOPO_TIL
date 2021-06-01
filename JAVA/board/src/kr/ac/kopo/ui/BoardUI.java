@@ -53,7 +53,6 @@ public class BoardUI extends BaseUI {
 		System.out.println("\t0. 종료");
 		System.out.println("------------------------------------");
 		int type = scanInt("메뉴 중 원하는 항목을 선택하세요 : ");
-		
 		return type;
 	}
 

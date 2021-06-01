@@ -4,14 +4,21 @@
     <fullyQualifiedTypeName name="sun.net.www.URLConnection"/>
     <fullyQualifiedTypeName name="java.net.URLConnection"/>
     <fullyQualifiedTypeName name="java.net.Socket"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.ui.IBoardUI"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.dao.BoardDAO"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.vo.BoardVO"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.service.BoardServiceFactory"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.util.JDBCClose"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="kr.ac.kopo.ui.TotalAccountUI"/>
+    <fullyQualifiedTypeName name="kr.ac.kopo.dao.TotalAccountDAODB"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="kr.ac.kopo.dao.User_InfoDAODB"/>
+    <fullyQualifiedTypeName name="kr.ac.kopo.service.User_InfoService"/>
+    <fullyQualifiedTypeName name="kr.ac.kopo.service.TotalAccountServiceFactory"/>
+    <fullyQualifiedTypeName name="kr.ac.kopo.vo.User_InfoVO"/>
+    <fullyQualifiedTypeName name="kr.ac.kopo.service.TotalAccountSequence"/>
 </qualifiedTypeNameHistroy>
