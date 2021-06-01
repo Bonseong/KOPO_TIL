@@ -11,6 +11,10 @@ import kr.ac.kopo.vo.User_InfoVO;
 public class test {
 	public static void main(String[] args) {
 
+		boolean a = true;
+		if (a) {
+			System.out.println("test");
+		}
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -30,7 +34,11 @@ public class test {
 			
 			
 			System.out.println(rs.next());
+			System.out.println(rs.next());
 			
+			if(rs.next()) {
+				System.out.println("aaa");
+			}
 	} catch(Exception e) {
 		System.out.println("예외");
 		e.printStackTrace();

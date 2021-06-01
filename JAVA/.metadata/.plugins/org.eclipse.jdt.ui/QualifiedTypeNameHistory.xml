@@ -21,4 +21,6 @@
     <fullyQualifiedTypeName name="kr.ac.kopo.service.TotalAccountServiceFactory"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.vo.User_InfoVO"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.service.TotalAccountSequence"/>
+    <fullyQualifiedTypeName name="kr.ac.kopo.service.AccountService"/>
+    <fullyQualifiedTypeName name="kr.ac.kopo.vo.AccountVO"/>
 </qualifiedTypeNameHistroy>

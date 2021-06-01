@@ -21,20 +21,17 @@ public class AccountDAODB {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
 
-			sql.append(" SELECT ACC_NO, ACC_PW FROM ACCOUNT ");
-			sql.append(" WHERE ACC_NO = ? AND ACC_PW = ? ");
+			sql.append(" SELECT ACC_NO, ACC_PW FROM ACCOUNT  WHERE ACC_NO = ? AND ACC_PW = ? ");
 
 			pstmt = conn.prepareStatement(sql.toString());
 
 			pstmt.setString(1, newAcc.getAccNo());
 			pstmt.setString(2, newAcc.getAccPw());
-
-
 			
 			ResultSet rs = pstmt.executeQuery();
 			
 			
-			
+//			System.out.println(rs.next());
 			return rs.next(); // 계좌 존재
 
 		} catch (Exception e) {

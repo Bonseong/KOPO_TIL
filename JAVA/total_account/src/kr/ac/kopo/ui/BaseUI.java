@@ -2,9 +2,9 @@ package kr.ac.kopo.ui;
 
 import java.util.Scanner;
 
+import kr.ac.kopo.service.AccountService;
 import kr.ac.kopo.service.TotalAccountServiceFactory;
 import kr.ac.kopo.service.User_InfoService;
-import kr.ac.kopo.service.AccountService;
 
 public abstract class BaseUI implements ITotalAccountUI{
 	private Scanner sc;
@@ -14,6 +14,8 @@ public abstract class BaseUI implements ITotalAccountUI{
 	public BaseUI(){
 		sc = new Scanner(System.in);
 		User_InfoService = TotalAccountServiceFactory.getInstance();
+		AccountService = TotalAccountServiceFactory.getInstance2();
+		
 	}
 	
 	

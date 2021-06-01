@@ -10,7 +10,7 @@ public class DepositUI extends BaseUI{
 		
 		
 		
-		System.out.println("출금 서비스 입니다.");
+		System.out.println("입금 서비스 입니다.");
 		String accNo = scanStr("계좌번호를 입력해주세요 ( - 포함) : ");
 		String accPw = scanStr("계좌 비밀번호를 입력해주세요 : ");
 		
