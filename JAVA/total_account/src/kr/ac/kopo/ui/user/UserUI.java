@@ -1,4 +1,8 @@
-package kr.ac.kopo.ui;
+package kr.ac.kopo.ui.user;
+
+import kr.ac.kopo.ui.BaseUI;
+import kr.ac.kopo.ui.ITotalAccountUI;
+import kr.ac.kopo.ui.total.LogoutUI;
 
 public class UserUI extends BaseUI {
 	

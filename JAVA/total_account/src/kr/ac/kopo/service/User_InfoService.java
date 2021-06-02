@@ -3,7 +3,7 @@ package kr.ac.kopo.service;
 import kr.ac.kopo.dao.User_InfoDAODB;
 import kr.ac.kopo.vo.User_InfoVO;
 
-public class User_InfoService {
+public class User_InfoService{
 	private User_InfoDAODB dao;
 	
 	public User_InfoService() {

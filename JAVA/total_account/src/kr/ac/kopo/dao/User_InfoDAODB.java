@@ -31,7 +31,7 @@ public class User_InfoDAODB {
 			pstmt.setString(2, newUser.getPw());
 
 			ResultSet rs = pstmt.executeQuery();
-
+			
 			if (!rs.next()) {
 				newUser.setId(null);
 				newUser.setPw(null);

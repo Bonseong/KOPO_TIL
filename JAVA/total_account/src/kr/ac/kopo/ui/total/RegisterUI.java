@@ -1,5 +1,6 @@
-package kr.ac.kopo.ui;
+package kr.ac.kopo.ui.total;
 
+import kr.ac.kopo.ui.BaseUI;
 import kr.ac.kopo.vo.User_InfoVO;
 
 public class RegisterUI extends BaseUI {

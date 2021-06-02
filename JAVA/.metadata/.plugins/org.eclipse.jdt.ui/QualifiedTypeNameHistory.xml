@@ -19,8 +19,9 @@
     <fullyQualifiedTypeName name="kr.ac.kopo.dao.User_InfoDAODB"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.service.User_InfoService"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.service.TotalAccountServiceFactory"/>
-    <fullyQualifiedTypeName name="kr.ac.kopo.vo.User_InfoVO"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.service.TotalAccountSequence"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.service.AccountService"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.vo.AccountVO"/>
+    <fullyQualifiedTypeName name="kr.ac.kopo.vo.User_InfoVO"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
 </qualifiedTypeNameHistroy>

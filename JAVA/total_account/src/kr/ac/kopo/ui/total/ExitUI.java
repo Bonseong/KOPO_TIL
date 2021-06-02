@@ -1,4 +1,6 @@
-package kr.ac.kopo.ui;
+package kr.ac.kopo.ui.total;
+
+import kr.ac.kopo.ui.BaseUI;
 
 public class ExitUI extends BaseUI{
 

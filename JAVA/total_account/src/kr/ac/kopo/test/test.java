@@ -1,48 +1,50 @@
 package kr.ac.kopo.test;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.Random;
 
-import kr.ac.kopo.util.ConnectionFactory;
-import kr.ac.kopo.util.JDBCClose;
-import kr.ac.kopo.vo.User_InfoVO;
+import kr.ac.kopo.vo.BankVO;
 
 public class test {
 	public static void main(String[] args) {
-
-		boolean a = true;
-		if (a) {
-			System.out.println("test");
-		}
 		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		try {
-			conn = new ConnectionFactory().getConnection();
-			StringBuilder sql = new StringBuilder();
-
-			sql.append(" SELECT ACC_NO, ACC_PW FROM ACCOUNT ");
-			sql.append(" WHERE ACC_NO = ? AND ACC_PW = ? ");
-
-			pstmt = conn.prepareStatement(sql.toString());
-
-			pstmt.setString(1, "111-222-333");
-			pstmt.setString(2, "1234");
-
-			ResultSet rs = pstmt.executeQuery();
-			
-			
-			System.out.println(rs.next());
-			System.out.println(rs.next());
-			
-			if(rs.next()) {
-				System.out.println("aaa");
-			}
-	} catch(Exception e) {
-		System.out.println("예외");
-		e.printStackTrace();
-	}
+		System.out.println(makeRandomAccNo(newBank));
+	
+		
+		
+		
+		
 	}
 	
+	public String makeRandomAccNo(BankVO newBank) {
+		Random random = new Random();
+		StringBuilder sql = new StringBuilder();
+
+		String bankname = newBank.getBankName();
+		if (bankname.equals("HANA")) {
+			sql.append("111");
+		}
+		if (bankname.equals("SHINHAN")) {
+			sql.append("222");
+		}
+		if (bankname.equals("KB")) {
+			sql.append("333");
+		}
+		if (bankname.equals("WOORI")) {
+			sql.append("444");
+		}
+
+		sql.append('-');
+
+		for (int i = 0; i < 3; i++) {
+			sql.append(random.nextInt(9));
+
+		}
+
+		sql.append('-');
+
+		for (int i = 0; i < 3; i++) {
+			sql.append(random.nextInt(9));
+		}
+		return (sql.toString());
+	}
 }

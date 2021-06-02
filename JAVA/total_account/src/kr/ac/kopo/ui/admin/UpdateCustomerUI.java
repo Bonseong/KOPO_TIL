@@ -1,4 +1,4 @@
-package kr.ac.kopo.ui;
+package kr.ac.kopo.ui.admin;
 
 public class UpdateCustomerUI {
 
