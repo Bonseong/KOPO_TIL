@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import kr.ac.kopo.service.TotalAccountSequence;
+
 import kr.ac.kopo.util.ConnectionFactory;
 import kr.ac.kopo.util.JDBCClose;
 import kr.ac.kopo.vo.User_InfoVO;
@@ -36,6 +36,7 @@ public class User_InfoDAODB {
 				newUser.setId(null);
 				newUser.setPw(null);
 			}
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,7 +58,7 @@ public class User_InfoDAODB {
 			pstmt.setString(1, newUser.getId());
 
 			ResultSet rs = pstmt.executeQuery();
-
+			
 			return rs.next();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,6 +74,8 @@ public class User_InfoDAODB {
 		PreparedStatement pstmt = null;
 		try {
 			conn = new ConnectionFactory().getConnection();
+			conn.setAutoCommit(false);
+			
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO USER_INFO VALUES(USER_NO.NEXTVAL, ?, ?, ?, ?) ");
 
@@ -87,11 +90,14 @@ public class User_InfoDAODB {
 
 			if (cnt == 1) {
 				System.out.println("회원가입이 완료되었습니다.");
+				conn.commit();
 			} else {
 				System.out.println("회원가입에 실패했습니다.");
 			}
 
 		} catch (Exception e) {
+			conn.rollback();
+			System.out.println("알수없는 오류입니다. (회원가입관련)");
 			e.printStackTrace();
 		} finally {
 			JDBCClose.close(conn, pstmt);

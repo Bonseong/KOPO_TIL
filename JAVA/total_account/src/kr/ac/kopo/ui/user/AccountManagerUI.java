@@ -1,9 +1,8 @@
 package kr.ac.kopo.ui.user;
 
-import kr.ac.kopo.ui.BaseUI;
 import kr.ac.kopo.ui.ITotalAccountUI;
 
-public class AccountManagerUI extends BaseUI{
+public class AccountManagerUI extends UserUI{
 
 	@Override
 	public void execute() throws Exception {
@@ -19,15 +18,21 @@ public class AccountManagerUI extends BaseUI{
 					ui = new SearchOneUI();
 					break;
 				case 3:
-					ui = new SearchAllUI();
+					ui = new SearchByBankUI();
 					break;
 				case 4:
-					ui = new UpdateUI();
+					ui = new SearchAllUI();
 					break;
 				case 5:
-					ui = new DeleteUI();
+					ui = new SearchTransferLogUI();
 					break;
 				case 6:
+					ui = new UpdateUI();
+					break;
+				case 7:
+					ui = new DeleteUI();
+					break;
+				case 8:
 					ui = new BackUI();
 					break;
 				}
@@ -50,10 +55,12 @@ public class AccountManagerUI extends BaseUI{
 		System.out.println("------------------------------------");
 		System.out.println("\t1. 계좌 생성");
 		System.out.println("\t2. 계좌 상세 조회");
-		System.out.println("\t3. 전체 계좌 조회");
-		System.out.println("\t4. 계좌 수정");
-		System.out.println("\t5. 계좌 삭제");
-		System.out.println("\t6. 뒤로 가기");
+		System.out.println("\t3. 은행별 계좌 조회");
+		System.out.println("\t4. 전체 계좌 조회");
+		System.out.println("\t5. 거래 내역 조회");
+		System.out.println("\t6. 계좌 수정");
+		System.out.println("\t7. 계좌 삭제");
+		System.out.println("\t8. 뒤로 가기");
 		System.out.println("------------------------------------");
 		int type = scanInt("메뉴 중 원하는 항목을 선택하세요 : ");
 		return type;

@@ -1,12 +1,11 @@
 package kr.ac.kopo.ui.user;
 
-import kr.ac.kopo.ui.BaseUI;
 import kr.ac.kopo.ui.ITotalAccountUI;
 import kr.ac.kopo.ui.total.ExitUI;
 import kr.ac.kopo.ui.total.LoginUI;
 import kr.ac.kopo.ui.total.RegisterUI;
 
-public class TotalAccountUI extends BaseUI {
+public class TotalAccountUI extends UserUI {
 
  
 	

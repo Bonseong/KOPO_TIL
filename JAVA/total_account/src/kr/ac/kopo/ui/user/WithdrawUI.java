@@ -1,9 +1,8 @@
 package kr.ac.kopo.ui.user;
 
-import kr.ac.kopo.ui.BaseUI;
 import kr.ac.kopo.vo.AccountVO;
 
-public class WithdrawUI extends BaseUI {
+public class WithdrawUI extends UserUI {
 
 	@Override
 	public void execute() throws Exception {
@@ -21,22 +20,22 @@ public class WithdrawUI extends BaseUI {
 		if (chk == true) {
 			System.out.println("해당 계좌가 존재합니다");
 
-			int depositAmount = scanInt("얼마나 출금하시겠습니까?");
+			int depositAmount = scanInt("얼마나 출금하시겠습니까? : ");
 			int balance = AccountService.BalanceCheckService(newAcc);
 
-			if (depositAmount > balance) {
-				System.out.println("잔액이 부족합니다");
-			} else {
+			if (depositAmount <= balance) {
 				int chk_2 = AccountService.withdrawService(newAcc, depositAmount);
 
 				if (chk_2 == 1) {
 					System.out.println("출금이 완료되었습니다.");
 				}
+			} else {
+				System.out.println("잔액이 부족합니다");
 
 			}
 
 		} else {
-			System.out.println("계좌가 존재하지 않습니다.");
+			System.out.println("해당 계좌가 존재하지 않습니다.");
 		}
 
 	}

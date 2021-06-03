@@ -1,9 +1,8 @@
 package kr.ac.kopo.ui.total;
 
-import kr.ac.kopo.ui.BaseUI;
 import kr.ac.kopo.ui.user.TotalAccountUI;
 
-public class LogoutUI extends BaseUI{
+public class LogoutUI extends TotalUI{
 
 	@Override
 	public void execute() throws Exception {

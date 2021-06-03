@@ -1,9 +1,8 @@
 package kr.ac.kopo.ui.user;
 
-import kr.ac.kopo.ui.BaseUI;
 import kr.ac.kopo.vo.AccountVO;
 
-public class TransferUI extends BaseUI {
+public class TransferUI extends UserUI {
 
 	@Override
 	public void execute() throws Exception {
@@ -30,7 +29,7 @@ public class TransferUI extends BaseUI {
 					int transferAmount = scanInt("얼마나 이체하시겠습니까? : ");
 					int balance = AccountService.BalanceCheckService(newAcc);
 
-					if (balance > 0 && transferAmount < balance) {
+					if (balance > 0 && transferAmount <= balance) {
 						int chk = AccountService.transferService(newAcc, acc, transferAmount);
 						if (chk == 1) {
 							System.out.println("이체에 성공했습니다.");

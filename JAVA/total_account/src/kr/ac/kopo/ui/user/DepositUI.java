@@ -1,9 +1,8 @@
 package kr.ac.kopo.ui.user;
 
-import kr.ac.kopo.ui.BaseUI;
 import kr.ac.kopo.vo.AccountVO;
 
-public class DepositUI extends BaseUI{
+public class DepositUI extends UserUI{
 
 	@Override
 	public void execute() throws Exception {

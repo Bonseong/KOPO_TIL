@@ -1,5 +1,7 @@
 package kr.ac.kopo.ui.admin;
 
-public class AdminUI {
+import kr.ac.kopo.ui.BaseUI;
+
+public abstract class AdminUI extends BaseUI{
 
 }

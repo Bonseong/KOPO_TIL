@@ -1,9 +1,8 @@
 package kr.ac.kopo.ui.total;
 
-import kr.ac.kopo.ui.BaseUI;
 import kr.ac.kopo.vo.User_InfoVO;
 
-public class RegisterUI extends BaseUI {
+public class RegisterUI extends TotalUI {
 
 	@Override
 	public void execute() throws Exception {
