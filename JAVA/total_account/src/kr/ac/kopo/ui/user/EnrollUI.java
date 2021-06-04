@@ -9,7 +9,7 @@ public class EnrollUI extends UserUI {
 		BankVO newBank = new BankVO();
 		String bankname = null;
 
-		if (!BankService.checkLastDayService(session)) {
+		if (BankService.checkLastDayService(session)) {
 
 			System.out.println("계좌 생성 서비스 입니다.");
 			System.out.println("원하는 은행명을 입력해주세요 : ");

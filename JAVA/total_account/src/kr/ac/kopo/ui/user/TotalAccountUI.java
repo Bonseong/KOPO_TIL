@@ -34,7 +34,7 @@ public class TotalAccountUI extends UserUI {
 				}
 				
 			} catch (Exception e) {
-				System.out.println("TotalAccountUI Exception");
+				e.getStackTrace();
 			}
 		}
 	}

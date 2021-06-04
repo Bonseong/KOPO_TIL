@@ -44,7 +44,7 @@ public class AccountManagerUI extends UserUI{
 				}
 				
 			} catch (Exception e) {
-				System.out.println("TotalAccountUI Exception");
+				e.getStackTrace();
 			}
 		}
 	}
@@ -57,7 +57,7 @@ public class AccountManagerUI extends UserUI{
 		System.out.println("\t2. 계좌 상세 조회");
 		System.out.println("\t3. 은행별 계좌 조회");
 		System.out.println("\t4. 전체 계좌 조회");
-		System.out.println("\t5. 거래 내역 조회");
+		System.out.println("\t5. 계좌 이체 내역 조회");
 		System.out.println("\t6. 계좌 수정");
 		System.out.println("\t7. 계좌 삭제");
 		System.out.println("\t8. 뒤로 가기");

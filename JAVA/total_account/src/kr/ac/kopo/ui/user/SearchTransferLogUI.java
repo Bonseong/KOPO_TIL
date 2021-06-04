@@ -8,7 +8,7 @@ public class SearchTransferLogUI extends UserUI{
 	public void execute() throws Exception {
 		AccountVO newAcc = new AccountVO();
 		
-		System.out.println("거래 내역 조회 서비스입니다.");
+		System.out.println("계좌 이체 내역 조회 서비스입니다.");
 		String acc = scanStr("계좌 번호를 입력해주세요 : ");
 		String pw = scanStr("비밀번호를 입력해주세요 : ");
 		

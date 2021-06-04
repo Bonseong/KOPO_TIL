@@ -71,6 +71,7 @@ public class BankDAODB {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
 
+			
 			sql.append(" SELECT NVL(MIN(TRUNC(SYSDATE - ACC_CREATING_DATE)),0) AS LAST_DAY FROM ACCOUNT ");
 			sql.append(" WHERE USER_NO = (SELECT USER_NO FROM USER_INFO WHERE ID = ? ) ");
 
@@ -84,6 +85,8 @@ public class BankDAODB {
 			while (rs.next()) {
 				last_day = rs.getInt("LAST_DAY");
 			}
+			
+			
 
 			if (last_day > 30) {
 				return true; // 30일 초과

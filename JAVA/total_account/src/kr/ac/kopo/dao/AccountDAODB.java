@@ -255,7 +255,7 @@ public class AccountDAODB {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
 
-			sql.append(" SELECT B.BANK_NAME, U.USER_NAME, A.ACC_NO, A.BALANCE, A.ACC_NICKNAME, TO_CHAR(A.ACC_CREATING_DATE, 'yyyy-mm-dd') AS ACC_CREATING_DATE ");
+			sql.append(" SELECT B.BANK_NAME, U.USER_NAME, A.ACC_NO, A.BALANCE, A.ACC_NICKNAME,TO_CHAR(A.ACC_CREATING_DATE, 'yyyy-mm-dd') AS ACC_CREATING_DATE ");
 			sql.append(" FROM ACCOUNT A, BANK B, USER_INFO U ");
 			sql.append(" WHERE A.ACC_ISACTIVE = 'ACTIVE' AND A.BANK_CODE = B.BANK_CODE AND A.USER_NO = U.USER_NO ");
 			sql.append(" AND U.ID = ? AND A.ACC_PW = ? AND A.ACC_NO = ? ");
@@ -329,7 +329,7 @@ public class AccountDAODB {
 	public void updatePassword(AccountVO newAcc) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-
+		
 		try {
 			conn = new ConnectionFactory().getConnection();
 			conn.setAutoCommit(false);
@@ -342,15 +342,17 @@ public class AccountDAODB {
 			pstmt.setString(1, newAcc.getAccPw());
 			pstmt.setString(2, newAcc.getAccNo());
 
+			
 			int chk = pstmt.executeUpdate();
 
+			
 			if (chk == 1) {
 				System.out.println("비밀번호가 변경되었습니다.");
-
+				conn.commit();
 			} else {
 				System.out.println("변경에 실패했습니다.");
 			}
-			conn.commit();
+			
 
 		} catch (Exception e) {
 			conn.rollback();
@@ -371,14 +373,16 @@ public class AccountDAODB {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
 
-			sql.append(" UPDATE ACCOUNT SET ACC_NICKNAME = ? WHERE ACC_NO= ? ");
+			sql.append(" UPDATE ACCOUNT SET ACC_NICKNAME = ? WHERE ACC_NO = ? ");
 
 			pstmt = conn.prepareStatement(sql.toString());
 
 			pstmt.setString(1, newAcc.getAccNickname());
 			pstmt.setString(2, newAcc.getAccNo());
 
+			
 			int chk = pstmt.executeUpdate();
+			
 
 			if (chk == 1) {
 				System.out.println("별칭이 변경되었습니다.");
@@ -390,8 +394,8 @@ public class AccountDAODB {
 			conn.commit();
 
 		} catch (Exception e) {
-			System.out.println("계좌 수정에 실패했습니다.");
 			conn.rollback();
+			System.out.println("계좌 수정에 실패했습니다.");
 			e.printStackTrace();
 		} finally {
 			JDBCClose.close(conn, pstmt);
