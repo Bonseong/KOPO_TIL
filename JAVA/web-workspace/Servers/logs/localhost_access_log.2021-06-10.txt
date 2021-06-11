@@ -1,0 +1,12 @@
+127.0.0.1 - - [10/Jun/2021:09:57:04 +0900] "GET / HTTP/1.1" 404 807
+127.0.0.1 - - [10/Jun/2021:10:06:37 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:10:06:37 +0900] "GET /Lecture-Web/html/exam01.html HTTP/1.1" 200 126
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:10:06:53 +0900] "GET /Lecture-Web/html/exam01.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:10:07:09 +0900] "GET /Lecture-Web/html/exam01.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:10:07:28 +0900] "GET /Lecture-Web/html/exam01.html HTTP/1.1" 200 126
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:10:07:28 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:10:07:46 +0900] "GET /Lecture-Web/html/exam01.html HTTP/1.1" 200 136
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:10:10:24 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:10:10:29 +0900] "GET /Lecture-Web/html/exam01.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:10:10:42 +0900] "GET /Lecture-Web/WebContent HTTP/1.1" 404 833
+0:0:0:0:0:0:0:1 - - [10/Jun/2021:10:10:51 +0900] "GET /Lecture-Web/WebContent/html/exam01.html HTTP/1.1" 404 858

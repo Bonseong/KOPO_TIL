@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+	width: 100px;
+	margin: 10px; /* margin : div과 div간의 간격 */
+	padding: 10px; /* padding : div 내의 간격 */
+	border-color: blue;
+	border-width: 5px;
+	float : right; /* 한쪽으로 몰아버림 */
+	
+}
+/* 테두리는 color, width, style이 한 세트border-style */
+#div01 {
+	background-color: yellow;
+	border-style: solid; /* 실선 */
+}
+
+#div02 {
+	background-color: red;
+	border-style: dotted; /* 실선 */
+	/* visibility: hidden; */ /* 공간은 할당되었지만, 보이지 않음 */
+	display: none; /* 공간조차 할당하지 않음 */
+}
+
+#div03 {
+	border-style: double;
+}
+
+#div04 {
+	border-style: outset;
+}
+
+#div05 {
+	border-style: groove;
+}
+
+#div06 {
+	border-style: outset;
+}
+</style>
+</head>
+<body>
+	<div id="div01">사각형1</div>
+	<div id="div02">사각형2</div>
+	<div id="div03">사각형3</div>
+	<div id="div04">사각형4</div>
+	<div id="div05">사각형5</div>
+	<div id="div06">사각형6</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	alert(`a : ${ a }, b : ${ b }`) // 변수의 호이스팅
+	alert('hello')
+
+	var a = 10
+	var b = 20
+
+	alert(`a : ${ a }, b : ${ b }`)
+	{
+		var a = 30
+		var c = 50 // 변수의 범위에 대한 제한이 없음
+		alert(`a : ${ a }, b : ${ b } c : ${ c }`)
+	}
+	alert(`a : ${ a }, b : ${ b } c : ${ c }`) // c가 출력됨
+</script>
+</head>
+<body>
+
+</body>
+</html>
