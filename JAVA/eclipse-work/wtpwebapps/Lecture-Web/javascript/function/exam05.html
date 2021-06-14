@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	/*
+		자바스크립트 내장함수
+		1. 타이머
+			setTimeout(function, ms) : ms가 경과하면 function 호출
+			setInterval(function, ms) : ms마다 function 호출
+			clearInterval()
+		2. 코드실행함수
+			eval(string)
+			
+	 */
+
+	setTimeout(function() {
+		clearInterval(pid)
+	}, 10000)
+
+	var pid = setInterval(function() {
+		document.write('현재시간 : ' + new Date() + '<br>')
+	}, 1000)
+</script>
+</head>
+<body>
+
+</body>
+</html>
