@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	class Person{
+		constructor(name, phone, addr){ // 생성자
+			this._name = name // _ : 은닉성 (언더바를 붙여 원래 변수를 추측하지 못하게 함)
+			this._phone = phone
+			this._addr = addr
+		}	
+		
+		info(){ // function을 붙이지 않음, 프로토타입
+			alert(`name : ${this._name}\nphone : ${this._phone}\naddr : ${this._addr}`)
+		}
+		
+		get name(){ // getter
+			return this._name
+		}
+		
+		set name(name) { // setter
+			this._name = name
+		}
+		
+		get phone(){
+			return this._phone
+		}
+		
+		set phone(phone){
+			this._phone = phone
+		}
+		
+		get addr(){
+			return this._addr
+		}
+		
+		set addr(addr){
+			this._addr = phone
+		}
+		
+	}
+	
+	
+	let p = new Person("홍길동", "010-1111-2222", "경기도 광명시")
+	p.info()
+	console.log(p)
+	
+
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -6,7 +6,7 @@
 <script>
 	function clone(obj) {
 		let object = {}
-		for (let key in obj) {
+		for ( let key in obj) {
 			object[key] = obj[key]
 		}
 		return object
@@ -21,7 +21,9 @@
 	// let person2 = person
 
 	// 깊은복사
-	let person2 = clone(person)
+	// let person2 = clone(person)
+	let person2 = {...person} // 배열만 전개연산자를 사용할 수 있는 것이 아님
+	
 	person2.phone = '010-5555-6666'
 
 	console.log(person)

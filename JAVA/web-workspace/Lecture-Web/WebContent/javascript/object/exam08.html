@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function Person(name, phone, addr) {
+		this.name = name
+		this.phone = phone
+		this.addr = addr
+	}
+
+	Person.prototype.hobby = '영화감상'
+	Person.prototype.info = function() {
+		let msg = ''
+		for ( let key in this) {
+			if (typeof(this[key]) != 'function')
+				msg += key + ' : ' + this[key] + '\n'
+		}
+		alert(msg)
+	}
+
+	function Doctor(name, phone, addr, major) {
+		/* this.name = name
+		this.phone = phone
+		this.addr = addr */
+
+		/* this.super = Person
+		this.super(name, phone, addr) */
+
+		//Person.call(this, name, phone, addr) // Person의 객체를 한꺼번에 넘겨줌
+		//Perseon.call(this, ...arguments)
+		Person.apply(this, arguments) // apply : 배열에 같은 함수나 식을 대입
+		this.major = major
+	}
+
+	Doctor.prototype = Person.prototype
+	//Doctor.prototype = Object.create(Person.prototype)
+	//Doctor.protoype = new Person()
+
+	/*
+	let p = new Person("홍길동", "010-1111-2222", "경기도 광명시")
+	p.info()
+	console.log(p)
+	 */
+
+	let d = new Doctor('나최고', '010-3333-4444', '서울시 서초구', '신경외과')
+
+	d.info()
+
+	console.log(d)
+	console.log("d instanceof Doctor : " + (d instanceof Doctor))
+	console.log("d instanceof Person : " + (d instanceof Person)) // false : Person의 객체를 가져올 뿐, Person 객체는 아님
+
+	// 상속관계 : 프로토타입을 맞춰주는 것
+</script>
+</head>
+<body>
+
+</body>
+</html>

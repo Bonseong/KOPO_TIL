@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+/*
+ 	BOM(브라우저 객체 모델)
+ 	- window	:	브라우저의 최상의 객체
+ 		-location
+ 		-screen
+ 		-history
+ 		-document
+ 		-navigator
+ */
+ 
+ 	window.alert('hello')
+ 	
+ 	let sub = window.open("","", "width=500, height=400")
+ 	if(!sub) {
+ 		alert('팝업창 옵션을 확인하세요')
+ 	}
+ 	sub.moveTo(100, 100)
+ 	
+ 	let pid = setInterval(function() {
+ 		sub.moveBy(10, 10)
+ 	}, 1000)
+ 	
+ 	let width = screen.width
+ 	let height = screen.height
+ 	
+ 	setTimeout(function() {
+ 		clearInterval(pid)
+ 		sub.resizeTo(width,height)
+ 	}, 10000)
+</script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

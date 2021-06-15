@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	let nums = [10, 20, 30, 40, 50]
+	
+	document.write('nums : ' + nums + '<br>')
+	
+	/*
+	let copyNums = []
+	for(let num of nums) {
+		copyNums.push(num + 100)
+	}
+	*/
+	let copyNums = nums.map(function(element) {
+		return element + 100
+	})
+	
+	document.write('copyNums : ' + copyNums + '<br>')
+	
+	nums = [5, 23, 1, 676, 34, 67, 8, 34, 12, 56]
+	
+	let evenNums = nums.filter(function(element, index, array) {
+		return element % 2 == 0 // return 뒤 조건을 만족해야 함!
+	})
+	
+	document.write('nums : ' + nums + '<br>')
+	document.write('evenNums : ' + evenNums + '<br>')
+	
+	let bool = nums.every(function(element) {
+		return element > 0
+	})
+	document.write('양의정수집합 판단 : ' + bool + '<br>')
+	
+	bool = nums.some(function(element) {
+		return element % 2 == 0
+	})
+	document.write('짝수포함여부 : ' + bool + '<br>')
+	
+	nums = [1, 2, 3, 4, 5]
+	let sum = 0
+	for(const data of nums) {
+		sum += data
+	}
+	document.write(nums + ' 총합 : ' + sum + '<br>')
+	
+	sum = nums.reduce(function(before, element, index, array) { // index : 현재인덱스, array : 원본배열
+		return before+element
+	})
+	document.write(nums + ' 총합 : ' + sum + '<br>')
+</script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

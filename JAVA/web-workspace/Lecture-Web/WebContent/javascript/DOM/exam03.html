@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	window.onload = function() {
+
+		// 특정 tag를 찾는법
+		let tags = document.querySelectorAll('td') // NodeList출력
+		tags[0].innerHTML = '아이디'
+
+		tags = document.getElementsByTagName('td') // HTMLCollection 출력, 더 많이 쓰임!
+		tags[1].innerHTML = '패스워드'
+		console.log(tags)
+	}
+</script>
+</head>
+<body>
+	<table style="width: 100; height: 100;" border="1">
+		<tr>
+			<td>ID</td>
+		</tr>
+		<tr>
+			<td>PW</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	let d = new Date()
+	console.log(d)
+	Date.prototype.today = function() {
+		let day = ''
+		switch (this.getDay()) {
+		case 1:
+			day = "월";
+			break
+		case 2:
+			day = "화";
+			break
+		case 3:
+			day = "수";
+			break
+		case 4:
+			day = "목";
+			break
+		case 5:
+			day = "금";
+			break
+		case 6:
+			day = "토";
+			break
+		case 7:
+			day = "일";
+			break
+		}
+		return (("오늘은 " + d.getFullYear() + "년 " + (d.getMonth() + 1) + "월 "
+				+ d.getDate() + "일 " + day + "요일 입니다."))
+	}
+
+	alert(d.today())
+	let d2 = new Date(2000,12,25)
+	alert(d2.today(0))
+</script>
+</head>
+<body>
+
+</body>
+</html>
