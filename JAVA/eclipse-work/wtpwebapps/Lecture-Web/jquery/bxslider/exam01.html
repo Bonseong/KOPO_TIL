@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.slider').bxSlider({
+			auto : true,
+			autoControls : true,
+			captions : true,
+			slideWidth : 400,
+			mode : vertical
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="slider">
+		<div>
+			<img src="/Lecture-Web/css/images/cat2.jpg" title="딸기는말안드뤄">
+		</div>
+		<div>
+			<img src="/Lecture-Web/css/images/cat3.jpg" title="루루애오">
+		</div>
+		<div>
+			<img src="/Lecture-Web/css/images/cat4.jpg" title="루루애오오">
+		</div>
+		<div>
+			<img src="/Lecture-Web/css/images/nyan-cat.gif" title="오늘점심머야">
+		</div>
+	</div>
+</body>
+</html>
