@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+	//$('h1').hide() // body 내 모든 h1태그를 숨김
+	//$('#h01').hide() // id가 h01인 태그를 숨김
+	//$('.h01').hide() // class가 h01인 태그를 숨김
+	
+	//$('h1.h01').hide() // h1태그 하에 h01 클래스
+	
+	$('h1:first').hide()
+	$('h1:last').hide()
+	
+})
+
+/* 	window.onload = function(){
+		alert('!!!')
+		let hTag = document.getElementById("h01")
+		hTag.style.display = 'none'
+		
+		let hTags = document.getElementsTagName("h1")
+		hTags.forEach(function(element){
+			element.style.display = 'none'
+		})
+	} */
+</script>
+</head>
+<body>
+	<h1 id ="h01">Hello</h1>
+	<h1 id="h02">안녕</h1>
+	<h1 class="h01" >Hello</h1>
+	<h1 class="h02">안녕</h1>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+	width: 100px;
+	height: 100px;
+	position: relative;
+	float: left;
+	font-size: 20px;
+	align-content: center;
+	text-align: center;
+	display: inline-grid;
+}
+
+#mon {
+	background-color: red;
+}
+
+#tue {
+	background-color: orange;
+}
+
+#wed {
+	background-color: yellow;
+}
+
+#thu {
+	background-color: green;
+}
+
+#fri {
+	background-color: blue;
+}
+
+#sat {
+	background-color: navy;
+}
+
+#sun {
+	background-color: purple;
+}
+</style>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script>
+	let array = [ false, false, false, false, false, false, false ]
+
+	array['월'] = false
+	$(document).ready(function() {
+		$('div').mouseenter(function() {
+			/*console.log($(this[0]))
+			 			if (array[$(this)[0].style.width] == "100px") {
+			 array[$(this)[0].innerText] = true
+			 } 
+
+			 if (array[$(this)[0].innerText]) {
+			 */
+			$(this).animate({
+				width : '150px',
+				height : '150px'
+
+			})
+			$(this).html($(this).html() + "요일")
+		}
+
+		)
+
+		$('div').mouseleave(function() {
+
+			$(this).animate({
+				width : '100px',
+				height : '100px',
+
+			})
+
+			$(this).html($(this).html()[0])
+
+		})
+	})
+</script>
+</head>
+<body>
+	<div id="mon">월</div>
+	<div id="tue">화</div>
+	<div id="wed">수</div>
+	<div id="thu">목</div>
+	<div id="fri">금</div>
+	<div id="sat">토</div>
+	<div id="sun">일</div>
+</body>
+</html>

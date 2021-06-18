@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script>
+/* 	let starFunc = function() {
+		$('h1')[0].innerText += '*'
+	} */
+
+	$(document).ready(function() {
+
+		$('h1').click(function(e, data = '*', data2='-') { // 초기화하는 코드
+			//$(this)[0].innerText += '*'
+			//data=data||'*' // data가 undefined면 *로 초기화
+			$(this)[0].innerText += data
+			$(this)[0].innerText += data2
+			console.log(e)
+		})
+
+		setInterval(function() {
+			//	starFunc()
+			//$('h1').click()
+			//}, 1000)
+			$('h1').trigger('click','#','-') 
+			$('h1').click('#', '-')
+		}, 1000)
+	})
+
+	/* 	cnt = 1
+	 let startFunc = function() {
+
+	 $('h1')[0].innerText = ('start : ' + ('*').repeat(cnt))
+	 cnt++
+	 }
+
+	 $(document).ready(function() {
+	 setInterval(function() {
+	 startFunc()
+	 }, 1000)
+	 }) */
+</script>
+</head>
+<body>
+	<h1>start :</h1>
+</body>
+</html>

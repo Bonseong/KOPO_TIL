@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+	width: 100px;
+	height: 100px;
+	background-color: red;
+	position: absolute;
+}
+</style>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$('div').animate({
+			width : '200px'
+		})
+
+		$('div').animate({
+			left : '100px',
+			opacity : '0.3'
+		}, 1000)
+
+		$('div').animate({
+			width : '100px',
+			height : '200px',
+			opacitiy : '0.7'
+		}, 1000)
+
+/* 		$('div').animate({
+			height:'100px',
+			left:'0px',
+			top:'100px',
+			opacity:1
+		}, 1000, function(){
+			$(this).css('background-color','blue') // jqueryui를 사용해야 서서히 바뀜
+		}) */
+		
+		$('div').animate({
+			height:'100px',
+			left:'0px',
+			top:'100px',
+			opacity:1
+		}, 1000)
+		
+		$('div').animate({
+			width : '100px',
+			height : '100px',
+			opacitiy : '0.7',
+			backgroundColor:'blue'
+		}, 1000)
+		
+		
+		
+/* 		$('div').animate({
+			'background-color':'blue'
+			
+		}, 1000) */ // 실행되지 않음
+
+		/*
+		$('div').animate({
+			
+			
+			'width' : '+=100px',
+			'height' : '200px',
+			'left' : '100px',
+			'top' : '100px',
+			'opacity' : '0.6'
+			
+		}, 1000)
+		 */
+	})
+</script>
+</head>
+<body>
+	<div></div>
+	
+</body>
+</html>

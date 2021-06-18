@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(document).ready(function() {
+		//$('ul li:first').hide() // 아래 두 ul이 합쳐져 모든 li 태그 중 첫번째 태그인 호랑이만 제거됨
+
+		//$('ul li:first-child').hide() // 여러 ul 중 각각의 첫번째 값
+
+		//$('a[target]').hide()
+		//$('a[href="http://www.naver.com"]').hide()
+
+		//$('input[type=button]').hide()
+
+		// $('input:button').hide() // input 태그 중 type : button
+		// $(':button').hide() // 모든 type : button
+		// $('button').hide() // button 태그 제거
+
+		$(':button').click(function() {
+			// $('h2').hide() // 어떤 버튼이라도 누르면 h2태그 제거
+			//$(this).hide() // this : 클릭을 당한 대상
+			
+			$(this).hide('drop', {direction: 'left'}, 2000)
+		})
+	})
+</script>
+</head>
+<body>
+	<h2>button 전</h2>
+	<input type="button" value="버튼1">
+	<button>버튼2</button>
+	<h2>button 후</h2>
+
+
+
+	<h2>a Tag 전</h2>
+	<a href="http://www.naver.com">네이버</a>
+	<a href="http://www.daum.net" target="_blank">다음</a>
+	<h2>a Tag 후</h2>
+
+	<h1>동물종류</h1>
+	<ul>
+		<li>호랑이</li>
+		<li>늑대</li>
+		<li>코끼리</li>
+		<li>여우</li>
+	</ul>
+
+	<h1>음식종류</h1>
+	<ul>
+		<li>치킨</li>
+		<li>피자</li>
+		<li>마라샹궈</li>
+		<li>꿔바로우</li>
+	</ul>
+</body>
+</html>
