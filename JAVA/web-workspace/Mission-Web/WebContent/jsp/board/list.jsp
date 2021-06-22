@@ -19,6 +19,7 @@ sql.append(" ORDER BY NO DESC ");
 PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 
 ResultSet rs = pstmt.executeQuery();
+
 %>
 
 
@@ -27,6 +28,16 @@ ResultSet rs = pstmt.executeQuery();
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="/Mission-Web/resources/js/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#addBtn').click(function() {
+			location.href = "writeForm.jsp"
+			/* location 객체 필요 */
+		})
+	})
+</script>
+
 </head>
 <body>
 	<div align="center">
@@ -47,7 +58,7 @@ ResultSet rs = pstmt.executeQuery();
 			%>
 			<tr>
 				<td><%=no%></td>
-				<td><a href="detail.jsp?no=<%= no%>"><%= title%></a></td>
+				<td><a href="detail.jsp?no=<%=no%>"><%=title%></a></td>
 				<td><%=rs.getString("writer")%></td>
 				<td><%=rs.getString("reg_date")%></td>
 			</tr>
@@ -55,6 +66,8 @@ ResultSet rs = pstmt.executeQuery();
 			}
 			%>
 		</table>
+		<br>
+		<button id="addBtn">새글등록</button>
 	</div>
 </body>
 </html>

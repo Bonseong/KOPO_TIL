@@ -38,6 +38,7 @@ public class PInfoInputServlet extends HttpServlet {
 		out.println("암호 : " + pw + "<br>");
 		out.println("성별 : " + gender + "<br>");
 
+		
 		out.println("공지메일 : " + (Arrays.asList(mail).contains("notice") ? "받음" : "받지않음") + "<br>");
 		out.println("광고메일 : " + (Arrays.asList(mail).contains("ad") ? "받음" : "받지않음") + "<br>");
 		out.println("배송 확인 메일 : " + (Arrays.asList(mail).contains("delivery") ? "받음" : "받지않음") + "<br>");
