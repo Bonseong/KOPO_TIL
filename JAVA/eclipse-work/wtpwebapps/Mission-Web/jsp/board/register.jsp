@@ -22,7 +22,7 @@
 	String addrBasic = request.getParameter("addrBasic");
 	String addrDetail = request.getParameter("addrDetail");
 
-	
+		
 	
 	Connection conn = new ConnectionFactory().getConnection();
 

@@ -1,3 +1,5 @@
+<%@page import="kr.ac.kopo.util.JDBCClose"%>
+<%@page import="kr.ac.kopo.board.vo.BoardVO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
@@ -28,6 +30,20 @@ pstmt.setInt(1, boardNo);
 ResultSet rs = pstmt.executeQuery();
 
 rs.next();
+JDBCClose.close(conn, pstmt);
+
+int no 			= rs.getInt("NO");
+String title 	= rs.getString("title");
+String writer 	= rs.getString("writer");
+String content 	= rs.getString("content");
+int viewCnt 	= rs.getInt("view_cnt");
+String regdate 	= rs.getString("reg_date");
+
+BoardVO board = new BoardVO(no, title, writer, content, viewCnt, regdate);
+
+pageContext.setAttribute("board", board); /* BoardVO 객체 자체를 등록 */
+
+
 %>
 
 <!DOCTYPE html>
@@ -56,23 +72,23 @@ $(document).ready(function() {
 		<table border="1">
 			<tr>
 				<th width="25%">번호</th>
-				<td><%=rs.getInt("no")%></td>
+				<td>${ board.no }</td>
 			</tr>
 			<tr>
 				<th width="25%">제목</th>
-				<td><%=rs.getString("writer")%></td>
+				<td>${ board.title }</td>
 			</tr>
 			<tr>
 				<th width="25%">내용</th>
-				<td><%=rs.getString("content")%></td>
+				<td>${ board.content }</td>
 			</tr>
 			<tr>
 				<th width="25%">조회수</th>
-				<td><%=rs.getInt("view_cnt")%></td>
+				<td>${ board.viewCnt }</td>
 			</tr>
 			<tr>
 				<th width="25%">등록일</th>
-				<td><%=rs.getString("reg_date")%></td>
+				<td>${ board.regdate }</td>
 			</tr>
 		</table>
 		<br> <input type="button" value="목록" id="goListBtn">
