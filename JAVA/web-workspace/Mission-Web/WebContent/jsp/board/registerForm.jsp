@@ -1,3 +1,8 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="kr.ac.kopo.util.JDBCClose"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="kr.ac.kopo.util.ConnectionFactory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,21 +14,21 @@
 </style>
 <script type="text/javascript"
 	src="/Mission-Web/resources/js/jquery-3.6.0.min.js"></script>
+
+
+
 <script>
 	$(document).ready(function() {
+
 		$("#main").click(function() {
-			
-			
-			
-			
-			
+			location.href = "loginForm.jsp"
+
 		})
 
-		$("#checkDuplicated").click(function() {
-			alert("aa")
-		})
 	})
 </script>
+
+
 </head>
 <body>
 	<div align="center">
@@ -36,8 +41,9 @@
 			<table border="1" style="width: 50%">
 				<tr>
 					<th width="30%">아이디 :</th>
-					<td><input type="text" name="id" id = "id">
-						<button type = "button" id="checkDuplicated">중복체크</button></td>
+					<td><input type="text" name="id" id="id">
+						<button type="button" id="checkDuplicated"
+							onclick="button_click()">중복체크</button></td>
 				</tr>
 				<tr>
 					<th width="30%">이름 :</th>
