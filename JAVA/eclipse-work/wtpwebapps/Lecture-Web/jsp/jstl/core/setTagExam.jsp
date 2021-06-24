@@ -34,6 +34,11 @@
 	request cnt : ${ requestScope.cnt }<br>
 
 
+	<hr>
+	<c:set var="tmp" value="4" scope="page"/> <!-- JSTL -->
+	pageContext tmp : ${pageScope.tmp}<br>	<!-- JSP : EL -->
+	tmp : ${tmp }
+	
 	
 </body>
 </html>

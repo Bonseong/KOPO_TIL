@@ -21,7 +21,7 @@
 		<h2>아이디 체크</h2>
 		<hr width="80%"></hr>
 		
-		<form action="checkID.jsp" method = "post">
+		<form action="checkID.jsp" method = "get">
 		아 이 디 : <input type="text" name = "id"><br>
 		<br>
 		

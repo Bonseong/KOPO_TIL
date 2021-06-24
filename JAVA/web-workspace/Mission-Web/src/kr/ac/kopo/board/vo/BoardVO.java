@@ -1,26 +1,25 @@
 package kr.ac.kopo.board.vo;
 
 public class BoardVO {
+
 	private int no;
 	private String title;
 	private String writer;
 	private String content;
 	private int viewCnt;
-	private String regdate;
-
+	private String regDate;
+	
 	public BoardVO() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public BoardVO(int no, String title, String writer, String content, int viewCnt, String regdate) {
+	public BoardVO(int no, String title, String writer, String content, int viewCnt, String regDate) {
 		super();
 		this.no = no;
 		this.title = title;
 		this.writer = writer;
 		this.content = content;
 		this.viewCnt = viewCnt;
-		this.regdate = regdate;
+		this.regDate = regDate;
 	}
 
 	public int getNo() {
@@ -63,18 +62,20 @@ public class BoardVO {
 		this.viewCnt = viewCnt;
 	}
 
-	public String getRegdate() {
-		return regdate;
+	public String getRegDate() {
+		return regDate;
 	}
 
-	public void setRegdate(String regdate) {
-		this.regdate = regdate;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 
 	@Override
 	public String toString() {
 		return "BoardVO [no=" + no + ", title=" + title + ", writer=" + writer + ", content=" + content + ", viewCnt="
-				+ viewCnt + ", regdate=" + regdate + "]";
+				+ viewCnt + ", regDate=" + regDate + "]";
 	}
-
+	
+	
+	
 }

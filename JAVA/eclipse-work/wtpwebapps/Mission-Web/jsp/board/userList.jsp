@@ -55,7 +55,7 @@ $(document).ready(function() {
 			%>
 			<tr>
 
-				<td><%=id%></td>
+				<td><a href ="checkID.jsp?id=<%=id%>"><%=id%></a></td>
 				<td><%=name%></td>
 	
 			</tr>
