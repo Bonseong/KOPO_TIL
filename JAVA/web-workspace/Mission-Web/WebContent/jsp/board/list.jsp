@@ -58,7 +58,7 @@ pageContext.setAttribute("list", list);
 	$(document).ready(function() {
 		$('#logoutBtn').click(function() {
 			alert("로그아웃 되었습니다.")
-			location.href = "loginForm.jsp"
+			location.href = "/Mission-Web/jsp/login/login.jsp"
 		})
 	})
 </script>

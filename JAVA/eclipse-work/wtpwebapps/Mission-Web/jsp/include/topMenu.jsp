@@ -10,7 +10,7 @@
 		<td>
 			<nav>
 				회원관리 || <a href="/Mission-Web/jsp/board/list.jsp"> 게시판</a> || 회원가입 ||
-				로그인 || 마이페이지 || 로그아웃
+				<a href="/Mission-Web/jsp/login/login.jsp">로그인</a> || 마이페이지 || 로그아웃
 			</nav>
 		</td>
 	</tr>
