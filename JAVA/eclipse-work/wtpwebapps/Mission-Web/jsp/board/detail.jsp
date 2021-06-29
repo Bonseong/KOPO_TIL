@@ -1,3 +1,4 @@
+<%@page import="kr.ac.kopo.board.dao.BoardDAO"%>
 <%@page import="kr.ac.kopo.util.JDBCClose"%>
 <%@page import="kr.ac.kopo.board.vo.BoardVO"%>
 <%@page import="java.sql.ResultSet"%>
@@ -15,27 +16,10 @@
 int boardNo = Integer.parseInt(request.getParameter("no"));
 
 // 2. 데이터베이스 t_board테이블에서 해당 게시물 조회
-Connection conn = new ConnectionFactory().getConnection();
-StringBuilder sql = new StringBuilder();
-sql.append("select no, title, writer, content, view_cnt ");
-sql.append("     , to_char(reg_date, 'yyyy-mm-dd') as reg_date ");
-sql.append("  from t_board ");
-sql.append(" where no = ? ");
-PreparedStatement pstmt = conn.prepareStatement(sql.toString());
-pstmt.setInt(1, boardNo);
-ResultSet rs = pstmt.executeQuery();
+BoardDAO dao = new BoardDAO();
 
-rs.next();
-int no = rs.getInt("no");
-String title = rs.getString("title");
-String writer = rs.getString("writer");
-String content = rs.getString("content");
-int viewCnt = rs.getInt("view_cnt");
-String regDate = rs.getString("reg_date");
-
-JDBCClose.close(conn, pstmt);
-
-BoardVO board = new BoardVO(no, title, writer, content, viewCnt, regDate);
+BoardVO board = dao.viewDetail(boardNo);
+dao.updateCnt(boardNo); // 조회수 증가
 
 pageContext.setAttribute("board", board);
 
@@ -50,19 +34,26 @@ pageContext.setAttribute("board", board);
 <link rel="stylesheet" href="/Mission-Web/resources/css/board.css"></link>
 <script src="/Mission-Web/resources/js/jquery-3.6.0.min.js"></script>
 <script>
-	$(document).ready(function() {
-		$('#addBtn').click(function() {
-			location.href = "writeForm.jsp"
-		})
-	})
 
 	$(document).ready(function() {
 		$('#listBtn').click(function() {
 			location.href = "list.jsp"
 		})
-	})
-</script>
+		
 
+	})
+	
+	function deleteBoard(no){
+		if(confirm("정말 삭제하시겠습니까?")){
+			location.href="delete.jsp?no="+no
+		}
+	}
+	
+	function updateBoard(no){
+		location.href="updateForm.jsp?no="+no
+	}
+	
+</script>
 </head>
 <body>
 	<header>
@@ -101,8 +92,11 @@ pageContext.setAttribute("board", board);
 				</tr>
 			</table>
 			<br>
+			<c:if test="${userVO.id eq board.writer || userVO.type eq 'S'}">
+				<button id="updateBtn" onclick="updateBoard('${ board.no }')">수정</button>
+				<button id="deleteBtn" onclick="deleteBoard('${ board.no }')">삭제</button>
+			</c:if>
 			<button id="listBtn">목록</button>
-			
 		</div>
 	</section>
 	<footer>

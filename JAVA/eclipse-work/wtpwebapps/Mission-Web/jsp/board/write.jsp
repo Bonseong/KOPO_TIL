@@ -1,10 +1,11 @@
+<%@page import="kr.ac.kopo.board.vo.BoardVO"%>
+<%@page import="kr.ac.kopo.board.dao.BoardDAO"%>
 <%@page import="kr.ac.kopo.util.JDBCClose"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="kr.ac.kopo.util.ConnectionFactory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 
 <%--
 	작업순서
@@ -19,25 +20,15 @@
  	String title = request.getParameter("title");
  	String writer = request.getParameter("writer");
  	String content = request.getParameter("content");
+ 	 	
+ 	BoardVO board = new BoardVO();
+ 	board.setTitle(title);
+ 	board.setWriter(writer);
+ 	board.setContent(content);
  	
- 	Connection conn = new ConnectionFactory().getConnection();
- 	
- 	StringBuilder sql = new StringBuilder();
- 	
- 	sql.append(" INSERT INTO T_BOARD(NO, TITLE, WRITER, CONTENT) " );
- 	sql.append(" VALUES(SEQ_T_BOARD_NO.NEXTVAL, ?, ?, ? )");
- 	
- 	PreparedStatement pstmt = conn.prepareStatement(sql.toString());
- 	
- 	pstmt.setString(1, title);
- 	pstmt.setString(2, writer);
- 	pstmt.setString(3, content);
- 	
- 	pstmt.executeUpdate();
- 	
- 	JDBCClose.close(conn, pstmt);
- 	
- 	
+ 	BoardDAO dao = new BoardDAO();
+ 	dao.insert(board);
+ 	 	
  %>
 <script>
 	alert("새글 등록이 완료되었습니다.")

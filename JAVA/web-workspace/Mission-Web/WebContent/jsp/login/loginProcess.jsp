@@ -29,8 +29,9 @@ String password = request.getParameter("password");
 
 // 객체생성 및 초기화
 LoginVO loginVO = new LoginVO();
+
 loginVO.setId(id);
-loginVO.setPassword(password);
+loginVO.setPassword(password); 
 
 // DB에서 로그인 수행
 LoginDAO dao = new LoginDAO();

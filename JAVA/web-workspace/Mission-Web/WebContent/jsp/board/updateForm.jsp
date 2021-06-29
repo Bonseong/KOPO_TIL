@@ -1,6 +1,22 @@
+<%@page import="kr.ac.kopo.board.vo.BoardVO"%>
+<%@page import="kr.ac.kopo.board.dao.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+<%
+	int boardNo = Integer.parseInt(request.getParameter("no"));
+	
+	BoardDAO dao = new BoardDAO();
+	BoardVO board = dao.viewDetail(boardNo);
+	
+	
+	pageContext.setAttribute("board", board);
+	
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,6 +63,7 @@
 
 		return true
 	}
+	
 </script>
 </head>
 
@@ -57,16 +74,16 @@
 	<section>
 		<div align="center">
 			<hr width="80%">
-			<h2>게시글 등록</h2>
+			<h2>게시글 수정</h2>
 			<hr width="80%">
 			<br>
-			<form action="write.jsp" method="post" name="writeForm"
+			<form action="update.jsp" method="post" name="writeForm"
 				onsubmit="return doWrite()">
-				<input type = "hidden" name="writer" value="${userVO.id}">
+				<input type = "hidden" name="no" value="${board.no}">
 				<table border="1" style="width: 80%">
 					<tr>
 						<th width="25%">제목</th>
-						<td><input type="text" size="60" name="title"></td>
+						<td><input type="text" size="60" name="title" value = "${ board.title }"></td>
 					</tr>
 					<tr>
 						<th width="25%">작성자</th>
@@ -75,10 +92,10 @@
 					</tr>
 					<tr>
 						<th width="25%">내용</th>
-						<td><textarea rows="8" cols="60" name="content"></textarea></td>
+						<td><textarea rows="8" cols="60" name="content" ><c:out value = "${ board.content }"/></textarea></td>
 					</tr>
 				</table>
-				<br> <input type="submit" value="등록"> <input
+				<br> <input type="submit" value="수정"> <input
 					type="button" value="목록" id="goListBtn">
 			</form>
 		</div>
