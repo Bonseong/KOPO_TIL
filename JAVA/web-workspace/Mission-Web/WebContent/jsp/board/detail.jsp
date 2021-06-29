@@ -38,6 +38,7 @@ JDBCClose.close(conn, pstmt);
 BoardVO board = new BoardVO(no, title, writer, content, viewCnt, regDate);
 
 pageContext.setAttribute("board", board);
+
 %>
 <!DOCTYPE html>
 <html>
@@ -101,6 +102,7 @@ pageContext.setAttribute("board", board);
 			</table>
 			<br>
 			<button id="listBtn">목록</button>
+			
 		</div>
 	</section>
 	<footer>

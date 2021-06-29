@@ -6,10 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/Mission-Web/resources/css/layout.css"></link>
+<link rel="stylesheet" href="/Mission-Web/resources/css/board.css"></link>
 </head>
 <body>
 	<header>
-		<jsp:include page="/jsp/include/topMenu.jsp"/>
+		<jsp:include page="/jsp/include/topMenu.jsp" />
 	</header>
 	<section>
 		section부분

@@ -55,12 +55,33 @@ pageContext.setAttribute("list", list);
 			location.href = "writeForm.jsp"
 		})
 	})
-	$(document).ready(function() {
+	
+	function doAction(no){
+		<c:choose>
+			<c:when test="${not empty userVO}">
+				location.href="detail.jsp?no=" + no
+			</c:when>
+			<c:otherwise>
+				if(confirm("로그인이 필요한 서비스입니다\n로그인페이지로 이동하시겠습니까?"))
+					location.href="/Mission-Web/jsp/login/login.jsp"
+			</c:otherwise>
+		</c:choose>
+		
+		/* 
+			해석이 JSP가 먼저기 때문에 스크립트를 사용할 수 있음 
+			(자바스크립트 -> 웹브라우저)
+			서블릿 코드로 전송될 때, when이나 otherwise 둘중 하나의 코드만 전송됨
+		*/
+		
+	}
+	
+	
+/* 	$(document).ready(function() {
 		$('#logoutBtn').click(function() {
 			alert("로그아웃 되었습니다.")
 			location.href = "/Mission-Web/jsp/login/login.jsp"
 		})
-	})
+	}) */
 </script>
 </head>
 <body>
@@ -83,17 +104,25 @@ pageContext.setAttribute("list", list);
 				<c:forEach items="${ list }" var="board" varStatus="loop">
 					<tr <c:if test="${loop.index mod 2 ne 0}" > class="odd"</c:if>>
 						<td>${ board.no }</td>
-						<td><a href="detail.jsp?no=${ board.no }"> <c:out
-									value="${ board.title }" />
-						</a></td>
+						<td><a href="javascript:doAction(${ board.no })"> <!-- JS 문법을 사용, 게시물번호를 파라미터로서 넘김 -->
+								<c:out value="${board.title }" />
+						</a> <%-- <a onclick="doAction()">
+								<c:out value="${board.title }"/> // 링크가 잡히지 않음, href=#을 사용하면 링크는 잡히지면, url에 #이 포함된
+							</a> --%> <%-- <a href="detail.jsp?no=${ board.no }"> <c:out
+										value="${ board.title }" />
+							</a> --%></td>
 						<td>${ board.writer }</td>
 						<td>${ board.regDate }</td>
 					</tr>
 				</c:forEach>
 			</table>
 			<br>
-			<button id="addBtn">새글등록</button>
-			<button id="logoutBtn">로그아웃</button>
+
+			<c:if test="${ not empty userVO }">
+				<button id="addBtn">새글등록</button>
+			</c:if>
+
+			<!-- <button id="logoutBtn">로그아웃</button> -->
 		</div>
 	</section>
 	<footer>
