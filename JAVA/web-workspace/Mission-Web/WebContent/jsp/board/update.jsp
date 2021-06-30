@@ -4,6 +4,8 @@
     pageEncoding="UTF-8"%>
 
 <%
+	request.setCharacterEncoding("utf-8");
+
 	int no = Integer.parseInt(request.getParameter("no"));
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
@@ -20,5 +22,5 @@
 
 <script>
 	alert("수정이 완료되었습니다.")
-	location.href="list.jsp"
+	location.href="detail.jsp?no=${param.no}"
 </script>

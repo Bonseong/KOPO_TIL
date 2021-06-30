@@ -1,3 +1,5 @@
+<%@page import="kr.ac.kopo.board.vo.BoardFileVO"%>
+<%@page import="java.util.List"%>
 <%@page import="kr.ac.kopo.board.dao.BoardDAO"%>
 <%@page import="kr.ac.kopo.util.JDBCClose"%>
 <%@page import="kr.ac.kopo.board.vo.BoardVO"%>
@@ -12,16 +14,29 @@
 	http://localhost:9999/Mission-Web/jsp/board/detail.jsp?no=2
  --%>
 <%
-// 1. 게시물번호 추출
-int boardNo = Integer.parseInt(request.getParameter("no"));
+	// 1. 게시물번호 추출
+	int boardNo = Integer.parseInt(request.getParameter("no"));
+	String type = request.getParameter("type");
+	
+	// 2-1. 데이터베이스 t_board테이블에서 해당 게시물 조회
+	BoardDAO dao = new BoardDAO();
+	
+	BoardVO board = dao.viewDetail(boardNo);
+	
+	
+	// 2-2 조회수 증가
+	if(type!=null && type.equals("list")){
+		dao.updateCnt(boardNo); 	
+	}
+	
+	// 2-3 게시물 첨부파일 조회
+	
+	List<BoardFileVO> fileList = dao.selectFileByNo(boardNo); // 0개 ~ 2개 -> List
+	
+	pageContext.setAttribute("board",board);
+	pageContext.setAttribute("fileList", fileList);
 
-// 2. 데이터베이스 t_board테이블에서 해당 게시물 조회
-BoardDAO dao = new BoardDAO();
-
-BoardVO board = dao.viewDetail(boardNo);
-dao.updateCnt(boardNo); // 조회수 증가
-
-pageContext.setAttribute("board", board);
+	pageContext.setAttribute("board", board);
 
 %>
 <!DOCTYPE html>
@@ -52,6 +67,8 @@ pageContext.setAttribute("board", board);
 	function updateBoard(no){
 		location.href="updateForm.jsp?no="+no
 	}
+	
+
 	
 </script>
 </head>
@@ -90,6 +107,16 @@ pageContext.setAttribute("board", board);
 					<th width="25%">등록일</th>
 					<td>${ board.regDate }</td>
 				</tr>
+			<tr>
+				<th>첨부파일</th>
+				<td>
+					<c:forEach items="${ fileList }" var="file">
+						<a download id = "downTag" href="/Mission-Web/upload/${ file.fileSaveName }"><c:out value="${ file.fileOriName }" /></a><button id="downloadFile">다운로드</button>
+						(${ file.fileSize } bytes)
+						<br>
+					</c:forEach>
+				</td>
+			</tr>
 			</table>
 			<br>
 			<c:if test="${userVO.id eq board.writer || userVO.type eq 'S'}">
@@ -104,16 +131,4 @@ pageContext.setAttribute("board", board);
 	</footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
 

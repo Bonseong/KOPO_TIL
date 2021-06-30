@@ -44,31 +44,8 @@
 			f.content.focus()
 			return false
 		}
-		
-		// 파일 확장자 체크
-		if(checkExt(f.attachfile1)){
-			return false
-		}
-		
-		if(checkExt(f.attachfile2)){
-			return false
-		}
-		
+
 		return true
-	}
-
-	function checkExt(obj) {
-		let forbidName = [ 'exe', 'java', 'jsp', 'ls', 'class' ]
-		let fileName = obj.value
-		let ext = fileName.substring(fileName.lastIndexOf('.') + 1)
-
-		for (let i = 0; i < forbidName.length; i++) {
-			if (forbidName[i] == ext) {
-				alert(ext + '확장자는 업로드하실 수 없습니다.')
-				return true
-			}
-		}
-		return false
 	}
 </script>
 </head>
@@ -84,7 +61,7 @@
 			<hr width="80%">
 			<br>
 			<form action="write.jsp" method="post" name="writeForm"
-				onsubmit="return doWrite()" enctype="multipart/form-data">
+				onsubmit="return doWrite()">
 				<input type = "hidden" name="writer" value="${userVO.id}">
 				<table border="1" style="width: 80%">
 					<tr>
@@ -99,12 +76,6 @@
 					<tr>
 						<th width="25%">내용</th>
 						<td><textarea rows="8" cols="60" name="content"></textarea></td>
-					</tr>
-					<tr>
-						<th>첨부파일</th>
-						<td>
-							<input type="file" name="attachfile1">
-							<input type="file" name="attachfile2">
 					</tr>
 				</table>
 				<br> <input type="submit" value="등록"> <input

@@ -62,7 +62,7 @@
 	function doAction(no){
 		<c:choose>
 			<c:when test="${not empty userVO}">
-				location.href="detail.jsp?no=" + no
+				location.href="detail.jsp?no=" + no + "&type=list" /* 조회수 증가가 list를 타고 들어온 경우만 증가 */
 			</c:when>
 			<c:otherwise>
 				if(confirm("로그인이 필요한 서비스입니다\n로그인페이지로 이동하시겠습니까?"))
