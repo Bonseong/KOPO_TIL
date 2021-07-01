@@ -1,0 +1,45 @@
+INSERT INTO DEPT VALUES(66, 'OUTER_BLK_PARK','OUTLANDER'); -- 트랜잭션 시작 - 1 
+
+<<MAIN_BLK>>
+DECLARE
+    V_DNAME VARCHAR2(14);
+    V_DEPTNO    NUMBER(2);
+    V_LOC   VARCHAR2(13);
+BEGIN
+    V_DEPTNO :=  77;
+    V_DNAME := 'GLOBAL_PART';
+    V_LOC := 'MAIN_BLK';
+    
+    <<LOCAL_BLOCK_1>>
+    DECLARE
+        V_DNAME VARCHAR2(14);
+        V_DEPTNO    NUMBER(2);
+    BEGIN
+        V_DEPTNO := 88;
+        V_DNAME := 'LOCAL_PART_1';
+        V_LOC := 'NESTED_BLK1';
+        INSERT INTO DEPT VALUES(V_DEPTNO, MAIN_BLK.V_DNAME, V_LOC);
+        COMMIT; -- 트랜잭션 종료 - 1
+    END LOCAL_BLOCK_1;
+    
+    <<LOCAL_BLOCK_2>>
+    DECLARE
+        V_DNAME VARCHAR2(14);
+        V_DEPTNO    NUMBER(2);
+    BEGIN
+        V_DEPTNO := 99;
+        V_DNAME := 'LOCAL_PART_2';
+        V_LOC := 'NESTED_BLK2';
+        INSERT INTO DEPT VALUES(V_DEPTNO, V_DNAME, V_LOC); -- 트랜잭션 시작 - 2
+        COMMIT; -- 트랜잭션 종료 - 2
+    END;
+    
+    INSERT INTO DEPT VALUES(V_DEPTNO, V_DNAME, V_LOC); -- 트랜잭션 시작 - 3
+END MAIN_BLK; 
+/
+SELECT * FROM DEPT;
+
+DELETE FROM DEPT WHERE DEPTNO IN (66,77,88,99);
+COMMIT; -- 트랜잭션 종료 - 3
+
+SELECT * FROM DEPT;
