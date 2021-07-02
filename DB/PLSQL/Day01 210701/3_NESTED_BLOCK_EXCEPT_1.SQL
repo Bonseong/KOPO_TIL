@@ -4,8 +4,8 @@ INSERT INTO dept VALUES ( 66,'OUTER_BLK_PART','Outlander' ); -- 실행됨
 
 DECLARE
     v_dname    VARCHAR2(14);
-    --v_deptno   NUMBER(200); -- Compile Time Error 유발 요인 및 발생
-    V_DEPTNO NUMBER(2);
+    v_deptno   NUMBER(200); -- Compile Time Error 유발 요인 및 발생
+    --V_DEPTNO NUMBER(2);
     v_loc      VARCHAR2(13);
 BEGIN
     v_deptno := 77;
