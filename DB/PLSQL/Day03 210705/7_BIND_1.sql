@@ -1,0 +1,17 @@
+VARIABLE H_SALARY NUMBER
+VARIABLE H_TAX NUMBER
+
+DECLARE
+    C_TAX_RATE NUMBER(2,3);
+BEGIN
+    C_TAX_RATE := 0.05; -- PL/SQL만의 변수
+    :H_SALARY := 1000; -- 로컬 언어에서 가져온 변수
+    
+    :H_TAX := ROUND(:H_SALARY * C_TAX_RATE, 2);
+END;
+/
+
+PRINT H_SALARY
+PRINT H_TAX
+PRINT
+--모든 변수의 값 출력
