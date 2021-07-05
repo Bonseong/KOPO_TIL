@@ -1,0 +1,30 @@
+BEGIN
+    INSERT INTO DEPT VALUES(66, 'OUTER_BLK_PARK', 'MAIN_BLK'); 
+    
+    <<NESTED_BLOCK_1>>
+    BEGIN
+        INSERT INTO DEPT VALUES(76, 'LOCAL_PART_1', 'NESTED_BLK1'); 
+        INSERT INTO DEPT VALUES(777, 'LOCAL_PART_1', 'NESTED_BLK1'); -- 런타임 에러 발생
+        INSERT INTO DEPT VALUES(77, 'LOCAL_PART_1', 'NESTED_BLK1'); 
+        INSERT INTO DEPT VALUES(78, 'LOCAL_PART_1', 'NESTED_BLK1');
+        COMMIT;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN -- 런타임 에러에 대해 제어를 하지 못하므로, 예외 발생, 다음 예외처리로 이동
+            NULL;
+        WHEN OTHERS THEN -- 모든 예외 처리에 대해 처리당하므로, 예외 발생 해당 행만 롤백, 나머지는 정상적으로 실행
+            NULL;
+    END NESTED_BLOCK_1;
+    
+    <<NESTED_BLOCK_2>>
+    BEGIN
+        INSERT INTO DEPT VALUES(88, 'LOCAL_PART_2', 'NESTED_BLK2');
+        COMMIT;
+    END NESTED_BLOCK_2;
+    
+    INSERT INTO DEPT VALUES(99, 'OUTER_BLK_PART', 'MAIN_BLK');
+END;
+
+/
+SELECT * FROM DEPT;
+
+DELETE FROM DEPT WHERE DEPTNO IN (66,76,77,78,88,99);

@@ -1,0 +1,28 @@
+BEGIN
+    INSERT INTO DEPT VALUES(66, 'OUTER_BLK_PARK', 'MAIN_BLK'); 
+    
+    <<NESTED_BLOCK_1>>
+    BEGIN
+        INSERT INTO DEPT VALUES(76, 'LOCAL_PART_1', 'NESTED_BLK1'); -- 아래에서 런타임에러가 발생했지만, 예외처리 부가 있기에 롤백되지 않음
+        INSERT INTO DEPT VALUES(777, 'LOCAL_PART_1', 'NESTED_BLK1'); -- 런타임에러가 발생하지만, 예외처리부에서 예외를 잡아주기 때문에, 해당 행에 대해서만 롤백
+        INSERT INTO DEPT VALUES(77, 'LOCAL_PART_1', 'NESTED_BLK1'); -- 이후 행은 정상적으로 실행
+        INSERT INTO DEPT VALUES(78, 'LOCAL_PART_1', 'NESTED_BLK1');
+        COMMIT;
+    EXCEPTION
+        WHEN OTHERS THEN
+            NULL;
+    END NESTED_BLOCK_1;
+    
+    <<NESTED_BLOCK_2>>
+    BEGIN
+        INSERT INTO DEPT VALUES(88, 'LOCAL_PART_2', 'NESTED_BLK2');
+        COMMIT;
+    END NESTED_BLOCK_2;
+    
+    INSERT INTO DEPT VALUES(99, 'OUTER_BLK_PART', 'MAIN_BLK');
+END;
+
+/
+SELECT * FROM DEPT;
+
+DELETE FROM DEPT WHERE DEPTNO IN (66,76,77,78,88,99);
