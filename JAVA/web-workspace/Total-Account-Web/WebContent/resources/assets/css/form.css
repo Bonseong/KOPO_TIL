@@ -1,0 +1,41 @@
+#signupbox, #loginbox, #openAccountbox {
+	margin-top: 200px;
+}
+
+.panel-heading-small {
+	float: right;
+	font-size: 85%;
+	position: relative;
+	top: -10px
+}
+
+.btn-side-text {
+	margin-left: 8px;
+}
+
+.form-group {
+	margin-top: 10px
+}
+
+.form-group-bottom {
+	border-top: 1px solid #999;
+	padding-top: 20px
+}
+
+.panel-body {
+	padding-top: 20px;
+}
+
+.input-group {
+	margin-bottom: 25px;
+}
+
+.col-md-12 control {
+	border-top: 1px solid #888;
+	padding-top: 15px;
+	font-size: 85%
+}
+
+.bottom-text {
+	margin-top: 30px;
+}
