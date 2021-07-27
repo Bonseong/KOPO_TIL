@@ -29,7 +29,7 @@
 	
 <script>
 	if("{userVO}"=""){
-		location.href = "/Mission-Web/jsp/login/login.jsp"
+		location.href = "/Total-Account-Web/login/login.jsp"
 		
 	}
 </script>
@@ -77,8 +77,8 @@
 			<h2>게시글 수정</h2>
 			<hr width="80%">
 			<br>
-			<form action="update.jsp" method="post" name="writeForm"
-				onsubmit="return doWrite()">
+			<form action="<%=request.getContextPath()%>/qaBoardUpdateProcess.do" method="post" name="updateForm"
+				onsubmit="return doWrite()" role="form">
 				<input type = "hidden" name="no" value="${board.no}">
 				<table border="1" style="width: 80%">
 					<tr>

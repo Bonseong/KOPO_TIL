@@ -44,6 +44,14 @@
 		<servlet-name>PInfoInput</servlet-name>
 		<url-pattern>/PInfoInput</url-pattern>
 	</servlet-mapping>
+	<!-- <servlet>
+		<servlet-name>ajax</servlet-name>
+		<servlet-class>kr.ac.kopo.ajax.HelloServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ajax</servlet-name>
+		<url-pattern>/ajax/hello</url-pattern>
+	</servlet-mapping> -->
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>

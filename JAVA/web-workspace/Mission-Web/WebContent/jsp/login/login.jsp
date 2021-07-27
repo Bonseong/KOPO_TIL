@@ -57,11 +57,11 @@
 				<table>
 					<tr>
 						<th>ID</th>
-						<td><input type="text" name="id" value="ADMIN"></td>
+						<td><input type="email" name="id" value="ADMIN" required></td>
 					</tr>
 					<tr>
 						<th>PASSWORD</th>
-						<td><input type="text" name="password" value="ADMIN"></td>
+						<td><input type="password" name="password" value="ADMIN" required></td>
 					</tr>
 				</table>
 				<br> <input type="submit" value="로그인">

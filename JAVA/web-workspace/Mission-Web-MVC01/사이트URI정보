@@ -1,0 +1,9 @@
+					가상 URI								forward 될 jsp
+
+전체게시판조회			/board/list.do
+상세게시글조회			/board/detail.do
+게시글등록				/board/writeForm.do
+
+로그인폼				/login.do							/login/login.jsp
+로그인처리				/loginProcess.do
+로그아웃				/logout.do					
