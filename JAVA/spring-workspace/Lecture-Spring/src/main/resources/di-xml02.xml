@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="di.xml02.HankookTire" id="hankook" />
+	<bean class="di.xml02.KumhoTire" id="kumho" />
+
+	<bean class="di.xml02.Car" id="car">
+		<constructor-arg ref="hankook" /> <!-- 생성자 주입 태그 -->
+	</bean>
+
+	<bean class="di.xml02.Car" id="car2">
+		<constructor-arg ref="hankook" />
+		<constructor-arg ref="kumho" /> <!-- new Car(new HankookTire(), new KumhoTire()) -->
+	</bean>
+	
+	<bean class="di.xml02.Car" id = "car3">
+		<constructor-arg ref="kumho" index="1"/> <!-- 이미 만들어진 생성자 --> <!-- 들어가는 인덱스의 순서 -->
+		<constructor-arg value="hello" index="0"/>  <!-- 함수값에 대응하는 value -->
+		
+	</bean>
+
+
+</beans>

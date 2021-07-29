@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd">
+	<context:annotation-config/>
+	
+	<bean class="di.anno01.HankookTire" id="hankook"/> <!-- HankookTire은 Tire를 상속받고 있음 -> 자동으로 @Autowired Car(Tire tire)에 주입됨! -->
+	<bean class="di.anno01.NexenTire" id="tire"/> <!-- 현재 NexenTire는 Tire를 상속받고 있지 않은 상태, Type매칭이 먼저기 때문에 HankookTire가 주입됨 -->
+	<bean class="di.anno01.Car" id = "car"/>
+</beans>
+
+

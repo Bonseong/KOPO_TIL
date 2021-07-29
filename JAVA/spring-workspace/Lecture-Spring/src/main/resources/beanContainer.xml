@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="basic.Hello" id="hello"/> <!-- bean 하나당 클래스하나 -->
+	<bean class="basic.Hello" id="hello2" lazy-init="true"/> <!-- 객체를 만들어 놓고 불러오는 것이 아니라 호출하는 순간 객체를 생성 --> 
+</beans>
