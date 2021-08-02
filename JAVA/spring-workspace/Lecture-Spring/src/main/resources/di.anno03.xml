@@ -9,4 +9,5 @@
 	<context:annotation-config/>
 	
 	<context:component-scan base-package="di.anno03"></context:component-scan>
+	
 </beans>
