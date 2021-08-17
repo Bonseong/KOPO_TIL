@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<%= request.getContextPath() %>/method/method.do" method = "POST">
-		<input type = "submit" value ="호출"/>
+	<form action="<%= request.getContextPath() %>/method/method.do" method="post">
+		<input type="submit" value="호출" >
 	</form>
 </body>
 </html>

@@ -6,11 +6,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HelloController {
-   
-   @RequestMapping("/hello/hello.do")
-   public ModelAndView hello() {
-      ModelAndView mav = new ModelAndView("hello/hello"); //forward시킬 jsp주소
-      mav.addObject("msg", "hi spring");
-      return mav;
-   }
+
+	@RequestMapping("/hello/hello.do")
+	public ModelAndView hello() {
+		ModelAndView mav = new ModelAndView("hello/hello");
+		mav.addObject("msg", "hi 스프링 MVC~~");
+		return mav;
+	}
 }

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	 서버에서 받은 메시지 : ${ msg }
+	서버에서 받은 메세지 : ${ msg }
 </body>
 </html>

@@ -1,14 +1,10 @@
 package kr.co.mlec.form;
 
 public class MemberVO {
+
 	private String id;
 	private String password;
 	private String name;
-
-	public MemberVO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	public String getId() {
 		return id;
@@ -38,5 +34,5 @@ public class MemberVO {
 	public String toString() {
 		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + "]";
 	}
-
+	
 }
