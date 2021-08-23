@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.BoardDAO">
+
+	<sql id="selectBoard"> <!-- 공통의 쿼리를 묶어주는 역할 -->
+		select no, title, writer, view_cnt, to_char(reg_date, 'yyyy-mm-dd')
+		reg_date from t_board
+	</sql>
+
+	<insert id="newBoard" parameterType="boardVO">
+		insert into t_board(no, title, writer, content)
+		values(t_board_seq.nextval, #{title}, #{writer}, #{content})
+		<!-- prepared stmt 형태 -->
+	</insert>
+
+	<resultMap type="boardVO" id="boardMap">
+		<result column="view_cnt" property="viewCnt" /> <!-- view_cnt는 viewCnt라는 setter로 설정 -->
+		<result column="reg_date" property="regDate" />
+	</resultMap>
+	
+	<!-- resultMap : DB컬럼과 VO가 맞지 않을 경우 그것을 매칭해주는 역할-->
+
+	<select id="selectAllMap" resultMap="boardMap">
+		select no, title, writer,
+		content, view_cnt, to_char(reg_date, 'yyyy-mm-dd') reg_date
+		from
+		t_board order by no desc
+	</select>
+
+
+	<select id="selectAll" resultType="boardVO">
+		select no, title, writer,
+		content, view_cnt as viewCnt
+		, to_char(reg_date, 'yyyy-mm-dd') regDate
+		from t_board order by no desc
+	</select>
+
+	<select id="selectOne" resultMap="boardMap"
+		parameterType="boardVO"> <!-- 날라오는 파라미터의 타입 -->
+		select no, title, writer, view_cnt, to_char(reg_date, 'yyyy-mm-dd')
+		reg_date
+		from t_board where no = #{no}
+	</select>
+
+	<select id="selectOne2" resultMap="boardMap" parameterType="int"> <!-- 날라오는 파라미터의 타입 : 기본타입 int -->
+		select no, title, writer, view_cnt, to_char(reg_date, 'yyyy-mm-dd')
+		reg_date
+		from t_board where no = #{no}
+	</select>
+
+	<select id="selectOne3" resultMap="boardMap" parameterType="int">
+		<include refid="selectBoard" /> <!-- 공통의 쿼리를 불러옴 -->
+		where no=#{no}
+	</select>
+
+
+	<select id="selectOne4" resultType="hashmap" parameterType="int">
+		select no, title, writer, content, view_cnt, reg_date from t_board
+		 where no = #{no}
+	</select>
+
+
+
+	<select id="selectNos" resultMap="boardMap">
+		<include refid="selectBoard" />
+		where no in
+		<foreach collection="nos" item="bno" open="(" close=")"
+			separator=", ">
+			#{bno}
+		</foreach>
+	</select>
+
+	<select id="selectNos2" resultMap="boardMap"
+		parameterType="list"> <!-- 파라미터의 형태로 list던 map이던 날라올수 있음 -->
+		<include refid="selectBoard" />
+		where no in
+		<foreach collection="list" item="bno" open="(" close=")"
+			separator=", ">
+			#{bno}
+		</foreach>
+	</select>
+	
+	<select id="selectNos3" resultMap="boardMap" parameterType="int[]">
+		<include refid="selectBoard"/>
+		where no in
+		<foreach collection="array" item="bno" open="(" close=")" separator=",">
+			#{bno}
+		</foreach>
+	</select>
+
+	<select id="selectWhere" parameterType="string"
+		resultMap="boardMap">
+		<include refid="selectBoard" />
+		where title like '${title}%'
+
+		<!-- # : prepared stmt -->
+		<!-- $ : stmt / 와일드카드 문을 사용해야 하는 경우 stmt 객체를 사용해야 함 -->
+	</select>
+
+	<select id="selectWhere2" parameterType="boardVO"
+		resultMap="boardMap">
+		<include refid="selectBoard" />
+		<where>
+			<if test="title != null">
+				title like '${title}%'
+			</if>
+			<if test="writer != null">
+				and writer = #{writer}
+			</if>
+		</where>
+		<!-- title, writer 가 각각 null일떄의 문제를 where태그를 통해 해결 -->
+	</select>
+	
+	
+
+</mapper>

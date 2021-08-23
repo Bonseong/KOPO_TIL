@@ -9,11 +9,16 @@
 	src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
 <script type="text/javascript">
         var viz;
+        var name = '안재훈'
+        var year = '2021'
+        var month = '07'
+        
         function initViz() {
             var containerDiv = document.getElementById("vizContainer"),
-                url = "https://public.tableau.com/views/2_16284906518100/1?:language=ko-KR&publish=yes&:display_count=n&:origin=viz_share_link",
+                url = "https://prod-apnortheast-a.online.tableau.com/t/kopotest/views/2/sheet6?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link",
                 options = {
-                    "NAME": '구본성',
+                    "NAME": name,
+                    'p_YEAR': year,
                     hideTabs: true
                 };
 
