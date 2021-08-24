@@ -1,9 +1,19 @@
 package kr.ac.kopo.board.vo;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
+
 public class BoardVO {
 	private int no;
+	@Length(min=2, max=40, message="최소 2글자이상 최대 40글자만 가능합니다")
+	@NotEmpty(message="필수항목입니다") // 반드시 입력해야 하는 사항
 	private String title;
+	@Pattern(regexp="^[A-Za-z0-9]*$", message="알파벳으로 시작해야합니다") // 정규식
+	@NotEmpty(message="필수항목입니다")
 	private String writer;
+	@NotEmpty(message="필수항목입니다")
 	private String content;
 	private String viewCnt;
 	private String regDate;

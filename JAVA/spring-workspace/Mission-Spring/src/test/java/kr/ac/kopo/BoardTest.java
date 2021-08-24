@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import kr.ac.kopo.board.dao.BoardDAO;
 import kr.ac.kopo.board.service.BoardService;
 import kr.ac.kopo.board.vo.BoardVO;
+import kr.ac.kopo.reply.vo.ReplyVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:config/spring/spring-mvc.xml" })
@@ -39,6 +40,7 @@ public class BoardTest {
 		}
 	}
 	
+	@Ignore
 	@Test
 	public void 게시글조회() throws Exception{
 		
@@ -46,4 +48,6 @@ public class BoardTest {
 		BoardVO board = boardService.selectOneBoard(1);
 		System.out.println(board);
 	}
+	
+	
 }
