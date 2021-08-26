@@ -1,7 +1,9 @@
 ./metadata/
 ./bin/
-./Servers/
+Servers/
 tmp/
+*.classpath
+*.project
 *.tmp
 *.bak
 *.swp
