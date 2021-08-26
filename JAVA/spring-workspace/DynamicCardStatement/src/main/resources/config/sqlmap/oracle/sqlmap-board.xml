@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.BoardDAO">
+	<resultMap type="boardVO" id = "boardMap">
+		<result column="view_cnt" property="viewCnt"/>
+		<result column="reg_date" property="regDate"/>
+	</resultMap>
+	
+	<select id="selectAll" resultMap="boardMap">
+		SELECT NO, TITLE, WRITER, TO_CHAR(REG_DATE,'YYYY-MM-DD') AS REG_DATE FROM T_BOARD ORDER BY NO DESC
+	</select>
+	
+	<select id="selectByNo" parameterType="int" resultMap="boardMap">
+		SELECT NO, TITLE, WRITER, CONTENT, VIEW_CNT, TO_CHAR(REG_DATE, 'YYYY-MM-DD') AS REG_DATE FROM T_BOARD WHERE NO = #{no}
+	</select>
+
+</mapper>
