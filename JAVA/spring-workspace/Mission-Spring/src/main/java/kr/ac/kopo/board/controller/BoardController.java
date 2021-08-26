@@ -60,10 +60,8 @@ public class BoardController {
 	//
 	@RequestMapping("/board/{no}") // 어떠한 변수가 들어올거라는 뜻
 	public ModelAndView selectByNo2(@PathVariable("no") int no) { // path속의 변수 -> no를 받아 넘겨줌, 여러개도 가능
-		System.out.println(no);
 
 		BoardVO board = service.selectOneBoard(no);
-		System.out.println(board);
 		ModelAndView mav = new ModelAndView("board/detail");
 		mav.addObject("board", board);
 
@@ -89,8 +87,8 @@ public class BoardController {
 	public String write(@Valid BoardVO board, Errors error) { // Errors를 상속받은 BindingResult도 있음 (@Valid, Errors는 붙어있어야함)
 		// BoardVO를 mapping 시켜주지 않아도 spring이 알아서 mapping
 		// @Valid : @NotEmpty annotaion 체크
-		System.out.println("post /board/write");
-		System.out.println(board);
+		// System.out.println("post /board/write");
+		// System.out.println(board);
 		// System.out.println(error.hasErrors()); // return : True / false
 
 		if (error.hasErrors()) {
@@ -101,31 +99,5 @@ public class BoardController {
 		return "redirect:/board";
 	}
 
-	@RequestMapping("/board/{no}/replyInsert")
-	public void replyInsert(@PathVariable("no") int no) {
-		
-	}
 	
-	@RequestMapping("/board/{no}/replyList")
-	public ModelAndView replyList(@PathVariable("no") int no) throws Exception{
-		List<ReplyVO> replyList = replyService.selectReply(no);
-		
-		ModelAndView mav = new ModelAndView("board/replyList");
-		mav.addObject("replyList", replyList);
-
-		return mav;
-		
-		
-	}
-	
-	@RequestMapping("/board/{no}/replyListJson")
-	@ResponseBody
-	public List<ReplyVO> replyListJson(@PathVariable("no") int no) throws Exception {
-
-		List<ReplyVO> replyList = replyService.selectReply(no);
-		System.out.println(replyList);
-		return replyList;
-
-	}
-
 }

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import kr.ac.kopo.board.vo.BoardVO;
 import kr.ac.kopo.reply.dao.ReplyDAO;
 import kr.ac.kopo.reply.service.ReplyService;
 import kr.ac.kopo.reply.vo.ReplyVO;
@@ -29,7 +28,7 @@ public class ReplyTest {
 	@Autowired
 	private ReplyDAO replyDAO;
 	
-	
+	@Ignore
 	@Test
 	public void 댓글Test() throws Exception{
 		List<ReplyVO> list = replyService.selectReply(1);
@@ -37,6 +36,17 @@ public class ReplyTest {
 		for(ReplyVO reply:list) {
 			System.out.println(reply);
 		}
+	}
+	
+	@Test
+	public void 댓글쓰기test() throws Exception{
+		ReplyVO reply = new ReplyVO();
+		reply.setBoardNo(1);
+		reply.setWriter("박종범");
+		reply.setContent("종범은종범종범해");
+		
+		replyService.writeReply(reply);
+		
 	}
 	
 

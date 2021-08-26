@@ -19,5 +19,12 @@ public class ReplyDAOImpl implements ReplyDAO{
 		List<ReplyVO> list = sqlSessionTemplate.selectList("reply.ReplyDAO.selectReply", boardNo);
 		return list;
 	}
+
+
+	
+	public void writeReply(ReplyVO reply) {
+		sqlSessionTemplate.insert("reply.ReplyDAO.writeReply", reply);
+		
+	}
 	
 }

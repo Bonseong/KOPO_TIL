@@ -19,4 +19,11 @@ public class ReplyServiceImpl implements ReplyService{
 		return replyList;
 	}
 
+	public void writeReply(ReplyVO reply) {
+		replyDAO.writeReply(reply);
+		
+	}
+	
+	
+
 }

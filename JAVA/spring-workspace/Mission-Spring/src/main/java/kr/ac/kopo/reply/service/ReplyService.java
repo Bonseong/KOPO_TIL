@@ -8,4 +8,5 @@ import kr.ac.kopo.reply.vo.ReplyVO;
 
 public interface ReplyService {
 	List<ReplyVO> selectReply(int boardNo);
+	void writeReply(ReplyVO reply);
 }

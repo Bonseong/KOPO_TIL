@@ -9,7 +9,12 @@
 	</resultMap>
 	
 	<select id="selectReply" parameterType = "int" resultMap="replyMap">
-		SELECT NO, BOARD_NO, CONTENT, WRITER, TO_CHAR(REG_DATE, 'YYYY-MM-DD') AS REG_DATE FROM T_REPLY WHERE BOARD_NO = #{boardNo}
+		SELECT NO, BOARD_NO, CONTENT, WRITER, TO_CHAR(REG_DATE, 'YYYY-MM-DD') AS REG_DATE FROM T_REPLY WHERE BOARD_NO = #{boardNo} ORDER BY NO DESC
 	</select>
+	
+	<insert id="writeReply" parameterType="replyVO">
+		INSERT INTO T_REPLY(BOARD_NO, CONTENT, WRITER) VALUES(#{boardNo}, #{content}, #{writer})
+		<!-- prepared stmt 형태 -->
+	</insert>
 	
 </mapper>
