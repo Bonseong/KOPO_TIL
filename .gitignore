@@ -1,5 +1,6 @@
 ./metadata/
 ./bin/
+./Servers/
 tmp/
 *.tmp
 *.bak
