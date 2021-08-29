@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- Style -->
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -24,7 +23,7 @@
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/slicknav.css">
 <link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/style.css?before">
+	href="${ pageContext.request.contextPath }/resources/css/style.css">
 
 <!-- JS here -->
 <script src="${ pageContext.request.contextPath }/resources/js/vendor/modernizr-3.5.0.min.js"></script>
@@ -45,42 +44,41 @@
 <script src="${ pageContext.request.contextPath }/resources/js/jquery.magnific-popup.min.js"></script>
 <script src="${ pageContext.request.contextPath }/resources/js/plugins.js"></script>
 <script src="${ pageContext.request.contextPath }/resources/js/gijgo.min.js"></script>
-             
 <script src="${ pageContext.request.contextPath }/resources/js/contact.js"></script>
 <script src="${ pageContext.request.contextPath }/resources/js/jquery.ajaxchimp.min.js"></script>
 <script src="${ pageContext.request.contextPath }/resources/js/jquery.form.js"></script>
 <script src="${ pageContext.request.contextPath }/resources/js/jquery.validate.min.js"></script>
 <script src="${ pageContext.request.contextPath }/resources/js/mail-script.js"></script>
+
 <script src="${ pageContext.request.contextPath }/resources/js/main.js"></script>
 
 
-<header>
-	<div class="header-area ">
-		<div id="sticky-header" class="main-header-area">
-			<div class="container-fluid ">
-				<div class="header_bottom_border">
-					<div class="row align-items-center">
-						<div class="col-xl-3 col-lg-2">
-							<div class="logo">
-								<a href="${ pageContext.request.contextPath }/"> <img
-									src="${ pageContext.request.contextPath }/resources/img/logo.png"
-									alt="">
-								</a>
-							</div>
+<div class="header-area ">
+	<div id="sticky-header" class="main-header-area">
+		<div class="container-fluid ">
+			<div class="header_bottom_border">
+				<div class="row align-items-center">
+					<div class="col-xl-3 col-lg-2">
+						<div class="logo">
+							<a href="${ pageContext.request.contextPath }/"> <img
+								src="${ pageContext.request.contextPath }/resources/img/logo.png"
+								alt="">
+							</a>
 						</div>
-						<div class="col-xl-6 col-lg-7">
-							<div class="main-menu  d-none d-lg-block">
-								<nav>
-									<ul id="navigation">
-										<li><a href="${ pageContext.request.contextPath }/">내게
-												맞는 카드</a></li>
-										<li><a href="${ pageContext.request.contextPath }/">실시간
-												카드 내역서</a></li>
-										<li><a href="${ pageContext.request.contextPath }/">월간
-												거래 리포트</a></li>
-										<li><a href="${ pageContext.request.contextPath }/">총
-												거래 분석</a></li>
-										<!-- <li><a href="#">pages <i class="ti-angle-down"></i></a>
+					</div>
+					<div class="col-xl-6 col-lg-7">
+						<div class="main-menu  d-none d-lg-block">
+							<nav>
+								<ul id="navigation">
+									<li><a href="${ pageContext.request.contextPath }/">내게
+											맞는 카드</a></li>
+									<li><a href="${ pageContext.request.contextPath }/">실시간
+											카드 내역서</a></li>
+									<li><a href="${ pageContext.request.contextPath }/">월간
+											거래 리포트</a></li>
+									<li><a href="${ pageContext.request.contextPath }/">총
+											거래 분석</a></li>
+									<!-- <li><a href="#">pages <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="candidate.html">Candidates </a></li>
                                                     <li><a href="job_details.html">job details </a></li>
@@ -89,38 +87,37 @@
                                             </li> -->
 
 
-									</ul>
-								</nav>
-							</div>
+								</ul>
+							</nav>
 						</div>
-						<div class="col-xl-3 col-lg-3 d-none d-lg-block">
-							<div class="Appointment">
-								<!-- <div class="phone_num d-none d-xl-block">
+					</div>
+					<div class="col-xl-3 col-lg-3 d-none d-lg-block">
+						<div class="Appointment">
+							<!-- <div class="phone_num d-none d-xl-block">
 									<a href="#">Log in</a>
 								</div> -->
 
 
-								<div>
+							<div>
 
-									<div class="d-none d-lg-block">
-										<!-- <a class="boxed-btn3" href="#">회원가입</a> -->
-										<a class="boxed-btn3" href="#">로그인</a> <a class="boxed-btn3"
-											href="${ pageContext.request.contextPath }/register">회원가입</a>
-
-									</div>
-									<div class="button-group-area mt-40"></div>
-
+								<div class="d-none d-lg-block">
+									<!-- <a class="boxed-btn3" href="#">회원가입</a> -->
+									<a class="boxed-btn3" href="#">로그인</a> <a class="boxed-btn3"
+										href="${ pageContext.request.contextPath }/register">회원가입</a>
 
 								</div>
+								<div class="button-group-area mt-40"></div>
+
+
 							</div>
 						</div>
-						<div class="col-12">
-							<div class="mobile_menu d-block d-lg-none"></div>
-						</div>
+					</div>
+					<div class="col-12">
+						<div class="mobile_menu d-block d-lg-none"></div>
 					</div>
 				</div>
-
 			</div>
+
 		</div>
 	</div>
-</header>
+</div>

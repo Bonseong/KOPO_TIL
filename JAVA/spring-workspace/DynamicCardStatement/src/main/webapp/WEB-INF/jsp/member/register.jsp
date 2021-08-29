@@ -3,6 +3,15 @@
 <!DOCTYPE html>
 
 <head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="description" content="">
@@ -11,66 +20,12 @@
 <!-- <link rel="manifest" href="site.webmanifest"> -->
 <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
 <!-- Place favicon.ico in the root directory -->
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
-
-<script>
-	$(document).ready(function(){
-	    
-		replyList();
-		
-		$('#replyButton').click(function(){
-	       	writeReply();
-			replyList();
-	    })   
-	    
-	    
-	    function writeReply(){
-			$.ajax({
-			  'async' : false,
-	          'type' : 'post',
-	          'url' : '${pageContext.request.contextPath}/board/${board.no}/writeReply',
-	          'data' :{
-	        	  
-	        	writer:$("#writer").val(),
-	        	content:$("#content").val()
-	        	  
-	          } ,
-	          'error' : function(){
-	             console.log('에러')
-	          },
-	          'success' : function(data){
-	        	  
-	                  
-                  $("#content").val("")
-                  $("#writer").val("")
-	              
-		             
-	          }
-	       })
-		}
-	    
-	    function replyList(){
-	       $.ajax({
-	          'type' : 'get',
-	          'url' : '${pageContext.request.contextPath}/board/${board.no}/replyList',
-	          'success' : function(data){
-	             $('#replyList').html(data)
-	             
-	          }, 'error' : function(){
-	             
-	          }
-	       })
-		}
-		
-		
-	 })
- 
-
-
-</script>
-
-
 <body>
 	<header>
 		<jsp:include page="../include/topMenu.jsp" />
@@ -105,34 +60,92 @@
 	</section>
 	<!-- End Sample Area -->
 
-
-
 	<div class="container box_1170">
-		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<li class="nav-item"><a class="nav-link active" id="home-tab"
-				data-toggle="tab"
-				href="${ pageContext.request.contextPath }/register" role="tab"
-				aria-controls="home" aria-selected="true">카드 인증</a></li>
-			<li class="nav-item"><a class="nav-link" id="profile-tab"
-				data-toggle="tab"
-				href="${ pageContext.request.contextPath }/register" role="tab"
-				aria-controls="profile" aria-selected="false">휴대전화 인증</a></li>
+
+		<ul class="nav nav-tabs">
+			<li class="nav-item"><a class="nav-link active"
+				data-toggle="tab" href="#cardCertification">카드 인증</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab"
+				href="#phoneCertification">휴대전화 인증</a></li>
 
 		</ul>
 
 		<div class="tab-content">
-			<div class="tab-pane active" id="home" role="tabpanel"
-				aria-labelledby="home-tab">.f..</div>
-			<div class="tab-pane" id="profile" role="tabpanel"
-				aria-labelledby="profile-tab">...</div>
+			<div class="tab-pane fade show active" id="cardCertification">
+				<div class="col-lg-8 col-md-8">
+					<br>
+					<h3 class="mb-30">카드 인증</h3>
+					<form action="#">
+						<div class="mt-10">
+							카드 번호 <input type="text" name="card_number"
+								placeholder="'-'제외하고 입력" onfocus="this.placeholder = ''"
+								onblur="this.placeholder = 'Card Number'" required
+								class="single-input">
+						</div>
+						<div class="mt-10">
+							CVC 번호 <input type="text" name="cvc_number" placeholder="뒷면 3자리"
+								onfocus="this.placeholder = ''"
+								onblur="this.placeholder = 'CVC Number'" required
+								class="single-input">
+						</div>
+						<div class="mt-10">
+							비밀번호 <input type="text" name="card_password"
+								placeholder="비밀번호 4자리" onfocus="this.placeholder = ''"
+								onblur="this.placeholder = 'Card Password'" required
+								class="single-input">
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="phoneCertification">
+				<div class="col-lg-8 col-md-8">
+					<br>
+					<h3 class="mb-30">휴대전화 인증</h3>
+					<form action="#">
+						<div class="mt-10">
+							성명 <input type="text" name="name" placeholder="이름"
+								onfocus="this.placeholder = ''"
+								onblur="this.placeholder = 'Name'" required class="single-input">
+						</div>
+						<div class="mt-10">
+							생일 <input type="text" name="birth"
+								placeholder="예시) 1980/02/13인 경우 → 19800213"
+								onfocus="this.placeholder = ''"
+								onblur="this.placeholder = 'Birth'" required
+								class="single-input">
+						</div>
+						<div class="mt-10">
+							<div class="form-select">
+								성별 <br> <select name="gender">
+									<option value="M">남자</option>
+									<option value="F">여자</option>
+								</select>
+							</div>
+						</div>
+						<div class="mt-10">
+							<div class="form-select">
+								내/외국인 <br> <select name="native">
+									<option value="native">내국인</option>
+									<option value="foreigner">외국인</option>
+								</select>
+							</div>
+						</div>
+						<div class="mt-10">
+							<div class="form-select">
+								휴대전화 번호 <input type="text" name="phone" placeholder="'-제외하고 입력"
+									onfocus="this.placeholder = ''"
+									onblur="this.placeholder = 'Phone'" required
+									class="single-input">
+							</div>
+							
+						</div>
 
+
+
+					</form>
+				</div>
+			</div>
 		</div>
-
-		<script>
-			$(function() {
-				$('#myTab li:last-child a').tab('show')
-			})
-		</script>
 	</div>
 
 
@@ -258,7 +271,9 @@
 				<h3 class="mb-30">Left Aligned</h3>
 				<div class="row">
 					<div class="col-md-3">
-						<img src="img/elements/d.jpg" alt="" class="img-fluid">
+						<img
+							src="${ pageContext.request.contextPath }/resources/img/elements/d.jpg"
+							alt="" class="img-fluid">
 					</div>
 					<div class="col-md-9 mt-sm-20">
 						<p>Recently, the US Federal government banned online casinos
@@ -299,7 +314,9 @@
 							about what symptoms</p>
 					</div>
 					<div class="col-md-3">
-						<img src="img/elements/d.jpg" alt="" class="img-fluid">
+						<img
+							src="${ pageContext.request.contextPath }/resources/img/elements/d.jpg"
+							alt="" class="img-fluid">
 					</div>
 				</div>
 			</div>
@@ -369,7 +386,9 @@
 						<div class="table-row">
 							<div class="serial">01</div>
 							<div class="country">
-								<img src="img/elements/f1.jpg" alt="flag">Canada
+								<img
+									src="${ pageContext.request.contextPath }/resources/img/elements/f1.jpg"
+									alt="flag">Canada
 							</div>
 							<div class="visit">645032</div>
 							<div class="percentage">
@@ -383,7 +402,9 @@
 						<div class="table-row">
 							<div class="serial">02</div>
 							<div class="country">
-								<img src="img/elements/f2.jpg" alt="flag">Canada
+								<img
+									src="${ pageContext.request.contextPath }/resources/img/elements/f2.jpg"
+									alt="flag">Canada
 							</div>
 							<div class="visit">645032</div>
 							<div class="percentage">
@@ -397,7 +418,9 @@
 						<div class="table-row">
 							<div class="serial">03</div>
 							<div class="country">
-								<img src="img/elements/f3.jpg" alt="flag">Canada
+								<img
+									src="${ pageContext.request.contextPath }/resources/img/elements/f3.jpg"
+									alt="flag">Canada
 							</div>
 							<div class="visit">645032</div>
 							<div class="percentage">
@@ -411,7 +434,9 @@
 						<div class="table-row">
 							<div class="serial">04</div>
 							<div class="country">
-								<img src="img/elements/f4.jpg" alt="flag">Canada
+								<img
+									src="${ pageContext.request.contextPath }/resources/img/elements/f4.jpg"
+									alt="flag">Canada
 							</div>
 							<div class="visit">645032</div>
 							<div class="percentage">
@@ -425,7 +450,9 @@
 						<div class="table-row">
 							<div class="serial">05</div>
 							<div class="country">
-								<img src="img/elements/f5.jpg" alt="flag">Canada
+								<img
+									src="${ pageContext.request.contextPath }/resources/img/elements/f5.jpg"
+									alt="flag">Canada
 							</div>
 							<div class="visit">645032</div>
 							<div class="percentage">
@@ -439,7 +466,9 @@
 						<div class="table-row">
 							<div class="serial">06</div>
 							<div class="country">
-								<img src="img/elements/f6.jpg" alt="flag">Canada
+								<img
+									src="${ pageContext.request.contextPath }/resources/img/elements/f6.jpg"
+									alt="flag">Canada
 							</div>
 							<div class="visit">645032</div>
 							<div class="percentage">
@@ -453,7 +482,9 @@
 						<div class="table-row">
 							<div class="serial">07</div>
 							<div class="country">
-								<img src="img/elements/f7.jpg" alt="flag">Canada
+								<img
+									src="${ pageContext.request.contextPath }/resources/img/elements/f7.jpg"
+									alt="flag">Canada
 							</div>
 							<div class="visit">645032</div>
 							<div class="percentage">
@@ -467,7 +498,9 @@
 						<div class="table-row">
 							<div class="serial">08</div>
 							<div class="country">
-								<img src="img/elements/f8.jpg" alt="flag">Canada
+								<img
+									src="${ pageContext.request.contextPath }/resources/img/elements/f8.jpg"
+									alt="flag">Canada
 							</div>
 							<div class="visit">645032</div>
 							<div class="percentage">

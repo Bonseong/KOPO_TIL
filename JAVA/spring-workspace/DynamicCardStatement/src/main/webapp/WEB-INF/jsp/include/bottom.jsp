@@ -1,17 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/magnific-popup.css">
-    <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/themify-icons.css">
-    <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/nice-select.css">
-    <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/flaticon.css">
-    <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/gijgo.css">
-    <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/animate.min.css">
-    <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/slicknav.css">
-    <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/style.css">
+
 <footer>
 <div class="footer_top">
 	<div class="container">

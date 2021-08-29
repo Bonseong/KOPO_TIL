@@ -1143,7 +1143,7 @@ h3 {
 /* line 176, ../../Arafath/CL/December/235. Job board/HTML/scss/_header.scss */
 .header-area .main-header-area .main-menu ul li a {
   color: #fff;
-  font-size: 25px;
+  font-size: 20px;
   text-transform: capitalize;
   font-weight: 500;
   display: inline-block;
@@ -1401,13 +1401,13 @@ h3 {
 
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_slider.scss */
 .slider_bg_1 {
-  background-image: url(../img/banner/banner1.png);
+  background-image: url(../img/banner/banner.png);
 }
 
 /* line 4, ../../Arafath/CL/December/235. Job board/HTML/scss/_slider.scss */
-.slider_bg_2 {
-  background-image: url(../img/banner/banner_2.png);
-}
+/* .slider_bg_2 {
+  background-image: url(../img/banner/banner.png);
+} */
 
 /* line 7, ../../Arafath/CL/December/235. Job board/HTML/scss/_slider.scss */
 .slider_area {
@@ -5097,7 +5097,7 @@ h6 {
   width: 100%;
   line-height: 40px;
   border: none;
-  outline: none;
+  /* outline: none; */
   background: #f9f9ff;
   padding: 0 20px;
 }
