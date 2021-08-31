@@ -2,21 +2,38 @@ package kr.ac.kopo.member.vo;
 
 public class MemberVO {
 	private String id;
-	private String password;
 	private String name;
-	private String type;
+	private String pw;
+	private String mobileNo;
+	private String rrn;
+	private String gender;
+	private String isNative;
+	private String managerNo;
+	private String userType;
+	private int age;
+	private String address;
+	private String addressDetail;
 
 	public MemberVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberVO(String id, String password, String name, String type) {
+	public MemberVO(String id, String name, String pw, String mobileNo, String rrn, String gender, String isNative,
+			String managerNo, String userType, int age, String address, String addressDetail) {
 		super();
 		this.id = id;
-		this.password = password;
 		this.name = name;
-		this.type = type;
+		this.pw = pw;
+		this.mobileNo = mobileNo;
+		this.rrn = rrn;
+		this.gender = gender;
+		this.isNative = isNative;
+		this.managerNo = managerNo;
+		this.userType = userType;
+		this.age = age;
+		this.address = address;
+		this.addressDetail = addressDetail;
 	}
 
 	public String getId() {
@@ -27,14 +44,6 @@ public class MemberVO {
 		this.id = id;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -43,17 +52,91 @@ public class MemberVO {
 		this.name = name;
 	}
 
-	public String getType() {
-		return type;
+	public String getPw() {
+		return pw;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
+	public String getRrn() {
+		return rrn;
+	}
+
+	public void setRrn(String rrn) {
+		this.rrn = rrn;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getIsNative() {
+		return isNative;
+	}
+
+	public void setIsNative(String isNative) {
+		this.isNative = isNative;
+	}
+
+	public String getManagerNo() {
+		return managerNo;
+	}
+
+	public void setManagerNo(String managerNo) {
+		this.managerNo = managerNo;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getAddressDetail() {
+		return addressDetail;
+	}
+
+	public void setAddressDetail(String addressDetail) {
+		this.addressDetail = addressDetail;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", type=" + type + "]";
+		return "MemberVO [id=" + id + ", name=" + name + ", pw=" + pw + ", mobileNo=" + mobileNo + ", rrn=" + rrn
+				+ ", gender=" + gender + ", isNative=" + isNative + ", managerNo=" + managerNo + ", userType="
+				+ userType + ", age=" + age + ", address=" + address + ", addressDetail=" + addressDetail + "]";
 	}
 
 }

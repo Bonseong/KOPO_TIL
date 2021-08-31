@@ -17,4 +17,20 @@ public class MemberDAOImpl implements MemberDAO {
 		return userVO;
 	}
 
+
+	public String checkId(String id) {
+		
+		
+		
+		String result = sqlSessionTemplate.selectOne("member.MemberDAO.checkId", id);
+		
+		return result;
+	}
+	
+
+
+	
+	
+	
+
 }

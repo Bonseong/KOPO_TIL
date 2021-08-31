@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 
+<html>
 <head>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
@@ -10,6 +13,40 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    
+	
+	$('#checkIdBtn').click(function(){
+		
+		checkId();
+    })   
+    
+    
+
+    
+    function checkId(){
+		var id = document.getElementById('id').value;
+       $.ajax({
+   	   	  'type':'get',
+          'url' : '${pageContext.request.contextPath}/register/checkId?id='+id,
+          'success' : function(data){
+        	  if(data==true){
+        		  $('#checkIdSpan').text("가능한 아이디입니다")	  
+        	  }else{
+        		  $('#checkIdSpan').text("이미 사용중인 아이디입니다")
+        	  } 
+          }, 'error' : function(){
+        	  console.log(data)
+             console.log("에러")
+          }
+       })
+	}
+	
+	
+ })
+ </script>
 
 
 <meta charset="utf-8">
@@ -27,6 +64,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 	<header>
 		<jsp:include page="../include/topMenu.jsp" />
 	</header>
@@ -47,20 +85,119 @@
 	<!--/ bradcam_area  -->
 
 	<!-- Start Sample Area -->
-	<section class="sample-text-area">
-		<div class="container box_1170">
-			<h3 class="text-heading">본인 인증</h3>
-			<p class="sample-text">
-				하나카드 웹회원 가입은 유효한 하나카드를 1개 이상 보유하고 계셔야 가능합니다.<br> 웹회원 가입 후 보유하고
-				계신 카드를 모두 해지하시면 웹회원 자동 탈회됩니다.<br> 개인형 기업카드를 보유하고 계신 고객님은 기업 웹회원
-				가입을 해주시기 바랍니다.<br> 선불카드만 보유하신 고객님은 카드인증이 아닌 선불카드 인증으로 진행해주세요.
+	<section class="sample-text-area align-center">
+		<div class="container box_1170 align-center">
+			<div class="col-lg-8 col-md-8 align-center">
+				<p class="sample-text txt-left">
+				<h3 class="mb-20">다이나믹하나는 다음과 같은 기능을 제공합니다.</h3>
+				<div class="">
+					<ul class="unordered-list">
+						<li>간단한 검사로 내게 맞는 카드를 찾아줍니다.
+						<li>실시간 카드내역을 가장 쉽게 보여줍니다.
+						<li>월 카드 내역서를 레포트로 보내드립니다.
+						<li>회원님의 모든 거래를 분석해드립니다.</li>
 
-			</p>
+					</ul>
+				</div>
+
+			</div>
 		</div>
 	</section>
 	<!-- End Sample Area -->
 
+
 	<div class="container box_1170">
+		<div class="" id="phoneCertification">
+			<div class="col-lg-8 col-md-8 align-center">
+				<br>
+				<h3 class="mb-30 txt-center">회원 가입</h3>
+				<form:form method="post" modelAttrubute="memberVO">
+					<div class="mt-10">
+						<div>
+							<p class="txt-left">아이디</p>
+						</div>
+
+						<div class="form-select" style="display: flex">
+							<input type="text" id = "id" name="id" placeholder=""
+								onfocus="this.placeholder = ''" onblur="this.placeholder = 'Id'"
+								class="single-input" style="width: 60%"> <span><button type="button"
+									class="genric-btn info circle" id  ="checkIdBtn">중복확인</button>
+								</span>
+						</div>
+						<span id="checkIdSpan"></span>
+
+					</div>
+
+					<div class="mt-10">
+						<p class="txt-left">이름</p>
+						<input type="text" name="name" placeholder=""
+							onfocus="this.placeholder = ''"
+							onblur="this.placeholder = 'Name'" class="single-input">
+					</div>
+					<div class="mt-10">
+						<p class="txt-left">비밀번호</p>
+						<input type="text" name="pw" placeholder="10자리 이하로 입력"
+							onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pw'"
+							class="single-input">
+					</div>
+					<div class="mt-10">
+						<p class="txt-left">주민등록번호</p>
+						<input type="text" name="rrn" placeholder="'-'를 제외하고 입력"
+							onfocus="this.placeholder = ''" onblur="this.placeholder = 'Rrn'"
+							class="single-input">
+					</div>
+					<div class="mt-10">
+						<div class="form-select">
+							<p class="txt-left">성별</p>
+							<select name="gender">
+								<option value="M">남자</option>
+								<option value="F">여자</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="mt-10">
+						<div class="form-select">
+							<p class="txt-left">내/외국인</p>
+							<select name="isNative">
+								<option value="N">내국인</option>
+								<option value="F">외국인</option>
+							</select>
+						</div>
+					</div>
+
+
+					<div class="mt-10">
+						<div>
+							<p class="txt-left">휴대전화 번호</p>
+						</div>
+						<div class="form-select" style="display: flex">
+							<input type="text" name="phone" placeholder="'-' 제외하고 입력"
+								onfocus="this.placeholder = ''"
+								onblur="this.placeholder = 'Phone'" 
+								class="single-input" style="width: 60%"> <span><a
+								href="#" class="genric-btn info circle">인증</a></span>
+						</div>
+					</div>
+
+
+
+					<div class="mt-30">
+
+						<div class="col-md-offset-3 col-md-9 align-center" align="center">
+							<button id="btn-signup" type="submit"
+								class="genric-btn info circle align-center txt-center">회원가입</button>
+
+						</div>
+					</div>
+					<div class="mt-30"></div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+
+
+	<%-- <div class="container box_1170">
 
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active"
@@ -75,33 +212,41 @@
 				<div class="col-lg-8 col-md-8">
 					<br>
 					<h3 class="mb-30">카드 인증</h3>
-					<form action="#">
+					<form:form method="post" modelAttrubute="cardVO">
 						<div class="mt-10">
-							카드 번호 <input type="text" name="card_number"
+							카드 번호 <input type="text" name="cardNo"
 								placeholder="'-'제외하고 입력" onfocus="this.placeholder = ''"
 								onblur="this.placeholder = 'Card Number'" required
 								class="single-input">
 						</div>
 						<div class="mt-10">
-							CVC 번호 <input type="text" name="cvc_number" placeholder="뒷면 3자리"
+							CVC 번호 <input type="text" name="cvcNo" placeholder="뒷면 3자리"
 								onfocus="this.placeholder = ''"
 								onblur="this.placeholder = 'CVC Number'" required
 								class="single-input">
 						</div>
 						<div class="mt-10">
-							비밀번호 <input type="text" name="card_password"
+							비밀번호 <input type="text" name="cardPassword"
 								placeholder="비밀번호 4자리" onfocus="this.placeholder = ''"
 								onblur="this.placeholder = 'Card Password'" required
 								class="single-input">
 						</div>
-					</form>
+						<div class="mt-10" style="text-align: center;">
+							<div class="col-md-offset-3 col-md-9"
+								style="display: inline-block;">
+								<button id="btn-signup" type="submit"
+									class="genric-btn info circle">인증</button>
+
+							</div>
+						</div>
+					</form:form>
 				</div>
 			</div>
 			<div class="tab-pane fade" id="phoneCertification">
 				<div class="col-lg-8 col-md-8">
 					<br>
 					<h3 class="mb-30">휴대전화 인증</h3>
-					<form action="#">
+					<form:form method="post" modelAttrubute="memberVO">
 						<div class="mt-10">
 							성명 <input type="text" name="name" placeholder="이름"
 								onfocus="this.placeholder = ''"
@@ -122,31 +267,46 @@
 								</select>
 							</div>
 						</div>
-						<div class="mt-10">
+						<div class="mt-30">
 							<div class="form-select">
-								내/외국인 <br> <select name="native">
-									<option value="native">내국인</option>
-									<option value="foreigner">외국인</option>
+								내/외국인 <br> <select name="isNative">
+									<option value="N">내국인</option>
+									<option value="F">외국인</option>
 								</select>
 							</div>
 						</div>
-						<div class="mt-10">
-							<div class="form-select">
-								휴대전화 번호 <input type="text" name="phone" placeholder="'-제외하고 입력"
+
+						<div class="mt-30">
+							<div>휴대전화 번호</div>
+							<div class="form-select" style="display: flex">
+								<input type="text" name="phone" placeholder="'-' 제외하고 입력"
 									onfocus="this.placeholder = ''"
 									onblur="this.placeholder = 'Phone'" required
-									class="single-input">
+									class="single-input" style="width: 60%"> <span><a
+									href="#" class="genric-btn info circle">인증</a></span>
 							</div>
-							
 						</div>
 
+						<div class="mt-10" style="text-align: center;">
 
+							<div class="col-md-offset-3 col-md-9"
+								style="display: inline-block;">
+								<button id="btn-signup" type="submit"
+									class="genric-btn info circle">회원가입</button>
 
-					</form>
+							</div>
+						</div>
+					</form:form>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --%>
+
+
+
+
+
+
 
 
 
@@ -588,7 +748,7 @@
 								<li>For Women Only Your Computer Usage</li>
 								<li>Facts Why Inkjet Printing Is Very Appealing
 									<ul>
-										<li>Addiction When Gambling Becomes
+										<li>Addiction When Gambling Becomes <li>sdfa
 											<ul>
 												<li>Protective Preventative Maintenance</li>
 											</ul>
@@ -666,15 +826,15 @@
 								<div class="icon">
 									<i class="fa fa-plane" aria-hidden="true"></i>
 								</div>
-								<div class="form-select" id="default-select"">
-									<select>
-										<option value=" 1">City</option>
+								<div class="form-select" id="default-select""><select>
+												<option value=" 1">City</option>
 										<option value="1">Dhaka</option>
 										<option value="1">Dilli</option>
 										<option value="1">Newyork</option>
 										<option value="1">Islamabad</option>
 									</select>
-								</div>
+								
+										</div>
 							</div>
 							<div class="input-group-icon mt-10">
 								<div class="icon">
@@ -750,7 +910,7 @@
 						</div>
 						<div class="single-element-widget mt-30">
 							<h3 class="mb-30">Selectboxes</h3>
-							<div class="default-select" id="default-select"">
+							<div class="default-select" id="default-select">
 								<select>
 									<option value=" 1">English</option>
 									<option value="1">Spanish</option>

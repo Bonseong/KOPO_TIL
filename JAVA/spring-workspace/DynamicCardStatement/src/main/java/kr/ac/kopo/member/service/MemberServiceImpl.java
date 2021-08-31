@@ -9,12 +9,28 @@ import kr.ac.kopo.member.vo.MemberVO;
 @Service	
 public class MemberServiceImpl implements MemberService {
 
+	
+	
+
 	@Autowired
 	private MemberDAO memberDAO;
 	
 	public MemberVO login(MemberVO member) {
 		MemberVO userVO = memberDAO.login(member);
 		return userVO;
+	}
+	
+	public Boolean checkId(String id) {
+		
+		String userId = memberDAO.checkId(id);
+		Boolean result;
+		if(userId==null) {
+			result = true;
+		}else {
+			result = false;
+		}
+		
+		return result;
 	}
 
 }

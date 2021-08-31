@@ -3,24 +3,43 @@ package kr.ac.kopo.member.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import kr.ac.kopo.member.service.MemberService;
+import kr.ac.kopo.member.vo.MemberVO;
 
 @SessionAttributes("memberVO") // 얘는 request 영역이 아니라 session영역에 등록됨
 @Controller
 public class MemberController {
 
 	@Autowired
-	private MemberController service;
+	private MemberService memberService;
 
+	/*
+	 * @Autowired private CardController cardService;
+	 */
+	
+
+	
+
+	
 	@GetMapping("/register")
-	public String loginForm() {
+	public String register(MemberVO member) {
 		return "member/register";
+		
 	}
 	
-	@GetMapping("/registerTest")
-	public String loginFormTest() {
-		return "member/registerTest";
+	@GetMapping("/register/checkId")
+	@ResponseBody
+	public Boolean checkId(@RequestParam("id") String id) {
+		
+		Boolean result = memberService.checkId(id);
+		return result;
 	}
+	
+	
 
 	/*
 	 * @GetMapping("/login") public String loginForm() { return "login/login"; }
