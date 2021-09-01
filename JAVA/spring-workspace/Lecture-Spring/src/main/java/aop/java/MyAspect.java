@@ -1,6 +1,10 @@
 package aop.java;
 
-import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Service;
+
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -11,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class MyAspect {
 
 	@Before("execution(void aop.*.*.work())")
-	public void gotoOffice(JoinPoint joinPoint) {
+	public void gotoOffice() {
 		System.out.println("출근을 합니다");
 	}
 	

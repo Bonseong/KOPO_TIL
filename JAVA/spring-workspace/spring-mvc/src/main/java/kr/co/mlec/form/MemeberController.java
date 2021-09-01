@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/form")
 public class MemeberController {
 	
-	@RequestMapping("/joinForm.do")
-	public String joinForm() {
-		return "form/joinForm";
+	@RequestMapping("/formForm.do")
+	public String formForm() {
+		return "form/formForm";
 	}
 	
 	
-	@RequestMapping("/join.do")
-	public String join(MemberVO member, Model model) {
+	@RequestMapping("/form.do")
+	public String form(MemberVO member, Model model) {
 		
 		model.addAttribute("member", member);
 				
 		return "form/memberInfo";
 	}
 /*	
-	@RequestMapping("/join.do")
-	public ModelAndView join(MemberVO member) {
+	@RequestMapping("/form.do")
+	public ModelAndView form(MemberVO member) {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("form/memberInfo");
@@ -33,16 +33,16 @@ public class MemeberController {
 	}
 */	
 /*	
-	@RequestMapping("/join.do")
-	public String join(@ModelAttribute("member") MemberVO member) {
+	@RequestMapping("/form.do")
+	public String form(@ModelAttribute("member") MemberVO member) {
 		
 		
 		return "form/memberInfo";
 	}
 */	
 /*	
-	@RequestMapping("/join.do")
-	public String join(@RequestParam("id") String id, 
+	@RequestMapping("/form.do")
+	public String form(@RequestParam("id") String id, 
 			@RequestParam("password") String password, 
 			@RequestParam("name") String name,
 			HttpServletRequest request) {
@@ -59,8 +59,8 @@ public class MemeberController {
 	}
 */	
 /*	
-	@RequestMapping("/join.do")
-	public String join(HttpServletRequest request) {
+	@RequestMapping("/form.do")
+	public String form(HttpServletRequest request) {
 		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");

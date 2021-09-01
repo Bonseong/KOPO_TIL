@@ -3,6 +3,8 @@ package kr.ac.kopo.member.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -17,29 +19,32 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 
-	/*
-	 * @Autowired private CardController cardService;
-	 */
-	
-
-	
-
-	
 	@GetMapping("/register")
 	public String register(MemberVO member) {
 		return "member/register";
+
+	}
+	
+	@PostMapping("/register")
+	public String registerFinish(MemberVO member) {
+		System.out.println(member);
+		return "test";
 		
 	}
 	
-	@GetMapping("/register/checkId")
-	@ResponseBody
-	public Boolean checkId(@RequestParam("id") String id) {
+	@GetMapping("/test")
+	public String test() {
+		return "test";
 		
+	}
+
+	@PostMapping("/register/checkId")
+	@ResponseBody
+	public Boolean checkId(@RequestParam String id) {
+
 		Boolean result = memberService.checkId(id);
 		return result;
 	}
-	
-	
 
 	/*
 	 * @GetMapping("/login") public String loginForm() { return "login/login"; }

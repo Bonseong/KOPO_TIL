@@ -6,47 +6,136 @@
 
 <html>
 <head>
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ -->
+<script>
+	$(document)
+			.ready(
+					function() {
+						$('#checkIdBtn').click(function() {
+							checkId();
+						})
+
+						function checkId() {
+							var id = document.getElementById('id').value;
+							$
+									.ajax({
+										'type' : 'post',
+										'data' : {
+											"id" : id
+										},
+										'url' : '${ pageContext.request.contextPath }/register/checkId',
+
+										'success' : function(data) {
+											if (data == true) {
+												$('#checkIdSpan').text(
+														"가능한 아이디입니다")
+											} else {
+												$('#checkIdSpan').text(
+														"이미 사용중인 아이디입니다")
+											}
+										},
+										'error' : function() {
+											console.log(data)
+											console.log("에러")
+										}
+									})
+						}
+
+					})
+</script>
+
 
 <script>
-$(document).ready(function(){
-    
+	function validate() {
+		var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; // 이메일이 적합한지 검사할 정규식
 	
-	$('#checkIdBtn').click(function(){
+		var id = document.getElementById("id");
+		var pw = document.getElementById("pw");
+		var email = document.getElementById("email");
+	
+		// ------------ 이메일 까지 -----------
+	
+		if (!check(re, id, "아이디는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
+			return false;
+		}
+	
+		if (!check(re, pw, "패스워드는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
+			return false;
+		}
+	
+		if (registerForm.name.value == "") {
+			alert("이름을 입력해주세요");
+			registerForm.name.focus();
+			return false;
+		}
 		
-		checkId();
-    })   
-    
-    
-
-    
-    function checkId(){
-		var id = document.getElementById('id').value;
-       $.ajax({
-   	   	  'type':'get',
-          'url' : '${pageContext.request.contextPath}/register/checkId?id='+id,
-          'success' : function(data){
-        	  if(data==true){
-        		  $('#checkIdSpan').text("가능한 아이디입니다")	  
-        	  }else{
-        		  $('#checkIdSpan').text("이미 사용중인 아이디입니다")
-        	  } 
-          }, 'error' : function(){
-        	  console.log(data)
-             console.log("에러")
-          }
-       })
+		if (registerForm.pw.value != registerForm.checkpw.value) {
+			alert("비밀번호가 다릅니다. 다시 확인해주세요.");
+			registerForm.checkpw.value = "";
+			registerForm.checkpw.focus();
+			return false;
+		}
+	
+		if (email.value == "") {
+			alert("이메일을 입력해주세요");
+			email.focus();
+			return false;
+		}
+	
+		if (!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
+			return false;
+		}
+	
+		// 관심분야, 자기소개 미입력시 하라는 메시지 출력
+		if (registerForm.gender.value == "") {
+			alert("성별을 선택해주세요");
+			registerForm.self.focus();
+			return false;
+		}
+		
+		if (registerForm.isNative.value == "") {
+			alert("내/외국인 여부를 선택해주세요");
+			registerForm.self.focus();
+			return false;
+		}
+		if (registerForm.phone.value == "") {
+			alert("휴대전화 번호를 입력해주세요.");
+			registerForm.self.focus();
+			return false;
+		}
+		if (registerForm.postcode.value == "") {
+			alert("우편번호를 입력해주세요.");
+			registerForm.self.focus();
+			return false;
+		}
+		if (registerForm.detailAddress.value == "") {
+			alert("상세주소를 선택해주세요");
+			registerForm.self.focus();
+			return false;
+		}
+	
+		alert("회원가입이 완료되었습니다.");
 	}
 	
-	
- })
- </script>
+	function check(re, what, message) {
+		if (re.test(what.value)) {
+			return true;
+		}
+		alert(message);
+		what.value = "";
+		what.focus();
+		return false;
+	}
+</script>
+
 
 
 <meta charset="utf-8">
@@ -111,18 +200,19 @@ $(document).ready(function(){
 			<div class="col-lg-8 col-md-8 align-center">
 				<br>
 				<h3 class="mb-30 txt-center">회원 가입</h3>
-				<form:form method="post" modelAttrubute="memberVO">
+				<form:form name="registerForm" onsubmit="return validate();" method="post"
+					modelAttrubute="memberVO">
 					<div class="mt-10">
 						<div>
 							<p class="txt-left">아이디</p>
 						</div>
 
 						<div class="form-select" style="display: flex">
-							<input type="text" id = "id" name="id" placeholder=""
+							<input type="text" id="id" name="id" placeholder=""
 								onfocus="this.placeholder = ''" onblur="this.placeholder = 'Id'"
-								class="single-input" style="width: 60%"> <span><button type="button"
-									class="genric-btn info circle" id  ="checkIdBtn">중복확인</button>
-								</span>
+								class="single-input" style="width: 60%"> <span><button
+									type="button" class="genric-btn info circle" id="checkIdBtn">중복확인</button>
+							</span>
 						</div>
 						<span id="checkIdSpan"></span>
 
@@ -130,36 +220,51 @@ $(document).ready(function(){
 
 					<div class="mt-10">
 						<p class="txt-left">이름</p>
-						<input type="text" name="name" placeholder=""
+						<input type="text" id="name" name="name" placeholder=""
 							onfocus="this.placeholder = ''"
 							onblur="this.placeholder = 'Name'" class="single-input">
 					</div>
 					<div class="mt-10">
 						<p class="txt-left">비밀번호</p>
-						<input type="text" name="pw" placeholder="10자리 이하로 입력"
+						<input type="text" id="pw" name="pw" placeholder="10자리 이하로 입력"
 							onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pw'"
 							class="single-input">
 					</div>
 					<div class="mt-10">
+						<p class="txt-left">비밀번호 확인</p>
+						<input type="text" id="checkpw" name="pw_check"
+							placeholder="비밀번호와 동일하게 입력" onfocus="this.placeholder = ''"
+							onblur="this.placeholder = 'Pw_check'" class="single-input">
+					</div>
+					<div class="mt-10">
 						<p class="txt-left">주민등록번호</p>
-						<input type="text" name="rrn" placeholder="'-'를 제외하고 입력"
+						<input type="text" id="rrn" name="rrn" placeholder="'-'를 제외하고 입력"
 							onfocus="this.placeholder = ''" onblur="this.placeholder = 'Rrn'"
 							class="single-input">
 					</div>
 					<div class="mt-10">
 						<div class="form-select">
 							<p class="txt-left">성별</p>
-							<select name="gender">
+							<select id="gender" name="gender">
+								<option value="">- 선택 -</option>
 								<option value="M">남자</option>
 								<option value="F">여자</option>
 							</select>
 						</div>
 					</div>
+					<div class="mt-10">
+						<p class="txt-left">이메일</p>
+						<input type="text" id="email" name="email"
+							placeholder="'-'를 제외하고 입력" onfocus="this.placeholder = ''"
+							onblur="this.placeholder = 'Email'" class="single-input">
+					</div>
+
 
 					<div class="mt-10">
 						<div class="form-select">
 							<p class="txt-left">내/외국인</p>
-							<select name="isNative">
+							<select id="isNative" name="isNative">
+								<option value="">- 선택 -</option>
 								<option value="N">내국인</option>
 								<option value="F">외국인</option>
 							</select>
@@ -172,18 +277,54 @@ $(document).ready(function(){
 							<p class="txt-left">휴대전화 번호</p>
 						</div>
 						<div class="form-select" style="display: flex">
-							<input type="text" name="phone" placeholder="'-' 제외하고 입력"
-								onfocus="this.placeholder = ''"
-								onblur="this.placeholder = 'Phone'" 
-								class="single-input" style="width: 60%"> <span><a
-								href="#" class="genric-btn info circle">인증</a></span>
+							<input type="text" id="phone" name="phone"
+								placeholder="'-' 제외하고 입력" onfocus="this.placeholder = ''"
+								onblur="this.placeholder = 'Phone'" class="single-input"
+								style="width: 60%"> <span><a href="#"
+								class="genric-btn info circle">인증</a></span>
 						</div>
 					</div>
 
+					<div class="mt-10">
+						<div>
+							<p class="txt-left">우편번호</p>
+						</div>
+
+						<div class="form-select" style="display: flex">
+							<input type="text" id="postcode" name="postcode"
+								placeholder="우편번호 찾기를 클릭하여 검색" onfocus="this.placeholder = ''"
+								onblur="this.placeholder = 'Postcode'" class="single-input"
+								style="width: 60%"> <span><input type="button"
+								class="genric-btn info circle" onclick="execDaumPostcode()"
+								value="우편번호 찾기" /> </span>
+						</div>
+						<span id="checkIdSpan"></span>
+
+					</div>
+
+					<div class="mt-10">
+						<p class="txt-left">주소</p>
+						<input type="text" id="address" name="address" placeholder=""
+							onfocus="this.placeholder = ''"
+							onblur="this.placeholder = 'Address'" class="single-input">
+					</div>
+					<div class="mt-10">
+						<p class="txt-left">상세주소</p>
+						<input type="text" id="detailAddress" name="detailAddress"
+							placeholder="" onfocus="this.placeholder = ''"
+							onblur="this.placeholder = 'Address'" class="single-input">
+					</div>
+
+					<div id="wrap"
+						style="display: none; border: 1px solid; width: 500px; height: 300px; margin: 5px 0; position: relative">
+						<img src="//t1.daumcdn.net/postcode/resource/images/close.png"
+							id="btnFoldWrap"
+							style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
+							onclick="foldDaumPostcode()" alt="접기 버튼" />
+					</div>
 
 
 					<div class="mt-30">
-
 						<div class="col-md-offset-3 col-md-9 align-center" align="center">
 							<button id="btn-signup" type="submit"
 								class="genric-btn info circle align-center txt-center">회원가입</button>
@@ -191,10 +332,21 @@ $(document).ready(function(){
 						</div>
 					</div>
 					<div class="mt-30"></div>
+
+
 				</form:form>
 			</div>
 		</div>
 	</div>
+
+
+
+
+
+
+
+
+
 
 
 	<%-- <div class="container box_1170">
@@ -674,59 +826,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 			</div>
-			<div class="section-top-border">
-				<h3>Image Gallery</h3>
-				<div class="row gallery-item">
-					<div class="col-md-4">
-						<a href="img/elements/g1.jpg" class="img-pop-up">
-							<div class="single-gallery-image"
-								style="background: url(img/elements/g1.jpg);"></div>
-						</a>
-					</div>
-					<div class="col-md-4">
-						<a href="img/elements/g2.jpg" class="img-pop-up">
-							<div class="single-gallery-image"
-								style="background: url(img/elements/g2.jpg);"></div>
-						</a>
-					</div>
-					<div class="col-md-4">
-						<a href="img/elements/g3.jpg" class="img-pop-up">
-							<div class="single-gallery-image"
-								style="background: url(img/elements/g3.jpg);"></div>
-						</a>
-					</div>
-					<div class="col-md-6">
-						<a href="img/elements/g4.jpg" class="img-pop-up">
-							<div class="single-gallery-image"
-								style="background: url(img/elements/g4.jpg);"></div>
-						</a>
-					</div>
-					<div class="col-md-6">
-						<a href="img/elements/g5.jpg" class="img-pop-up">
-							<div class="single-gallery-image"
-								style="background: url(img/elements/g5.jpg);"></div>
-						</a>
-					</div>
-					<div class="col-md-4">
-						<a href="img/elements/g6.jpg" class="img-pop-up">
-							<div class="single-gallery-image"
-								style="background: url(img/elements/g6.jpg);"></div>
-						</a>
-					</div>
-					<div class="col-md-4">
-						<a href="img/elements/g7.jpg" class="img-pop-up">
-							<div class="single-gallery-image"
-								style="background: url(img/elements/g7.jpg);"></div>
-						</a>
-					</div>
-					<div class="col-md-4">
-						<a href="img/elements/g8.jpg" class="img-pop-up">
-							<div class="single-gallery-image"
-								style="background: url(img/elements/g8.jpg);"></div>
-						</a>
-					</div>
-				</div>
-			</div>
+
 			<div class="section-top-border">
 				<div class="row">
 					<div class="col-md-4">
@@ -748,7 +848,8 @@ $(document).ready(function(){
 								<li>For Women Only Your Computer Usage</li>
 								<li>Facts Why Inkjet Printing Is Very Appealing
 									<ul>
-										<li>Addiction When Gambling Becomes <li>sdfa
+										<li>Addiction When Gambling Becomes
+										<li>sdfa
 											<ul>
 												<li>Protective Preventative Maintenance</li>
 											</ul>
@@ -826,15 +927,16 @@ $(document).ready(function(){
 								<div class="icon">
 									<i class="fa fa-plane" aria-hidden="true"></i>
 								</div>
-								<div class="form-select" id="default-select""><select>
-												<option value=" 1">City</option>
+								<div class="form-select" id="default-select"">
+									<select>
+										<option value=" 1">City</option>
 										<option value="1">Dhaka</option>
 										<option value="1">Dilli</option>
 										<option value="1">Newyork</option>
 										<option value="1">Islamabad</option>
 									</select>
-								
-										</div>
+
+								</div>
 							</div>
 							<div class="input-group-icon mt-10">
 								<div class="icon">
@@ -1026,5 +1128,13 @@ $(document).ready(function(){
 
 		});
 	</script>
+	<script>
+		var element_wrap = document.getElementById('wrap');
+	</script>
+	<script
+		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+	<script
+		src="${ pageContext.request.contextPath }/resources/js/custom/postcodeFunction.js"></script>
 </body>
 </html>
