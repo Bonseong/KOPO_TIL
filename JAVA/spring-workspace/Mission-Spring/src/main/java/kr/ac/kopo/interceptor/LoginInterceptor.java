@@ -10,7 +10,7 @@ import kr.ac.kopo.member.vo.MemberVO;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter{
 
-	@Override
+	//@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
@@ -21,6 +21,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		if(userVO==null) {
 			
 			String uri = request.getRequestURI();
+			System.out.println(uri);
 			uri = uri.substring(request.getContextPath().length());
 			
 			session.setAttribute("dest", uri);

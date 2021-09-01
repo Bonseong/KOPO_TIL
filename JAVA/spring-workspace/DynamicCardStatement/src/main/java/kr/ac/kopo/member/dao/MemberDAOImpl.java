@@ -26,6 +26,13 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return result;
 	}
+
+
+	public void register(MemberVO member) {
+		sqlSessionTemplate.insert("member.MemberDAO.register", member);
+		
+	}
+	
 	
 
 

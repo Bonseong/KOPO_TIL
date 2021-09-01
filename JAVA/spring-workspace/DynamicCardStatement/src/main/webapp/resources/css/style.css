@@ -7528,4 +7528,12 @@ h1, h2, h3, h4, h5, h6 {
 	text-align: center;
 }
 
+.topmenu-user{
+	color:white;
+	margin-right:60px;	
+}
+
+.topmenu-button{
+	margin-right:30px;
+}
 /*# sourceMappingURL=style.css.map */
