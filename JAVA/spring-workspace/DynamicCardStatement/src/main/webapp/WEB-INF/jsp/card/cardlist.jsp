@@ -47,15 +47,15 @@
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="single_field">
-											<input type="text" placeholder="Search keyword">
+											<input type="text" placeholder="카드 이름 입력">
 										</div>
 									</div>
 									<div class="col-lg-12">
 										<div class="single_field">
 											<select class="wide">
-												<option data-display="Location">Location</option>
-												<option value="1">Rangpur</option>
-												<option value="2">Dhaka</option>
+												<option data-display="카드 종류">카드 종류</option>
+												<option value="CREDIT">신용카드</option>
+												<option value="CHECK">체크카드</option>
 											</select>
 										</div>
 									</div>
@@ -471,6 +471,7 @@
                     $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] +"/ Year" );
                 }
             });
+            
             $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
                 " - $" + $( "#slider-range" ).slider( "values", 1 ) + "/ Year");
         } );

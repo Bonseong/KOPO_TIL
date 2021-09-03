@@ -91,5 +91,12 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/";
 	}
+	
+	// 테스트 페이지 -> 나중에 꼭 지우기
+	@GetMapping("/test")
+	public String test() {
+		return "test";
+		
+	}
 
 }

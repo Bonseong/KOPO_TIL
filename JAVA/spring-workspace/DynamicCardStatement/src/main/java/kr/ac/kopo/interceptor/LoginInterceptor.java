@@ -12,9 +12,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 	public boolean preHandle(HttpServletRequest request, HttpServlet response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
-		MemberVO loginVO = (MemberVO) session.getAttribute("loginVO");
+		MemberVO userVO = (MemberVO) session.getAttribute("userVO");
 
-		if (loginVO == null) {
+		if (userVO == null) {
 			// 목적지 경로 기억시키기
 			String uri = request.getRequestURI();
 			uri = uri.substring(request.getContextPath().length());
