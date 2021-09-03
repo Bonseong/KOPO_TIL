@@ -5,13 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -22,10 +16,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
 <!-- Place favicon.ico in the root directory -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
@@ -66,9 +57,8 @@
 					<div class="mt-10">
 						<p class="txt-left">비밀번호</p>
 						<input type="password" id="pw" name="pw" placeholder="PASSWORD"
-							onfocus="this.placeholder = ''"
-							onblur="this.placeholder = 'Pw'" class="single-input"
-							value="test1">
+							onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pw'"
+							class="single-input" value="test1">
 					</div>
 
 					<div class="mt-30">
@@ -93,6 +83,5 @@
 		<jsp:include page="../include/bottom.jsp" />
 	</footer>
 	<!--/ footer end  -->
-
 </body>
 </html>

@@ -141,7 +141,7 @@
 
 		<form method="post">
 			작성자<input id="writer" type="text"><br>
-			내용<input id="content" type="text">
+			내용<textarea id="content"></textarea>
 		</form>
 		<button id="replyButton">등록</button>
 

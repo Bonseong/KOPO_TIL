@@ -1,6 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/bootstrap.min.css">
@@ -62,6 +76,7 @@
 	src="${ pageContext.request.contextPath }/resources/js/plugins.js"></script>
 <script
 	src="${ pageContext.request.contextPath }/resources/js/gijgo.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/range.js"></script>
 <script
 	src="${ pageContext.request.contextPath }/resources/js/contact.js"></script>
 <script
@@ -93,8 +108,7 @@
 						<div class="main-menu  d-none d-lg-block">
 							<nav>
 								<ul id="navigation">
-									<li><a href="${ pageContext.request.contextPath }/">내게
-											맞는 카드</a></li>
+									<li><a href="${ pageContext.request.contextPath }/cardlist">나만의 카드</a></li>
 									<li><a href="${ pageContext.request.contextPath }/">실시간
 											카드 내역서</a></li>
 									<li><a href="${ pageContext.request.contextPath }/">월간
@@ -123,16 +137,17 @@
 
 							<div>
 
-								<div class="d-none d-lg-block topmenu-button" >
+								<div class="d-none d-lg-block topmenu-button">
 									<c:if test="${ empty userVO }">
-										<a class="boxed-btn3" 
+										<a class="boxed-btn3"
 											href="${ pageContext.request.contextPath }/login">로그인</a>
 										<a class="boxed-btn3"
 											href="${ pageContext.request.contextPath }/register">회원가입</a>
 
 									</c:if>
 									<c:if test="${ not empty userVO }">
-										<span class="topmenu-user"><strong>${ userVO.name }</strong>님 환영합니다.</span>
+										<span class="topmenu-user"><strong>${ userVO.name }</strong>님
+											환영합니다.</span>
 										<span><a class="boxed-btn3"
 											href="${ pageContext.request.contextPath }/logout">로그아웃</a></span>
 
