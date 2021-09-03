@@ -3801,4 +3801,3 @@
 0:0:0:0:0:0:0:1 - - [31/Aug/2021:19:21:42 +0900] "GET /DynamicCardStatement/register/checkId?id= HTTP/1.1" 200 14
 0:0:0:0:0:0:0:1 - - [31/Aug/2021:19:21:42 +0900] "GET /DynamicCardStatement/register/checkId?id= HTTP/1.1" 200 14
 0:0:0:0:0:0:0:1 - - [31/Aug/2021:19:21:53 +0900] "GET /DynamicCardStatement/register/checkId?id=test1 HTTP/1.1" 200 15
-0:0:0:0:0:0:0:1 - - [31/Aug/2021:22:32:11 +0900] "GET /DynamicCardStatement/register/checkId?id=df HTTP/1.1" 200 14

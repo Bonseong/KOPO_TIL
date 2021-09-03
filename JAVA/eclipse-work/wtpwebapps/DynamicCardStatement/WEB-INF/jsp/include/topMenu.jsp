@@ -40,6 +40,7 @@
 	href="${ pageContext.request.contextPath }/resources/css/style.css">
 
 <!-- JS here -->
+<<<<<<< HEAD
 <script
 	src="${ pageContext.request.contextPath }/resources/js/vendor/modernizr-3.5.0.min.js"></script>
 <script
@@ -87,6 +88,31 @@
 	src="${ pageContext.request.contextPath }/resources/js/jquery.validate.min.js"></script>
 <script
 	src="${ pageContext.request.contextPath }/resources/js/mail-script.js"></script>
+=======
+<script src="${ pageContext.request.contextPath }/resources/js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/popper.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/owl.carousel.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/isotope.pkgd.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/ajax-form.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/waypoints.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/jquery.counterup.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/imagesloaded.pkgd.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/scrollIt.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/jquery.scrollUp.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/wow.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/nice-select.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/jquery.slicknav.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/jquery.magnific-popup.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/plugins.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/gijgo.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/contact.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/jquery.ajaxchimp.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/jquery.form.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/jquery.validate.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/mail-script.js"></script>
+>>>>>>> c3478cc2263367aa59fdd2198f437e79dce12625
 
 <script src="${ pageContext.request.contextPath }/resources/js/main.js"></script>
 
@@ -137,6 +163,7 @@
 
 							<div>
 
+<<<<<<< HEAD
 								<div class="d-none d-lg-block topmenu-button">
 									<c:if test="${ empty userVO }">
 										<a class="boxed-btn3"
@@ -153,6 +180,12 @@
 
 									</c:if>
 
+=======
+								<div class="d-none d-lg-block">
+									<!-- <a class="boxed-btn3" href="#">회원가입</a> -->
+									<a class="boxed-btn3" href="#">로그인</a> <a class="boxed-btn3"
+										href="${ pageContext.request.contextPath }/register">회원가입</a>
+>>>>>>> c3478cc2263367aa59fdd2198f437e79dce12625
 
 								</div>
 								<div class="button-group-area mt-40"></div>
@@ -161,13 +194,6 @@
 							</div>
 						</div>
 					</div>
-
-
-
-
-
-
-
 					<div class="col-12">
 						<div class="mobile_menu d-block d-lg-none"></div>
 					</div>

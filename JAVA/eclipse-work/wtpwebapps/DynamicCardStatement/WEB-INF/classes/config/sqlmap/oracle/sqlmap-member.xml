@@ -11,9 +11,9 @@
 	</resultMap>
 
 	<select id="login" parameterType="memberVO" resultType="memberVO">
-		SELECT ID, NAME, PW, USER_TYPE
+		SELECT ID, NAME, PASSWORD, TYPE
 		 FROM T_MEMBER
-		 WHERE ID = #{ id } AND PW = #{ pw } 
+		 WHERE ID = #{ id } AND PASSWORD = #{ password } 
 		
 	</select>
 	
@@ -21,10 +21,8 @@
 		select id from t_member where id = #{id}		
 	</select>
 	
-	<insert id="register" parameterType="memberVO">
-	INSERT INTO T_MEMBER(ID, PW, NAME, MOBILE_NO, RRN, BIRTHDAY, AGE, GENDER, ISNATIVE, ADDRESS, ADDRESS_DETAIL)
-	 VALUES (#{id}, #{pw}, #{name}, #{mobileNo}, #{rrn}, TO_DATE(#{birthday}), #{age}, #{gender}, #{isNative}, #{address}, #{addressDetail})
-		
-	</insert>
+	<select id="test" resultType="memberVO" resultMap="memberMap">
+		select ID from t_member where id=#{id}
+	</select>
 
 </mapper>

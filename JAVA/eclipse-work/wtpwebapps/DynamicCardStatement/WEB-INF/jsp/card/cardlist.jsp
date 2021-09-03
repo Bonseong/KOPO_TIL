@@ -10,107 +10,10 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- <link rel="manifest" href="site.webmanifest"> -->
-<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
-<!-- Place favicon.ico in the root directory -->
 
-<%-- <!-- CSS here -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
-
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/magnific-popup.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/themify-icons.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/nice-select.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/flaticon.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/gijgo.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/animate.min.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/slicknav.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/style.css">
-
-<!-- JS here -->
-<script
-	src="${ pageContext.request.contextPath }/resources/js/vendor/modernizr-3.5.0.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.4.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/popper.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/owl.carousel.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/isotope.pkgd.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/ajax-form.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/waypoints.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery.counterup.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/imagesloaded.pkgd.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/scrollIt.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery.scrollUp.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/wow.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/nice-select.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery.slicknav.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery.magnific-popup.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/plugins.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/gijgo.min.js"></script>
-<script src="${ pageContext.request.contextPath }/resources/js/range.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/contact.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery.ajaxchimp.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery.form.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery.validate.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/mail-script.js"></script>
-
-<script src="${ pageContext.request.contextPath }/resources/js/main.js"></script> --%>
-
-<!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
 <body>
-	<!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
 
 	<!-- header-start -->
 	<header>
