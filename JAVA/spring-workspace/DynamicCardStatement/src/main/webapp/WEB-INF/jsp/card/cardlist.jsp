@@ -105,16 +105,17 @@
 										</div>
 									</div>
 								</div>
+								<div class="range_wrap">
+									<label for="amount">Price range:</label>
+									<div id="slider-range"></div>
+									<p>
+										<input type="text" id="amount" readonly
+											style="border: 0; color: #7A838B; font-size: 14px; font-weight: 400;">
+									</p>
+								</div>
 							</form>
 						</div>
-						<div class="range_wrap">
-							<label for="amount">Price range:</label>
-							<div id="slider-range"></div>
-							<p>
-								<input type="text" id="amount" readonly
-									style="border: 0; color: #7A838B; font-size: 14px; font-weight: 400;">
-							</p>
-						</div>
+
 						<div class="reset_btn">
 							<button class="boxed-btn3 w-100" type="submit">Reset</button>
 						</div>
@@ -444,7 +445,9 @@
 						<p class="copy_right text-center">
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							Copyright &copy;
-							<script>document.write(new Date().getFullYear());</script>
+							<script>
+								document.write(new Date().getFullYear());
+							</script>
 							All rights reserved | This template is made with <i
 								class="fa fa-heart-o" aria-hidden="true"></i> by <a
 								href="https://colorlib.com" target="_blank">Colorlib</a>
@@ -461,21 +464,28 @@
 
 
 	<script>
-        $( function() {
-            $( "#slider-range" ).slider({
-                range: true,
-                min: 0,
-                max: 24600,
-                values: [ 750, 24600 ],
-                slide: function( event, ui ) {
-                    $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] +"/ Year" );
-                }
-            });
-            
-            $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-                " - $" + $( "#slider-range" ).slider( "values", 1 ) + "/ Year");
-        } );
-        </script>
+		$(function() {
+			$("#slider-range").slider(
+					{
+						range : true,
+						min : 0,
+						max : 24600,
+						values : [ 750, 24600 ],
+						slide : function(event, ui) {
+							$("#amount").val(
+									"$" + ui.values[0] + " - $" + ui.values[1]
+											+ "/ Year");
+						}
+					});
+
+			$("#amount")
+					.val(
+							"$" + $("#slider-range").slider("values", 0)
+									+ " - $"
+									+ $("#slider-range").slider("values", 1)
+									+ "/ Year");
+		});
+	</script>
 </body>
 
 </html>

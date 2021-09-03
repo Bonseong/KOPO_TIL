@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 import kr.ac.kopo.member.service.MemberService;
 import kr.ac.kopo.member.vo.MemberVO;
@@ -58,28 +56,27 @@ public class MemberController {
 	@GetMapping("/login")
 	public String loginForm() {
 		return "member/login";
-		
+
 	}
 
-	
 	@PostMapping("/login")
 	public String login(MemberVO member, Model model, HttpSession session) {
 		MemberVO userVO = memberService.login(member);
 		System.out.println("userVO : " + userVO);
-		
+
 		if (userVO == null) {
 			String msg = "아이디 또는 패스워드가 잘못되었습니다.";
 			model.addAttribute("msg", msg);
 			return "member/login";
 		} // 로그인 성공
-		
+
 		session.setAttribute("userVO", userVO);
-		String dest = (String)session.getAttribute("dest");
+		String dest = (String) session.getAttribute("dest");
 
 		if (dest != null) { // 로그인 인터셉터를 거쳐왔다면
 			session.removeAttribute("dest");
 			System.out.println("인터셉터거쳐왔어");
-			return "redirect:/"+ dest;
+			return "redirect:/" + dest;
 		}
 
 		return "redirect:/";
@@ -91,12 +88,12 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/";
 	}
-	
+
 	// 테스트 페이지 -> 나중에 꼭 지우기
 	@GetMapping("/test")
 	public String test() {
 		return "test";
-		
+
 	}
 
 }
