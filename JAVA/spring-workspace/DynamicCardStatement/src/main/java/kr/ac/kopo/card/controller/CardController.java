@@ -15,6 +15,7 @@ public class CardController {
 
 	@GetMapping("/cardlist")
 	public String register() {
+		cardService.selectCardList();
 		return "card/cardlist";
 
 	}
