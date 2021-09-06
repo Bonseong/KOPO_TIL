@@ -110,7 +110,6 @@ p {
 	color: #7A838B;
 	margin-bottom: 13px;
 	font-family: "Roboto", 'Noto Sans KR', sans-serif;
-	
 }
 
 /* line 69, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */
@@ -7516,30 +7515,35 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* custom */
-.align-center{
-	margin:0 auto;
+.align-center {
+	margin: 0 auto;
 }
 
-.txt-left{
+.txt-left {
 	text-align: left;
 }
 
-.txt-center{
+.txt-center {
 	text-align: center;
 }
 
-.topmenu-user{
-	color:white;
-	margin-right:60px;	
+.topmenu-user {
+	color: white;
+	margin-right: 60px;
 }
 
-.topmenu-button{
-	margin-right:30px;
+.topmenu-button {
+	margin-right: 30px;
 }
 
+#loginBox {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
 
-#loginBox{
-	margin-top:50px;
-	margin-bottom:50px;
+.td_input {
+	width: 20%;
+	text-align: left;
+	padding-left: 10%
 }
 /*# sourceMappingURL=style.css.map */

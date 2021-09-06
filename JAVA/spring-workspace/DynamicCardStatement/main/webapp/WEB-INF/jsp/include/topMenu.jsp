@@ -2,8 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/owl.carousel.min.css">
 <link rel="stylesheet"
@@ -32,8 +36,6 @@
 	src="${ pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.4.min.js"></script>
 <script
 	src="${ pageContext.request.contextPath }/resources/js/popper.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 <script
 	src="${ pageContext.request.contextPath }/resources/js/owl.carousel.min.js"></script>
 <script

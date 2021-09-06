@@ -6,14 +6,12 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 
 <link rel="stylesheet"
@@ -46,8 +44,6 @@
 	src="${ pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.4.min.js"></script>
 <script
 	src="${ pageContext.request.contextPath }/resources/js/popper.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 <script
 	src="${ pageContext.request.contextPath }/resources/js/owl.carousel.min.js"></script>
 <script
@@ -89,6 +85,15 @@
 	src="${ pageContext.request.contextPath }/resources/js/mail-script.js"></script>
 
 <script src="${ pageContext.request.contextPath }/resources/js/main.js"></script>
+
+
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+</head>
+
+
 
 
 <div class="header-area ">
