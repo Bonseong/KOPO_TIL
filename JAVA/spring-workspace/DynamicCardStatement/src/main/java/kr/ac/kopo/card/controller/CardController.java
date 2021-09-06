@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.ac.kopo.card.service.CardService;
 import kr.ac.kopo.card.vo.BenefitVO;
-import kr.ac.kopo.card.vo.CardVO;
+import kr.ac.kopo.card.vo.CardBenefitVO;
 
 @Controller
 public class CardController {
@@ -38,9 +38,9 @@ public class CardController {
 	public ModelAndView benefitSearch(@RequestBody Map<String, String> paramMap) {
 		ModelAndView mav = new ModelAndView("card/cardlist");
 
-		System.out.println(paramMap);
 
-		List<CardVO> cardResultList = cardService.selectByFilter(paramMap);
+		List<CardBenefitVO> cardResultList = cardService.selectByFilter(paramMap);
+		System.out.println(cardResultList);
 		mav.addObject("cardResultList", cardResultList);
 
 		List<BenefitVO> benefitList = cardService.selectBenefitList();

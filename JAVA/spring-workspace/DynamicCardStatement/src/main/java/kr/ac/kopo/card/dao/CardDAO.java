@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import kr.ac.kopo.card.vo.BenefitVO;
-import kr.ac.kopo.card.vo.CardVO;
+import kr.ac.kopo.card.vo.CardBenefitVO;
 
 public interface CardDAO {
 	
 	List<BenefitVO> selectBenefitList();
 
-	List<CardVO> selectByFilter(Map<String, String> paramMap);
+	List<CardBenefitVO> selectByFilter(Map<String, String> paramMap);
 }

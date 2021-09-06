@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.card.vo.BenefitVO;
-import kr.ac.kopo.card.vo.CardVO;
+import kr.ac.kopo.card.vo.CardBenefitVO;
 
 @Repository
 public class CardDAOImpl implements CardDAO {
@@ -22,9 +22,8 @@ public class CardDAOImpl implements CardDAO {
 	}
 
 	@Override
-	public List<CardVO> selectByFilter(Map<String, String> paramMap) {
-		List<CardVO> cardList = sqlSessionTemplate.selectList("card.CardDAO.selectByFilter", paramMap);
-		System.out.println(cardList);
+	public List<CardBenefitVO> selectByFilter(Map<String, String> paramMap) {
+		List<CardBenefitVO> cardList = sqlSessionTemplate.selectList("card.CardDAO.selectByFilter", paramMap);
 		return cardList;
 	}
 

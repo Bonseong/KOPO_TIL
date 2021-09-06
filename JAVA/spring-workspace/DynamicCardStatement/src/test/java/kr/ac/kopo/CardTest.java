@@ -1,6 +1,5 @@
 package kr.ac.kopo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Ignore;
@@ -14,8 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import kr.ac.kopo.card.dao.CardDAO;
 import kr.ac.kopo.card.service.CardService;
 import kr.ac.kopo.card.vo.BenefitVO;
-import kr.ac.kopo.card.vo.CardVO;
-import kr.ac.kopo.card.vo.UserBenefitVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:config/spring/spring-mvc.xml" })
@@ -73,7 +70,27 @@ public class CardTest {
 	 * }
 	 */
 	
+	
+	@Test
+	public void 숫자() throws Exception{
+	
+		
+		String temp = "30";
+		Double a = (double) Integer.parseInt(temp);
+		
+		String aaa = Double.toString(a/100);
+		System.out.println(aaa);
+		
+		
+		
+		
+		
+		
+		
+	}
 
 
 
 }
+
+

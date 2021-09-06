@@ -1,6 +1,6 @@
 package kr.ac.kopo.card.vo;
 
-public class CardVO {
+public class UserCardVO {
 	private String cardCode;
 	private String cardCategory;
 	private String annualFee;
@@ -12,13 +12,13 @@ public class CardVO {
 	private String cardType;
 	private String cvcNo;
 
-	public CardVO() {
+	public UserCardVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public CardVO(String cardCode, String cardCategory, String annualFee, String cardNo, int memberNo, String cardName,
-			String cardPassword, String validDate, String cardType, String cvcNo) {
+	public UserCardVO(String cardCode, String cardCategory, String annualFee, String cardNo, int memberNo,
+			String cardName, String cardPassword, String validDate, String cardType, String cvcNo) {
 		super();
 		this.cardCode = cardCode;
 		this.cardCategory = cardCategory;
@@ -114,7 +114,7 @@ public class CardVO {
 
 	@Override
 	public String toString() {
-		return "CardVO [cardCode=" + cardCode + ", cardCategory=" + cardCategory + ", annualFee=" + annualFee
+		return "CardBenefitVO [cardCode=" + cardCode + ", cardCategory=" + cardCategory + ", annualFee=" + annualFee
 				+ ", cardNo=" + cardNo + ", memberNo=" + memberNo + ", cardName=" + cardName + ", cardPassword="
 				+ cardPassword + ", validDate=" + validDate + ", cardType=" + cardType + ", cvcNo=" + cvcNo + "]";
 	}
