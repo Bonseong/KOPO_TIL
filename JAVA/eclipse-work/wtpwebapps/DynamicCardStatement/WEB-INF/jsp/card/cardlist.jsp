@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -9,17 +13,169 @@
 <title>Job Board</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet"
+	href="${ pageContext.request.contextPath }/resources/css/custom/modal.css">
 
 
-</head>
+<script>
+	$(document).ready(function() {
 
+		
+
+		$('#modalBtn').click(function() {
+			$('.index_modal').css('display', 'block')
+			$('body').css("overflow", "hidden");
+		})
+
+		//모달 다시 숨기기
+		$('.index_modal_cancel').click(function() {
+			$('.index_modal').css('display', 'none')
+			$('body').css("overflow", "scroll");
+		})
+		
+		
+		temp = []
+		amount_temp = []
+
+		$("input[class=form-check-input]").each(function(idx) {
+
+			var value = $(this).val();
+			temp.push("#" + value + "_slider-range");
+			amount_temp.push("#" + value + "_amount");
+
+		})
+
+		for (var i = 0; i < temp.length; i++) {
+
+			eval('$(function(){$(temp['
+					+ i
+					+ ']).slider({range:true,min:0,step:1,max:50,values:[0,50],slide:function(event,ui){$(amount_temp['
+					+ i
+					+ ']).val(ui.values[0]+" % - "+ui.values[1]+" %")}});$(amount_temp['
+					+ i + ']).val($(temp[' + i
+					+ ']).slider("values",0)+" % - "+$(temp[' + i
+					+ ']).slider("values",1)+" %")});')
+		}
+		
+		$('#searchBtn').click(function() {
+			getCardList();
+		})	
+
+		
+		
+		
+		
+		
+		function getCardList() {
+			
+			let benefitInputList = [];
+
+			$("input[class=form-check-input]:checked").each(function(idx) {
+				var value = $(this).val();
+				benefitInputList.push(value);
+
+			})
+
+			console.log("benefitInputList : " + benefitInputList)
+
+			var json_data = {}
+
+			json_data['cardName'] = $("#cardName").val();
+			json_data['cardType'] = $("#cardType").val();
+			json_data['annualFeeType'] = $("#annualFeeType").val()
+			json_data['annualFeeRange'] = $("#amount").val()
+
+			console.log(json_data)
+			
+			for(var i = 0; i<benefitInputList.length; i++){
+				json_data[benefitInputList[i]]=document.getElementById(benefitInputList[i]+"_amount").value
+				console.log(json_data)
+			}
+			console.log(json_data)
+			
+			
+			
+			
+			$.ajax({
+				'type' : 'post',
+				'contentType' : "application/json; charset=utf-8",
+				'url' : '${pageContext.request.contextPath}/cardlist',
+				'data' : JSON.stringify(
+					json_data
+		
+				),
+				
+				'success' : function(data) {
+					console.log("석세스")
+		
+				},
+				'error' : function() {
+					console.log("실패")
+				}
+			})
+		}
+
+	})
+
+
+
+	function annualFeeChange(e) {
+		var div = document.getElementById('annualFeeRangeDiv');
+		if ($("#annualFeeType").val() == 'Y') {
+			div.style.display = 'block';
+		} else {
+			div.style.display = 'none';
+		}
+
+	}
+
+	function getBenefitList() {
+		let allBenefitList = [];
+		let benefitInputList = [];
+
+		$("input[class=form-check-input]").each(function(idx) {
+
+			var value = $(this).val();
+			allBenefitList.push(value);
+
+		})
+
+		$("input[class=form-check-input]:checked").each(function(idx) {
+
+			var value = $(this).val();
+			benefitInputList.push(value);
+
+		})
+
+		for (i = 0; i < benefitInputList.length; i++) {
+
+			allBenefitList = allBenefitList.filter(function(item) {
+				return item !== benefitInputList[i];
+
+			});
+		}
+
+		for (i = 0; i < benefitInputList.length; i++) {
+			document.getElementById(benefitInputList[i]).style.display = 'block'
+		}
+
+		for (i = 0; i < allBenefitList.length; i++) {
+			document.getElementById(allBenefitList[i]).style.display = 'none'
+		}
+
+		
+
+	}
+</script>
 <body>
-
-	<!-- header-start -->
 	<header>
 		<jsp:include page="../include/topMenu.jsp" />
 	</header>
-	<!-- header-end -->
+
+
+
+
 
 	<!-- bradcam_area  -->
 	<div class="bradcam_area bradcam_bg_1">
@@ -35,25 +191,28 @@
 	</div>
 	<!--/ bradcam_area  -->
 
+
+
 	<!-- job_listing_area_start  -->
 	<div class="job_listing_area plus_padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="job_filter white-bg">
-						<div class="form_inner white-bg">
-							<h3>Filter</h3>
-							<form action="#">
+						<form name="benefitInputForm">
+							<div class="form_inner white-bg">
+								<h3>Filter</h3>
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="single_field">
-											<input type="text" placeholder="카드 이름 입력">
+											<input type="text" id="cardName" name="cardName"
+												placeholder="카드 이름 입력">
 										</div>
 									</div>
 									<div class="col-lg-12">
 										<div class="single_field">
-											<select class="wide">
-												<option data-display="카드 종류">카드 종류</option>
+											<select class="wide" id="cardType" name="cardType">
+												<option value="">카드 종류 선택</option>
 												<option value="CREDIT">신용카드</option>
 												<option value="CHECK">체크카드</option>
 											</select>
@@ -61,64 +220,64 @@
 									</div>
 									<div class="col-lg-12">
 										<div class="single_field">
-											<select class="wide">
-												<option data-display="Category">Category</option>
-												<option value="1">Category 1</option>
-												<option value="2">Category 2</option>
+											<select class="wide" id="annualFeeType"
+												onchange="annualFeeChange(this)" name="annualFeeType">
+												<option data-display="ALL" value="">연회비 유무 선택</option>
+												<option value="Y">연회비 있음</option>
+												<option value="N">연회비 없음</option>
 											</select>
 										</div>
 									</div>
-									<div class="col-lg-12">
-										<div class="single_field">
-											<select class="wide">
-												<option data-display="Experience">Experience</option>
-												<option value="1">Experience 1</option>
-												<option value="2">Experience 2</option>
-											</select>
+									<div class="col-lg-12" id="annualFeeRangeDiv"
+										style="display: none">
+										<div class="range_wrap">
+											<label for="amount">연회비 범위 : </label>
+											<div id="slider-range"></div>
+											<p>
+												<input type="text" id="amount" readonly
+													style="border: 0; color: #7A838B; font-size: 14px; font-weight: 400;"
+													name="annualFeeRange">
+											</p>
 										</div>
 									</div>
-									<div class="col-lg-12">
-										<div class="single_field">
-											<select class="wide">
-												<option data-display="Job type">Job type</option>
-												<option value="1">full time 1</option>
-												<option value="2">part time 2</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-12">
-										<div class="single_field">
-											<select class="wide">
-												<option data-display="Qualification">Qualification</option>
-												<option value="1">Qualification 1</option>
-												<option value="2">Qualification 2</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-12">
-										<div class="single_field">
-											<select class="wide">
-												<option data-display="Gender">Gender</option>
-												<option value="1">male</option>
-												<option value="2">female</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="range_wrap">
-									<label for="amount">Price range:</label>
-									<div id="slider-range"></div>
-									<p>
-										<input type="text" id="amount" readonly
-											style="border: 0; color: #7A838B; font-size: 14px; font-weight: 400;">
-									</p>
-								</div>
-							</form>
-						</div>
 
-						<div class="reset_btn">
-							<button class="boxed-btn3 w-100" type="submit">Reset</button>
-						</div>
+									<div class="col-lg-12">
+										<button type="button" class="genric-btn success medium"
+											id="modalBtn">혜택 추가/변경</button>
+									</div>
+
+
+
+
+									<c:forEach items="${requestScope.benefitList }"
+										var="benefitList" varStatus="loop">
+
+										<div class="col-lg-12" id="${ benefitList.category }"
+											style="display: none">
+											<div class="range_wrap">
+												<label for="${ benefitList.category }_amount"><c:out
+														value="${ benefitList.categoryKor }" /> 범위 : </label>
+												<div id="${ benefitList.category }_slider-range"></div>
+												<p>
+													<input type="text" name="${ benefitList.category }"
+														id="${ benefitList.category }_amount" readonly
+														style="border: 0; color: #7A838B; font-size: 14px; font-weight: 400;">
+												</p>
+											</div>
+										</div>
+
+									</c:forEach>
+
+								</div>
+							</div>
+
+
+							<div class="reset_btn">
+								<button type="button" class="boxed-btn3 w-100" id="searchBtn">검색</button>
+							</div>
+						</form>
+
+
 					</div>
 				</div>
 				<div class="col-lg-9">
@@ -131,9 +290,9 @@
 								<div class="col-md-6">
 									<div class="serch_cat d-flex justify-content-end">
 										<select>
-											<option data-display="Most Recent">Most Recent</option>
-											<option value="1">Marketer</option>
-											<option value="2">Wordpress</option>
+											<option data-display="Most Recent">혜택이 많은 순</option>
+											<option value="1">최다 선택순</option>
+											<option value="2">연령별</option>
 											<option value="4">Designer</option>
 										</select>
 									</div>
@@ -141,6 +300,7 @@
 							</div>
 						</div>
 					</div>
+
 
 					<div class="job_lists m-0">
 						<div class="row">
@@ -177,172 +337,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-12 col-md-12">
-								<div class="single_jobs white-bg d-flex justify-content-between">
-									<div class="jobs_left d-flex align-items-center">
-										<div class="thumb">
-											<img src="img/svg_icon/2.svg" alt="">
-										</div>
-										<div class="jobs_conetent">
-											<a href="job_details.html"><h4>Digital Marketer</h4></a>
-											<div class="links_locat d-flex align-items-center">
-												<div class="location">
-													<p>
-														<i class="fa fa-map-marker"></i> California, USA
-													</p>
-												</div>
-												<div class="location">
-													<p>
-														<i class="fa fa-clock-o"></i> Part-time
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="jobs_right">
-										<div class="apply_now">
-											<a class="heart_mark" href="#"> <i class="fa fa-heart"></i>
-											</a> <a href="job_details.html" class="boxed-btn3">Apply Now</a>
-										</div>
-										<div class="date">
-											<p>Date line: 31 Jan 2020</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12 col-md-12">
-								<div class="single_jobs white-bg d-flex justify-content-between">
-									<div class="jobs_left d-flex align-items-center">
-										<div class="thumb">
-											<img src="img/svg_icon/3.svg" alt="">
-										</div>
-										<div class="jobs_conetent">
-											<a href="job_details.html"><h4>Wordpress Developer</h4></a>
-											<div class="links_locat d-flex align-items-center">
-												<div class="location">
-													<p>
-														<i class="fa fa-map-marker"></i> California, USA
-													</p>
-												</div>
-												<div class="location">
-													<p>
-														<i class="fa fa-clock-o"></i> Part-time
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="jobs_right">
-										<div class="apply_now">
-											<a class="heart_mark" href="#"> <i class="fa fa-heart"></i>
-											</a> <a href="job_details.html" class="boxed-btn3">Apply Now</a>
-										</div>
-										<div class="date">
-											<p>Date line: 31 Jan 2020</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12 col-md-12">
-								<div class="single_jobs white-bg d-flex justify-content-between">
-									<div class="jobs_left d-flex align-items-center">
-										<div class="thumb">
-											<img src="img/svg_icon/4.svg" alt="">
-										</div>
-										<div class="jobs_conetent">
-											<a href="job_details.html"><h4>Visual Designer</h4></a>
 
-											<div class="links_locat d-flex align-items-center">
-												<div class="location">
-													<p>
-														<i class="fa fa-map-marker"></i> California, USA
-													</p>
-												</div>
-												<div class="location">
-													<p>
-														<i class="fa fa-clock-o"></i> Part-time
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="jobs_right">
-										<div class="apply_now">
-											<a class="heart_mark" href="#"> <i class="fa fa-heart"></i>
-											</a> <a href="job_details.html" class="boxed-btn3">Apply Now</a>
-										</div>
-										<div class="date">
-											<p>Date line: 31 Jan 2020</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12 col-md-12">
-								<div class="single_jobs white-bg d-flex justify-content-between">
-									<div class="jobs_left d-flex align-items-center">
-										<div class="thumb">
-											<img src="img/svg_icon/5.svg" alt="">
-										</div>
-										<div class="jobs_conetent">
-											<a href="job_details.html"><h4>Software Engineer</h4></a>
-											<div class="links_locat d-flex align-items-center">
-												<div class="location">
-													<p>
-														<i class="fa fa-map-marker"></i> California, USA
-													</p>
-												</div>
-												<div class="location">
-													<p>
-														<i class="fa fa-clock-o"></i> Part-time
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="jobs_right">
-										<div class="apply_now">
-											<a class="heart_mark" href="#"> <i class="fa fa-heart"></i>
-											</a> <a href="job_details.html" class="boxed-btn3">Apply Now</a>
-										</div>
-										<div class="date">
-											<p>Date line: 31 Jan 2020</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12 col-md-12">
-								<div class="single_jobs white-bg d-flex justify-content-between">
-									<div class="jobs_left d-flex align-items-center">
-										<div class="thumb">
-											<img src="img/svg_icon/1.svg" alt="">
-										</div>
-										<div class="jobs_conetent">
-											<a href="job_details.html"><h4>Creative Designer</h4></a>
-											<div class="links_locat d-flex align-items-center">
-												<div class="location">
-													<p>
-														<i class="fa fa-map-marker"></i> California, USA
-													</p>
-												</div>
-												<div class="location">
-													<p>
-														<i class="fa fa-clock-o"></i> Part-time
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="jobs_right">
-										<div class="apply_now">
-											<a class="heart_mark" href="#"> <i class="fa fa-heart"></i>
-											</a> <a href="job_details.html" class="boxed-btn3">Apply Now</a>
-										</div>
-										<div class="date">
-											<p>Date line: 31 Jan 2020</p>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-12">
@@ -366,98 +361,7 @@
 	<!-- job_listing_area_end  -->
 
 	<!-- footer start -->
-	<footer class="footer">
-		<div class="footer_top">
-			<div class="container">
-				<div class="row">
-					<div class="col-xl-3 col-md-6 col-lg-3">
-						<div class="footer_widget wow fadeInUp" data-wow-duration="1s"
-							data-wow-delay=".3s">
-							<div class="footer_logo">
-								<a href="#"> <img src="img/logo.png" alt="">
-								</a>
-							</div>
-							<p>
-								finloan@support.com <br> +10 873 672 6782 <br> 600/D,
-								Green road, NewYork
-							</p>
-							<div class="socail_links">
-								<ul>
-									<li><a href="#"> <i class="ti-facebook"></i>
-									</a></li>
-									<li><a href="#"> <i class="fa fa-google-plus"></i>
-									</a></li>
-									<li><a href="#"> <i class="fa fa-twitter"></i>
-									</a></li>
-									<li><a href="#"> <i class="fa fa-instagram"></i>
-									</a></li>
-								</ul>
-							</div>
 
-						</div>
-					</div>
-					<div class="col-xl-2 col-md-6 col-lg-2">
-						<div class="footer_widget wow fadeInUp" data-wow-duration="1.1s"
-							data-wow-delay=".4s">
-							<h3 class="footer_title">Company</h3>
-							<ul>
-								<li><a href="#">About </a></li>
-								<li><a href="#"> Pricing</a></li>
-								<li><a href="#">Carrier Tips</a></li>
-								<li><a href="#">FAQ</a></li>
-							</ul>
-
-						</div>
-					</div>
-					<div class="col-xl-3 col-md-6 col-lg-3">
-						<div class="footer_widget wow fadeInUp" data-wow-duration="1.2s"
-							data-wow-delay=".5s">
-							<h3 class="footer_title">Category</h3>
-							<ul>
-								<li><a href="#">Design & Art</a></li>
-								<li><a href="#">Engineering</a></li>
-								<li><a href="#">Sales & Marketing</a></li>
-								<li><a href="#">Finance</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-xl-4 col-md-6 col-lg-4">
-						<div class="footer_widget wow fadeInUp" data-wow-duration="1.3s"
-							data-wow-delay=".6s">
-							<h3 class="footer_title">Subscribe</h3>
-							<form action="#" class="newsletter_form">
-								<input type="text" placeholder="Enter your mail">
-								<button type="submit">Subscribe</button>
-							</form>
-							<p class="newsletter_text">Esteem spirit temper too say
-								adieus who direct esteem esteems luckily.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="copy-right_text wow fadeInUp" data-wow-duration="1.4s"
-			data-wow-delay=".3s">
-			<div class="container">
-				<div class="footer_border"></div>
-				<div class="row">
-					<div class="col-xl-12">
-						<p class="copy_right text-center">
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;
-							<script>
-								document.write(new Date().getFullYear());
-							</script>
-							All rights reserved | This template is made with <i
-								class="fa fa-heart-o" aria-hidden="true"></i> by <a
-								href="https://colorlib.com" target="_blank">Colorlib</a>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
 	<!--/ footer end  -->
 
 	<!-- link that opens popup -->
@@ -465,27 +369,176 @@
 
 	<script>
 		$(function() {
-			$("#slider-range").slider(
+			$("#slider-range")
+					.slider(
+							{
+								range : true,
+								min : 0,
+								step : 10000,
+								max : 250000,
+								values : [ 0, 250000 ],
+								slide : function(event, ui) {
+									$("#amount").val(
+											ui.values[0] + "원 - "
+													+ ui.values[1] + "원");
+								}
+							});
+
+			$("#amount").val(
+					$("#slider-range").slider("values", 0) + "원 - "
+							+ $("#slider-range").slider("values", 1) + "원");
+		});
+
+		/* 여기서부터 시작 */
+
+		/* temp = [ '#CAFE_BAKERY_slider-range', '#FINANCE_slider-range' ]
+		amount_temp = [ '#CAFE_BAKERY_amount', '#FINANCE_amount' ] */
+
+		/* $(function() {
+			$(temp[0]).slider(
 					{
 						range : true,
 						min : 0,
+						step : 1000,
 						max : 24600,
 						values : [ 750, 24600 ],
 						slide : function(event, ui) {
-							$("#amount").val(
+							$(amount_temp[0]).val(
 									"$" + ui.values[0] + " - $" + ui.values[1]
 											+ "/ Year");
 						}
 					});
 
-			$("#amount")
+			$(amount_temp[0])
 					.val(
-							"$" + $("#slider-range").slider("values", 0)
+							"$" + $(temp[0]).slider("values", 0)
 									+ " - $"
-									+ $("#slider-range").slider("values", 1)
+									+ $(temp[0]).slider("values", 1)
 									+ "/ Year");
 		});
-	</script>
-</body>
+		 */
+		/* 	for (var i = 0; i < temp.length; i++) {
 
+				eval('$(function(){$(temp['
+						+ i
+						+ ']).slider({range:true,min:0,step:1000,max:24600,values:[750,24600],slide:function(event,ui){$(amount_temp['
+						+ i
+						+ ']).val("$"+ui.values[0]+" - $"+ui.values[1]+"/ Year")}});$(amount_temp['
+						+ i + ']).val("$"+$(temp[' + i
+						+ ']).slider("values",0)+" - $"+$(temp[' + i
+						+ ']).slider("values",1)+"/ Year")});')
+			} */
+
+		/* $(function() {
+			$(temp[1]).slider(
+					{
+						range : true,
+						min : 0,
+						step : 1000,
+						max : 24600,
+						values : [ 750, 24600 ],
+						slide : function(event, ui) {
+							$(amount_temp[1]).val(
+									"$" + ui.values[0] + " - $" + ui.values[1]
+											+ "/ Year");
+						}
+					});
+
+			$(amount_temp[1])
+					.val(
+							"$" + $(temp[1]).slider("values", 0)
+									+ " - $"
+									+ $(temp[1]).slider("values", 1)
+									+ "/ Year");
+		}); 
+		 */
+	</script>
+
+	<script>
+		/* 	let benefitList = [];
+
+		 $("input[class=form-check-input]").each(function(idx) {
+
+		 var value = $(this).val();
+		 benefitList.push(value);
+
+		 }) */
+
+		/* let benefitList = [ "CAFE_BAKERY", "FINANCE" ];
+
+		sliderVarList = []
+		amountVarList = []
+
+		for (var i = 0; i < benefitList.length; i++) {
+			sliderVarList.push("#" + benefitList[i] + "_slider_range")
+			amountVarList.push("#" + benefitList[i] + "_amount")
+		}
+
+		console.log(sliderVarList)
+		console.log(amountVarList)
+
+		for (var i = 0; i < sliderVarList.length; i++) {
+
+			$(function() {
+				$(sliderVarList[i]).slider(
+						{
+							range : true,
+							min : 0,
+							step : 1000,
+							max : 24600,
+							values : [ 750, 24600 ],
+							slide : function(event, ui) {
+								$(amountVarList[i]).val(
+										"$" + ui.values[0] + " - $"
+												+ ui.values[1] + "/ Year");
+							}
+						});
+
+				$(amountVarList[i]).val(
+						"$" + $(sliderVarList[i]).slider("values", 0) + " - $"
+								+ $(sliderVarList[i]).slider("values", 1)
+								+ "/ Year");
+			});
+
+		} */
+	</script>
+
+
+	<div class="index_modal">
+		<div class="index_body">
+			<h4 class="txt-center">혜택 리스트</h4>
+			<h6 class="txt-center">원하는 혜택을 선택하세요</h6>
+			<div class="content"></div>
+			<hr>
+
+			<div class="select single_field .align-center">
+
+				<div class="single_field">
+					<c:set var="i" value="0" />
+					<c:set var="j" value="3" />
+					<table class="align-center">
+						<c:forEach items="${requestScope.benefitList }" var="benefitList">
+							<c:if test="${i%j == 0 }">
+								<tr>
+							</c:if>
+							<td class="td_input"><input class="form-check-input"
+								name="form-check-input" type="checkbox"
+								value="${ benefitList.category }" id="flexCheckDefault">
+								<c:out value="${ benefitList.categoryKor }" /></td>
+							<c:if test="${i%j == j-1 }">
+								<tr>
+							</c:if>
+							<c:set var="i" value="${i+1 }" />
+						</c:forEach>
+					</table>
+
+				</div>
+				<div class="mt-30"></div>
+				<button type="button" class="boxed-btn3 index_modal_cancel"
+					onclick="getBenefitList()">확인</button>
+			</div>
+		</div>
+	</div>
+
+</body>
 </html>

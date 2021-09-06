@@ -103,7 +103,13 @@ public class MemberTest {
 		int temp = serviceimpl.getAmericanAge("19950602");
 		System.out.println(temp);
 		
+		
 	}
+
+	
+	
 
 
 }
+
+

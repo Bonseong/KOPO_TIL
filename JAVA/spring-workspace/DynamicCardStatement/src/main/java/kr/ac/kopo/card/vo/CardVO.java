@@ -1,6 +1,9 @@
 package kr.ac.kopo.card.vo;
 
 public class CardVO {
+	private String cardCode;
+	private String cardCategory;
+	private String annualFee;
 	private String cardNo;
 	private int memberNo;
 	private String cardName;
@@ -14,9 +17,12 @@ public class CardVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CardVO(String cardNo, int memberNo, String cardName, String cardPassword, String validDate, String cardType,
-			String cvcNo) {
+	public CardVO(String cardCode, String cardCategory, String annualFee, String cardNo, int memberNo, String cardName,
+			String cardPassword, String validDate, String cardType, String cvcNo) {
 		super();
+		this.cardCode = cardCode;
+		this.cardCategory = cardCategory;
+		this.annualFee = annualFee;
 		this.cardNo = cardNo;
 		this.memberNo = memberNo;
 		this.cardName = cardName;
@@ -24,6 +30,30 @@ public class CardVO {
 		this.validDate = validDate;
 		this.cardType = cardType;
 		this.cvcNo = cvcNo;
+	}
+
+	public String getCardCode() {
+		return cardCode;
+	}
+
+	public void setCardCode(String cardCode) {
+		this.cardCode = cardCode;
+	}
+
+	public String getCardCategory() {
+		return cardCategory;
+	}
+
+	public void setCardCategory(String cardCategory) {
+		this.cardCategory = cardCategory;
+	}
+
+	public String getAnnualFee() {
+		return annualFee;
+	}
+
+	public void setAnnualFee(String annualFee) {
+		this.annualFee = annualFee;
 	}
 
 	public String getCardNo() {
@@ -84,7 +114,8 @@ public class CardVO {
 
 	@Override
 	public String toString() {
-		return "CardVO [cardNo=" + cardNo + ", memberNo=" + memberNo + ", cardName=" + cardName + ", cardPassword="
+		return "CardVO [cardCode=" + cardCode + ", cardCategory=" + cardCategory + ", annualFee=" + annualFee
+				+ ", cardNo=" + cardNo + ", memberNo=" + memberNo + ", cardName=" + cardName + ", cardPassword="
 				+ cardPassword + ", validDate=" + validDate + ", cardType=" + cardType + ", cvcNo=" + cvcNo + "]";
 	}
 

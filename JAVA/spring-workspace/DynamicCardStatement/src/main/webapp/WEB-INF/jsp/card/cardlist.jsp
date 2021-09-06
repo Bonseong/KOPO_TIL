@@ -62,22 +62,49 @@
 			getCardList();
 		})	
 
+		
+		
+		
+		
+		
 		function getCardList() {
-			var tempVar = $("#COMMUNICATION_amount").val()
-			console.log(tempVar)
+			
+			let benefitInputList = [];
+
+			$("input[class=form-check-input]:checked").each(function(idx) {
+				var value = $(this).val();
+				benefitInputList.push(value);
+
+			})
+
+			console.log("benefitInputList : " + benefitInputList)
+
+			var json_data = {}
+
+			json_data['cardName'] = $("#cardName").val();
+			json_data['cardType'] = $("#cardType").val();
+			json_data['annualFeeType'] = $("#annualFeeType").val()
+			json_data['annualFeeRange'] = $("#amount").val()
+
+			console.log(json_data)
+			
+			for(var i = 0; i<benefitInputList.length; i++){
+				json_data[benefitInputList[i]]=document.getElementById(benefitInputList[i]+"_amount").value
+				console.log(json_data)
+			}
+			console.log(json_data)
+			
+			
+			
+			
 			$.ajax({
 				'type' : 'post',
 				'contentType' : "application/json; charset=utf-8",
 				'url' : '${pageContext.request.contextPath}/cardlist',
-				'data' : JSON.stringify({
-					"cardName" : $("#cardName").val(),
-					"cardType" : $("#cardType").val(),
-					"annualFeeType" : $("#annualFeeType").val(),
-					"communication" : $("#amount").val(),
-					"annualFeeRange" : $("#amount").val(),
-					"culture" : $("#amount").val()
+				'data' : JSON.stringify(
+					json_data
 		
-				}),
+				),
 				
 				'success' : function(data) {
 					console.log("석세스")
@@ -185,7 +212,7 @@
 									<div class="col-lg-12">
 										<div class="single_field">
 											<select class="wide" id="cardType" name="cardType">
-												<option data-display="카드 종류">카드 종류</option>
+												<option value="">카드 종류 선택</option>
 												<option value="CREDIT">신용카드</option>
 												<option value="CHECK">체크카드</option>
 											</select>
@@ -195,7 +222,7 @@
 										<div class="single_field">
 											<select class="wide" id="annualFeeType"
 												onchange="annualFeeChange(this)" name="annualFeeType">
-												<option data-display="연회비 유무">연회비 유무 선택</option>
+												<option data-display="ALL" value="">연회비 유무 선택</option>
 												<option value="Y">연회비 있음</option>
 												<option value="N">연회비 없음</option>
 											</select>

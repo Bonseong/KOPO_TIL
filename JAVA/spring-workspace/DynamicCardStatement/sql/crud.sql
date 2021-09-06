@@ -1600,7 +1600,6 @@ VALUES ('my pass 마패 카드', 'CVS', '편의점 10% 할인');
 
 
 
-
 -----------------------------------
 --3. MEMBER_CARD
 SELECT * FROM MEMBER_CARD;

@@ -22,13 +22,25 @@
 		<property name="fileEncoding" value="UTF-8" />
 	</bean> <!-- properties를 load -->
 
-	<bean id="dataSource"
+	<bean id="dataSourceSpied"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${driver}" />
 		<property name="url" value="${url}" />
 		<property name="username" value="${user}" />
 		<property name="password" value="${password}" />
 	</bean>
+
+	<bean id="dataSource"
+		class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceSpied" />
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="SQL : " />
+			</bean>
+		</property>
+	</bean>
+
 
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -48,7 +60,8 @@
 		<mvc:jsp prefix="/WEB-INF/jsp/" suffix=".jsp" />
 	</mvc:view-resolvers>
 
-	<bean class="kr.ac.kopo.interceptor.LoginInterceptor" id="loginInterceptor" />
+	<bean class="kr.ac.kopo.interceptor.LoginInterceptor"
+		id="loginInterceptor" />
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
