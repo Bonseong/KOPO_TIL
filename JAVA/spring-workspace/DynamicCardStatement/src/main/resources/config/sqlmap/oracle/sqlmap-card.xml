@@ -5,7 +5,6 @@
 <mapper namespace="card.CardDAO">
 	<resultMap type="benefitVO" id="benefitMap">
 		<result column="CATEGORY_KOR" property="categoryKor" />
-
 	</resultMap>
 
 	<resultMap type="cardBenefitVO" id="cardBenefitMap">
@@ -13,18 +12,30 @@
 		<result column="CARD_NAME" property="cardName" />
 		<result column="CARD_TYPE" property="cardType" />
 		<result column="ANNUAL_FEE" property="annualFee" />
-		<result column = "ALWAYS_DISCOUNT" property="alwaysDiscount"></result>
-		<result column = "AIR_MILEAGE" property="airMileage"></result>
-		<result column = "CAFE_BAKERY" property="cafeBakery"></result>
-		<result column = "ANNUAL_FEE_SUPPORT" property="annualFeeSupport"></result>
-		<result column = "PUBLIC_TRANSPORTATION" property="publicTransportation"></result>
-		<result column = "NATIONAL_VOUCHER" property="nationalVoucher"></result>
-		<result column = "POINT_CASHBACK" property="pointCashback"></result>
-		<result column = "EAT_OUT" property="eatOut"></result>
-		<result column = "EASY_PAY" property="easyPay"></result>
-		<result column = "PRIORITY_PASS" property="priorityPass"></result>
+		<result column="ALWAYS_DISCOUNT" property="alwaysDiscount" />
+		<result column="AIR_MILEAGE" property="airMileage" />
+		<result column="CAFE_BAKERY" property="cafeBakery" />
+		<result column="ANNUAL_FEE_SUPPORT" property="annualFeeSupport" />
+		<result column="PUBLIC_TRANSPORTATION"
+			property="publicTransportation" />
+		<result column="NATIONAL_VOUCHER" property="nationalVoucher" />
+		<result column="POINT_CASHBACK" property="pointCashback" />
+		<result column="EAT_OUT" property="eatOut" />
+		<result column="EASY_PAY" property="easyPay" />
+		<result column="PRIORITY_PASS" property="priorityPass" />
 	</resultMap>
 
+	<resultMap type="userCardVO" id="userCardMap">
+		<result column="CARD_CODE" property="cardCode" />
+		<result column="CARD_NAME" property="cardName" />
+		<result column="CARD_TYPE" property="cardType" />
+		<result column="ANNUAL_FEE" property="annualFee" />
+	</resultMap>
+
+	<select id ="selectAllCard" resultType="list" resultMap="userCardMap">
+		SELECT CARD_CODE, CARD_NAME, CARD_TYPE, ANNUAL_FEE FROM CARD
+	</select>
+	
 
 	<select id="selectBenefitList" resultType="list"
 		resultMap="benefitMap">
@@ -43,7 +54,8 @@
 		B.SHOPPING, B.LEISURE, B.NATIONAL_VOUCHER, B.POINT_CASHBACK,
 		B.AUTOMOBILES, B.MEDICAL, B.FINANCE, B.EAT_OUT, B.EASY_PAY,
 		B.MAINTENANCE, B.PREMIUM, B.VOUCHER, B.PRIORITY_PASS FROM CARD
-		C, CARD_BENEFITS B WHERE C.CARD_NAME=B.CARD_NAME
+		C,
+		CARD_BENEFITS B WHERE C.CARD_NAME=B.CARD_NAME
 
 		<if test="cardName != null and !cardName.equals('')">
 			AND C.CARD_NAME like '%'||#{cardName}||'%'

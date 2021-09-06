@@ -20,9 +20,9 @@ public class CardServiceImpl implements CardService{
 	@Autowired
 	private CardDAO cardDAO;
 	
-	public List<CardBenefitVO> selectCardList() {
-		
-		return null;
+	public List<UserCardVO> selectCardList() {
+		List<UserCardVO> cardList = cardDAO.selectCardList();
+		return cardList;
 	}
 	
 	public List<BenefitVO> selectBenefitList() {
@@ -71,7 +71,7 @@ public class CardServiceImpl implements CardService{
 			
 		}
 		
-
+		System.out.println(map);
 		List<CardBenefitVO> cardList = cardDAO.selectByFilter(map); 
 		return cardList;
 	}

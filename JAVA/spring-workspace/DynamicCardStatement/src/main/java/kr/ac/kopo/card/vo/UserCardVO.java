@@ -2,14 +2,13 @@ package kr.ac.kopo.card.vo;
 
 public class UserCardVO {
 	private String cardCode;
-	private String cardCategory;
+	private String cardType;
 	private String annualFee;
 	private String cardNo;
 	private int memberNo;
 	private String cardName;
 	private String cardPassword;
 	private String validDate;
-	private String cardType;
 	private String cvcNo;
 
 	public UserCardVO() {
@@ -17,18 +16,17 @@ public class UserCardVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserCardVO(String cardCode, String cardCategory, String annualFee, String cardNo, int memberNo,
-			String cardName, String cardPassword, String validDate, String cardType, String cvcNo) {
+	public UserCardVO(String cardCode, String cardType, String annualFee, String cardNo, int memberNo, String cardName,
+			String cardPassword, String validDate, String cvcNo) {
 		super();
 		this.cardCode = cardCode;
-		this.cardCategory = cardCategory;
+		this.cardType = cardType;
 		this.annualFee = annualFee;
 		this.cardNo = cardNo;
 		this.memberNo = memberNo;
 		this.cardName = cardName;
 		this.cardPassword = cardPassword;
 		this.validDate = validDate;
-		this.cardType = cardType;
 		this.cvcNo = cvcNo;
 	}
 
@@ -40,12 +38,12 @@ public class UserCardVO {
 		this.cardCode = cardCode;
 	}
 
-	public String getCardCategory() {
-		return cardCategory;
+	public String getCardType() {
+		return cardType;
 	}
 
-	public void setCardCategory(String cardCategory) {
-		this.cardCategory = cardCategory;
+	public void setCardType(String cardType) {
+		this.cardType = cardType;
 	}
 
 	public String getAnnualFee() {
@@ -96,14 +94,6 @@ public class UserCardVO {
 		this.validDate = validDate;
 	}
 
-	public String getCardType() {
-		return cardType;
-	}
-
-	public void setCardType(String cardType) {
-		this.cardType = cardType;
-	}
-
 	public String getCvcNo() {
 		return cvcNo;
 	}
@@ -114,9 +104,9 @@ public class UserCardVO {
 
 	@Override
 	public String toString() {
-		return "CardBenefitVO [cardCode=" + cardCode + ", cardCategory=" + cardCategory + ", annualFee=" + annualFee
-				+ ", cardNo=" + cardNo + ", memberNo=" + memberNo + ", cardName=" + cardName + ", cardPassword="
-				+ cardPassword + ", validDate=" + validDate + ", cardType=" + cardType + ", cvcNo=" + cvcNo + "]";
+		return "UserCardVO [cardCode=" + cardCode + ", cardType=" + cardType + ", annualFee=" + annualFee + ", cardNo="
+				+ cardNo + ", memberNo=" + memberNo + ", cardName=" + cardName + ", cardPassword=" + cardPassword
+				+ ", validDate=" + validDate + ", cvcNo=" + cvcNo + "]";
 	}
 
 }
