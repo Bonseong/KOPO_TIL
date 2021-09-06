@@ -1,4 +1,10 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+<<<<<<< HEAD
 #Mon Sep 06 09:11:00 KST 2021
 gson-2.8.8.jar>central=
+=======
+#Mon Sep 06 09:07:22 KST 2021
+gson-2.8.8.jar>central=
+gson-2.8.8-sources.jar>central=
+>>>>>>> e4cb72dd02f1ba3ba5c7ed4bbb07563e0be9bcd4
 gson-2.8.8.pom>central=
