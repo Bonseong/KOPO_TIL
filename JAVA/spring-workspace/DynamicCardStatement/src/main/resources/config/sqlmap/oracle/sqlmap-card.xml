@@ -5,17 +5,37 @@
 <mapper namespace="card.CardDAO">
 	<resultMap type="benefitVO" id="benefitMap">
 		<result column="CATEGORY_KOR" property="categoryKor" />
-
 	</resultMap>
 
-	<resultMap type="cardVO" id="cardMap">
+	<resultMap type="cardBenefitVO" id="cardBenefitMap">
 		<result column="CARD_CODE" property="cardCode" />
 		<result column="CARD_NAME" property="cardName" />
-		<result column="CARD_CATEGORY" property="cardCategory" />
+		<result column="CARD_TYPE" property="cardType" />
 		<result column="ANNUAL_FEE" property="annualFee" />
-
+		<result column="ALWAYS_DISCOUNT" property="alwaysDiscount" />
+		<result column="AIR_MILEAGE" property="airMileage" />
+		<result column="CAFE_BAKERY" property="cafeBakery" />
+		<result column="ANNUAL_FEE_SUPPORT" property="annualFeeSupport" />
+		<result column="PUBLIC_TRANSPORTATION"
+			property="publicTransportation" />
+		<result column="NATIONAL_VOUCHER" property="nationalVoucher" />
+		<result column="POINT_CASHBACK" property="pointCashback" />
+		<result column="EAT_OUT" property="eatOut" />
+		<result column="EASY_PAY" property="easyPay" />
+		<result column="PRIORITY_PASS" property="priorityPass" />
 	</resultMap>
 
+	<resultMap type="userCardVO" id="userCardMap">
+		<result column="CARD_CODE" property="cardCode" />
+		<result column="CARD_NAME" property="cardName" />
+		<result column="CARD_TYPE" property="cardType" />
+		<result column="ANNUAL_FEE" property="annualFee" />
+	</resultMap>
+
+	<select id ="selectAllCard" resultType="list" resultMap="userCardMap">
+		SELECT CARD_CODE, CARD_NAME, CARD_TYPE, ANNUAL_FEE FROM CARD
+	</select>
+	
 
 	<select id="selectBenefitList" resultType="list"
 		resultMap="benefitMap">
@@ -25,22 +45,132 @@
 
 
 	<select id="selectByFilter" parameterType="hashmap"
-		resultType="cardVO" resultMap="cardMap">
+		resultType="cardBenefitVO" resultMap="cardBenefitMap">
 
-		SELECT C.CARD_CODE, C.CARD_NAME, CARD_CATEGORY, ANNUAL_FEE FROM CARD
-		C, CARD_BENEFITS B WHERE C.CARD_NAME=B.CARD_NAME
-		<choose>
+		SELECT C.CARD_CODE, C.CARD_NAME, C.CARD_TYPE, C.ANNUAL_FEE,
+		B.ALWAYS_DISCOUNT, B.CVS, B.AIR_MILEAGE, B.BEAUTY, B.COMMUNICATION,
+		B.CAFE_BAKERY, B.MOVIE, B.HYPERMART, B.EDUCATION, B.CULTURE,
+		B.ANNUAL_FEE_SUPPORT, B.PUBLIC_TRANSPORTATION, B.RENTAL, B.OIL,
+		B.SHOPPING, B.LEISURE, B.NATIONAL_VOUCHER, B.POINT_CASHBACK,
+		B.AUTOMOBILES, B.MEDICAL, B.FINANCE, B.EAT_OUT, B.EASY_PAY,
+		B.MAINTENANCE, B.PREMIUM, B.VOUCHER, B.PRIORITY_PASS FROM CARD
+		C,
+		CARD_BENEFITS B WHERE C.CARD_NAME=B.CARD_NAME
 
-			<when test="cardName != null and !cardName.equals('')">
-				and C.CARD_NAME like '%'||#{cardName}||'%'
-			</when>
-			<when test="cardCategory != null and !cardCategory.equals('')">
-				and C.CARD_CATEGORY = #{cardCategory}
-			</when>
-			<when test="annualFeeRange_min != null and !annualFeeRange_min.equals('')">
-				and C.ANNUAL_FEE BETWEEN #{annualFeeRange_min} AND #{annualFeeRange_max}
-			</when>
-		</choose>
+		<if test="cardName != null and !cardName.equals('')">
+			AND C.CARD_NAME like '%'||#{cardName}||'%'
+		</if>
+		<if test="cardType != null and !cardType.equals('')">
+			AND C.CARD_TYPE = #{cardType}
+		</if>
+		<if
+			test="annualFeeRange_min != null and !annualFeeRange_min.equals('')">
+			AND C.ANNUAL_FEE BETWEEN #{annualFeeRange_min} AND
+			#{annualFeeRange_max}
+		</if>
+
+		<if
+			test="annualFeeRange_min != null and !annualFeeRange_min.equals('')">
+			AND C.ANNUAL_FEE BETWEEN #{annualFeeRange_min} AND
+			#{annualFeeRange_max}
+		</if>
+		<if test="MOVIE_min!=null">
+			AND B.MOVIE BETWEEN #{MOVIE_min} AND #{MOVIE_max}
+		</if>
+		<if test="SHOPPING_min!=null">
+			AND B.SHOPPING BETWEEN #{SHOPPING_min} AND #{SHOPPING_max}
+		</if>
+		<if test="COMMUNICATION_min!=null">
+			AND B.COMMUNICATION BETWEEN #{COMMUNICATION_min} AND
+			#{COMMUNICATION_max}
+		</if>
+		<if test="EDUCATION_min!=null">
+			AND B.EDUCATION BETWEEN #{EDUCATION_min} AND
+			#{EDUCATION_max}
+		</if>
+		<if test="HYPERMART_min!=null">
+			AND B.HYPERMART BETWEEN #{HYPERMART_min} AND
+			#{HYPERMART_max}
+		</if>
+		<if test="MAINTENANCE_min!=null">
+			AND B.MAINTENANCE BETWEEN #{MAINTENANCE_min} AND
+			#{MAINTENANCE_max}
+		</if>
+		<if test="AUTOMOBILES_min!=null">
+			AND B.AUTOMOBILES BETWEEN #{AUTOMOBILES_min} AND
+			#{AUTOMOBILES_max}
+		</if>
+		<if test="MEDICAL_min!=null">
+			AND B.MEDICAL BETWEEN #{MEDICAL_min} AND #{MEDICAL_max}
+		</if>
+		<if test="CULTURE_min!=null">
+			AND B.CULTURE BETWEEN #{CULTURE_min} AND #{CULTURE_max}
+		</if>
+		<if test="FINANCE_min!=null">
+			AND B.FINANCE BETWEEN #{FINANCE_min} AND #{FINANCE_max}
+		</if>
+		<if test="AIR_MILEAGE_min!=null">
+			AND B.AIR_MILEAGE BETWEEN #{AIR_MILEAGE_min} AND
+			#{AIR_MILEAGE_max}
+		</if>
+		<if test="CAFE_BAKERY_min!=null">
+			AND B.CAFE_BAKERY BETWEEN #{CAFE_BAKERY_min} AND
+			#{CAFE_BAKERY_max}
+		</if>
+		<if test="ALWAYS_DISCOUNT_min!=null">
+			AND B.ALWAYS_DISCOUNT BETWEEN #{ALWAYS_DISCOUNT_min} AND
+			#{ALWAYS_DISCOUNT_max}
+		</if>
+		<if test="VOUCHER_min!=null">
+			AND B.VOUCHER BETWEEN #{VOUCHER_min} AND #{VOUCHER_max}
+		</if>
+		<if test="PRIORITY_PASS_min!=null">
+			AND B.PRIORITY_PASS BETWEEN #{PRIORITY_PASS_min} AND
+			#{PRIORITY_PASS_max}
+		</if>
+		<if test="OIL_min!=null">
+			AND B.OIL BETWEEN #{OIL_min} AND #{OIL_max}
+		</if>
+		<if test="PUBLIC_TRANSPORTATION_min!=null">
+			AND B.PUBLIC_TRANSPORTATION BETWEEN
+			#{PUBLIC_TRANSPORTATION_min} AND
+			#{PUBLIC_TRANSPORTATION_max}
+		</if>
+		<if test="ANNUAL_FEE_SUPPORT_min!=null">
+			AND B.ANNUAL_FEE_SUPPORT BETWEEN #{ANNUAL_FEE_SUPPORT_min}
+			AND
+			#{ANNUAL_FEE_SUPPORT_max}
+		</if>
+		<if test="EAT_OUT_min!=null">
+			AND B.EAT_OUT BETWEEN #{EAT_OUT_min} AND #{EAT_OUT_max}
+		</if>
+		<if test="LEISURE_min!=null">
+			AND B.LEISURE BETWEEN #{LEISURE_min} AND #{LEISURE_max}
+		</if>
+		<if test="POINT_CASHBACK_min!=null">
+			AND B.POINT_CASHBACK BETWEEN #{POINT_CASHBACK_min} AND
+			#{POINT_CASHBACK_max}
+		</if>
+		<if test="EASY_PAY_min!=null">
+			AND B.EASY_PAY BETWEEN #{EASY_PAY_min} AND #{EASY_PAY_max}
+		</if>
+
+		<if test="BEAUTY_min!=null">
+			AND B.BEAUTY BETWEEN #{BEAUTY_min} AND #{BEAUTY_max}
+		</if>
+		<if test="NATIONAL_VOUCHER_min!=null">
+			AND B.NATIONAL_VOUCHER BETWEEN #{NATIONAL_VOUCHER_min} AND
+			#{NATIONAL_VOUCHER_max}
+		</if>
+		<if test="CVS_min!=null">
+			AND B.CVS BETWEEN #{CVS_min} AND #{CVS_max}
+		</if>
+		<if test="RENTAL_min!=null">
+			AND B.RENTAL BETWEEN #{RENTAL_min} AND #{RENTAL_max}
+		</if>
+
+
+
 
 
 	</select>

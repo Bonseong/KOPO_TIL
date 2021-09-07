@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.card.dao.CardDAO;
 import kr.ac.kopo.card.vo.BenefitVO;
-import kr.ac.kopo.card.vo.CardVO;
-import kr.ac.kopo.card.vo.UserBenefitVO;
+import kr.ac.kopo.card.vo.CardBenefitVO;
+import kr.ac.kopo.card.vo.UserCardVO;
 
 
 @Service
@@ -20,9 +20,9 @@ public class CardServiceImpl implements CardService{
 	@Autowired
 	private CardDAO cardDAO;
 	
-	public List<CardVO> selectCardList() {
-		
-		return null;
+	public List<UserCardVO> selectCardList() {
+		List<UserCardVO> cardList = cardDAO.selectCardList();
+		return cardList;
 	}
 	
 	public List<BenefitVO> selectBenefitList() {
@@ -30,7 +30,7 @@ public class CardServiceImpl implements CardService{
 		return list;
 	}
 
-	public List<CardVO> selectByFilter(Map<String, String> paramMap) {
+	public List<CardBenefitVO> selectByFilter(Map<String, String> paramMap) {
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		
@@ -55,15 +55,25 @@ public class CardServiceImpl implements CardService{
 				String temp = paramMap.get(key);
 				String[] min_max = temp.replace("%", "").replace(" ", "").split("-");
 				
-				map.put(key+"_min", min_max[0]);
-				map.put(key+"_max", min_max[1]);
+				String min_value = min_max[0];
+				String max_value = min_max[1];
+				
+				Double min_double = (double) Integer.parseInt(min_value);
+				Double max_double = (double) Integer.parseInt(max_value);
+				
+				
+				map.put(key+"_min", Double.toString(min_double/100));
+				map.put(key+"_max", Double.toString(max_double/100));
+				
+				
+				
 			}
 			
 		}
 		
 		System.out.println(map);
-		cardDAO.selectByFilter(map); 
-		return null;
+		List<CardBenefitVO> cardList = cardDAO.selectByFilter(map); 
+		return cardList;
 	}
 	
 	
