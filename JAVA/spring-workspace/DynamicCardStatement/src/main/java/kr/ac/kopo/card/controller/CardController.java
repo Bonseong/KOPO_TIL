@@ -6,8 +6,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,6 +17,7 @@ import kr.ac.kopo.card.service.CardService;
 import kr.ac.kopo.card.vo.BenefitVO;
 import kr.ac.kopo.card.vo.CardBenefitVO;
 import kr.ac.kopo.card.vo.UserCardVO;
+import kr.ac.kopo.util.PagingVO;
 
 @Controller
 public class CardController {
@@ -23,33 +26,73 @@ public class CardController {
 	private CardService cardService;
 
 	@GetMapping("/cardlist")
-	public ModelAndView cardList() {
-		List<BenefitVO> benefitList = cardService.selectBenefitList();
-
+	public ModelAndView cardList(PagingVO vo, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
 		ModelAndView mav = new ModelAndView("card/cardlist");
-		mav.addObject("benefitList", benefitList);
-
-		List<UserCardVO> cardList = cardService.selectCardList();
+		int total = cardService.getLength();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
 		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		
+		List<UserCardVO> cardList = cardService.selectCardList(vo);
+		
+		mav.addObject("paging", vo);		
 		mav.addObject("cardList", cardList);
+
+		
+		List<BenefitVO> benefitList = cardService.selectBenefitList();
+		mav.addObject("benefitList", benefitList);
 		System.out.println(cardList);
+		System.out.println(benefitList);
 		return mav;
 
 	}
 
 	@ResponseBody
 	@PostMapping("/cardlist")
-	public ModelAndView benefitSearch(@RequestBody Map<String, String> paramMap) {
+	public List<CardBenefitVO> benefitSearch(@RequestBody Map<String, String> paramMap) {
 		ModelAndView mav = new ModelAndView("card/cardlist");
-
-
+		
 		List<CardBenefitVO> cardFilterList = cardService.selectByFilter(paramMap);
-		System.out.println(cardFilterList);
 		mav.addObject("cardFilterList", cardFilterList);
 
 		List<BenefitVO> benefitList = cardService.selectBenefitList();
 		mav.addObject("benefitList", benefitList);
 
+		return cardFilterList;
+	}
+	
+	@PostMapping("/cardlist/filterList")
+	public ModelAndView benefitFiltering(@RequestBody Map<String, String> paramMap) {
+		System.out.println("paramMap : " + paramMap);
+		
+		ModelAndView mav = new ModelAndView("card/filterList");
+
+		List<CardBenefitVO> cardFilterList = cardService.selectByFilter(paramMap);
+		mav.addObject("cardFilterList", cardFilterList);
+		System.out.println("cardList : " + cardFilterList);
+		List<BenefitVO> benefitList = cardService.selectBenefitList();
+		mav.addObject("benefitList", benefitList);
+
+		return mav;
+	}
+	
+	@GetMapping("/detail/{no}")
+	public ModelAndView detail(@PathVariable("no") int no) throws Exception {
+		CardBenefitVO card = cardService.selectByNo(no);
+		ModelAndView mav = new ModelAndView("card/detail");
+		
+		mav.addObject("card", card);
+		
+		
 		return mav;
 	}
 

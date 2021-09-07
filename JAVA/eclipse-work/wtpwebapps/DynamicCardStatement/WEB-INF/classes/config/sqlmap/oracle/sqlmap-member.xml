@@ -11,7 +11,7 @@
 	</resultMap>
 
 	<select id="login" parameterType="memberVO" resultType="memberVO">
-		SELECT ID, NAME, PW, USER_TYPE
+		SELECT ID, NAME, PW, AGE, USER_TYPE
 		 FROM T_MEMBER
 		 WHERE ID = #{ id } AND PW = #{ pw } 
 		

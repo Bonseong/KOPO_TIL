@@ -36,7 +36,8 @@
 	href="${ pageContext.request.contextPath }/resources/css/slicknav.css">
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/style.css">
-
+<%-- <link rel="stylesheet"
+	href="${ pageContext.request.contextPath }/resources/css/responsive.css"> --%>
 <!-- JS here -->
 <script
 	src="${ pageContext.request.contextPath }/resources/js/vendor/modernizr-3.5.0.min.js"></script>
@@ -113,7 +114,9 @@
 						<div class="main-menu  d-none d-lg-block">
 							<nav>
 								<ul id="navigation">
-									<li><a href="${ pageContext.request.contextPath }/cardlist">나만의 카드</a></li>
+									<li><a
+										href="${ pageContext.request.contextPath }/cardlist">나만의
+											카드</a></li>
 									<li><a href="${ pageContext.request.contextPath }/">실시간
 											카드 내역서</a></li>
 									<li><a href="${ pageContext.request.contextPath }/">월간

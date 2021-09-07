@@ -1,6 +1,8 @@
 package kr.ac.kopo;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -13,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import kr.ac.kopo.card.dao.CardDAO;
 import kr.ac.kopo.card.service.CardService;
 import kr.ac.kopo.card.vo.BenefitVO;
+import kr.ac.kopo.card.vo.CardBenefitVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:config/spring/spring-mvc.xml" })
@@ -36,19 +39,16 @@ public class CardTest {
 		System.out.println(list);
 
 	}
-	
+
 	@Ignore
 	@Test
-	public void 문자자르기Test() throws Exception{
-	
-		
+	public void 문자자르기Test() throws Exception {
+
 		String temp2 = "0 % - 50 %";
 		String[] bb = temp2.replace("%", "").replace(" ", "").split("-");
-		
-		
-		
+
 	}
-	
+
 	/*
 	 * @Test
 	 * 
@@ -69,28 +69,42 @@ public class CardTest {
 	 * 
 	 * }
 	 */
-	
-	
+
+	@Ignore
 	@Test
-	public void 숫자() throws Exception{
-	
-		
+	public void 숫자() throws Exception {
+
 		String temp = "30";
 		Double a = (double) Integer.parseInt(temp);
-		
-		String aaa = Double.toString(a/100);
+
+		String aaa = Double.toString(a / 100);
 		System.out.println(aaa);
+
+	}
+
+	@Ignore
+	@Test
+	public void LengthTest() throws Exception {
+		int result = cardService.getLength();
+
+		System.out.println(result);
+	}
+	
+	@Test
+	public void mapTest() throws Exception{
+		Map<String, String> paramMap = new HashMap<>();
 		
 		
+		paramMap.put("cardName", "MULTI");
+		paramMap.put("cardType", "");
+		paramMap.put("annualFeeType", "연회비 유무 선택");
+		paramMap.put("annualFeeRange", "0원 - 250000원");
 		
-		
-		
+		System.out.println(paramMap);
+		List<CardBenefitVO> cardFilterList = cardService.selectByFilter(paramMap);
+		System.out.println("cardList : " + cardFilterList);
 		
 		
 	}
 
-
-
 }
-
-

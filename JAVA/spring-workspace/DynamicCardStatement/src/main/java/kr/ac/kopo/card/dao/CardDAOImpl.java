@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import kr.ac.kopo.card.vo.BenefitVO;
 import kr.ac.kopo.card.vo.CardBenefitVO;
 import kr.ac.kopo.card.vo.UserCardVO;
+import kr.ac.kopo.util.PagingVO;
 
 @Repository
 public class CardDAOImpl implements CardDAO {
@@ -17,8 +18,8 @@ public class CardDAOImpl implements CardDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 		
-	public List<UserCardVO> selectCardList() {
-		List<UserCardVO> cardList = sqlSessionTemplate.selectList("card.CardDAO.selectAllCard");
+	public List<UserCardVO> selectCardList(PagingVO vo) {
+		List<UserCardVO> cardList = sqlSessionTemplate.selectList("card.CardDAO.selectAllCard", vo);
 		return cardList;
 	}
 
@@ -27,10 +28,22 @@ public class CardDAOImpl implements CardDAO {
 		return list;
 	}
 
-	@Override
 	public List<CardBenefitVO> selectByFilter(Map<String, String> paramMap) {
 		List<CardBenefitVO> cardList = sqlSessionTemplate.selectList("card.CardDAO.selectByFilter", paramMap);
 		return cardList;
 	}
+
+	public int getLength() {
+		int totalLength = sqlSessionTemplate.selectOne("card.CardDAO.getLength");
+		return totalLength;
+	}
+
+	public CardBenefitVO selectByNo(int no) {
+		CardBenefitVO card = sqlSessionTemplate.selectOne("card.CardDAO.selectByNo", no);
+		return card;
+	}
+	
+	
+	
 
 }

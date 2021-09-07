@@ -1,6 +1,5 @@
 package kr.ac.kopo.card.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +11,7 @@ import kr.ac.kopo.card.dao.CardDAO;
 import kr.ac.kopo.card.vo.BenefitVO;
 import kr.ac.kopo.card.vo.CardBenefitVO;
 import kr.ac.kopo.card.vo.UserCardVO;
+import kr.ac.kopo.util.PagingVO;
 
 
 @Service
@@ -20,8 +20,8 @@ public class CardServiceImpl implements CardService{
 	@Autowired
 	private CardDAO cardDAO;
 	
-	public List<UserCardVO> selectCardList() {
-		List<UserCardVO> cardList = cardDAO.selectCardList();
+	public List<UserCardVO> selectCardList(PagingVO vo) {
+		List<UserCardVO> cardList = cardDAO.selectCardList(vo);
 		return cardList;
 	}
 	
@@ -74,6 +74,16 @@ public class CardServiceImpl implements CardService{
 		System.out.println(map);
 		List<CardBenefitVO> cardList = cardDAO.selectByFilter(map); 
 		return cardList;
+	}
+
+	public int getLength() {
+		int totalLength = cardDAO.getLength();
+		return totalLength;
+	}
+
+	public CardBenefitVO selectByNo(int no) {
+		CardBenefitVO card = cardDAO.selectByNo(no);
+		return card;
 	}
 	
 	

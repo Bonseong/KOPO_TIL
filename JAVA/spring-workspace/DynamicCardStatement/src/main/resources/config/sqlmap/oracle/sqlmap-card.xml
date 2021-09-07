@@ -3,6 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="card.CardDAO">
+
+	<!-- resultMap -->
 	<resultMap type="benefitVO" id="benefitMap">
 		<result column="CATEGORY_KOR" property="categoryKor" />
 	</resultMap>
@@ -32,10 +34,52 @@
 		<result column="ANNUAL_FEE" property="annualFee" />
 	</resultMap>
 
-	<select id ="selectAllCard" resultType="list" resultMap="userCardMap">
-		SELECT CARD_CODE, CARD_NAME, CARD_TYPE, ANNUAL_FEE FROM CARD
+	<!-- commonQuery -->
+	<sql id="selectBenefit">
+		SELECT C.CARD_CODE, C.CARD_NAME, C.CARD_TYPE, TRIM(TO_CHAR(
+		C.ANNUAL_FEE ,
+		'999,999,999,999,999')) AS ANNUAL_FEE,
+		B.ALWAYS_DISCOUNT, B.CVS,
+		B.AIR_MILEAGE, B.BEAUTY, B.COMMUNICATION,
+		B.CAFE_BAKERY, B.MOVIE,
+		B.HYPERMART, B.EDUCATION, B.CULTURE,
+		B.ANNUAL_FEE_SUPPORT,
+		B.PUBLIC_TRANSPORTATION, B.RENTAL, B.OIL,
+		B.SHOPPING, B.LEISURE,
+		B.NATIONAL_VOUCHER, B.POINT_CASHBACK,
+		B.AUTOMOBILES, B.MEDICAL,
+		B.FINANCE, B.EAT_OUT, B.EASY_PAY,
+		B.MAINTENANCE, B.PREMIUM, B.VOUCHER,
+		B.PRIORITY_PASS FROM CARD
+		C,
+		CARD_BENEFITS B WHERE
+		C.CARD_NAME=B.CARD_NAME
+	</sql>
+
+
+	<!-- select -->
+	<select id="selectByNo" resultType="cardBenefitVO"
+		resultMap="cardBenefitMap">
+		<include refid="selectBenefit" />
+			AND C.CARD_CODE=#{no}
 	</select>
-	
+
+
+	<select id="selectAllCard" resultType="list"
+		resultMap="userCardMap">
+		SELECT * FROM (SELECT ROWNUM RN, A.* FROM
+		(SELECT CARD_CODE,
+		CARD_NAME, CARD_TYPE, TRIM(TO_CHAR(
+		ANNUAL_FEE ,
+		'999,999,999,999,999')) AS ANNUAL_FEE FROM CARD ORDER BY CARD_CODE) A
+		)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="getLength" resultType="int">
+		SELECT COUNT(*) FROM CARD
+	</select>
+
 
 	<select id="selectBenefitList" resultType="list"
 		resultMap="benefitMap">
@@ -44,18 +88,12 @@
 	</select>
 
 
+
+
 	<select id="selectByFilter" parameterType="hashmap"
 		resultType="cardBenefitVO" resultMap="cardBenefitMap">
 
-		SELECT C.CARD_CODE, C.CARD_NAME, C.CARD_TYPE, C.ANNUAL_FEE,
-		B.ALWAYS_DISCOUNT, B.CVS, B.AIR_MILEAGE, B.BEAUTY, B.COMMUNICATION,
-		B.CAFE_BAKERY, B.MOVIE, B.HYPERMART, B.EDUCATION, B.CULTURE,
-		B.ANNUAL_FEE_SUPPORT, B.PUBLIC_TRANSPORTATION, B.RENTAL, B.OIL,
-		B.SHOPPING, B.LEISURE, B.NATIONAL_VOUCHER, B.POINT_CASHBACK,
-		B.AUTOMOBILES, B.MEDICAL, B.FINANCE, B.EAT_OUT, B.EASY_PAY,
-		B.MAINTENANCE, B.PREMIUM, B.VOUCHER, B.PRIORITY_PASS FROM CARD
-		C,
-		CARD_BENEFITS B WHERE C.CARD_NAME=B.CARD_NAME
+		<include refid="selectBenefit" />
 
 		<if test="cardName != null and !cardName.equals('')">
 			AND C.CARD_NAME like '%'||#{cardName}||'%'
@@ -170,12 +208,7 @@
 		</if>
 
 
-
-
-
 	</select>
-
-
 
 	<!-- <insert id="register" parameterType="memberVO"> INSERT INTO T_MEMBER(ID, 
 		PW, NAME, MOBILE_NO, RRN, BIRTHDAY, AGE, GENDER, ISNATIVE, ADDRESS, ADDRESS_DETAIL) 
