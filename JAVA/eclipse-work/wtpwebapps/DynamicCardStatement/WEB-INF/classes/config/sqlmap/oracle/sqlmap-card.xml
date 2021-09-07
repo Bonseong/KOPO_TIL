@@ -33,7 +33,12 @@
 
 			<when test="cardName != null and !cardName.equals('')">
 				and C.CARD_NAME like '%'||#{cardName}||'%'
-			
+			</when>
+			<when test="cardCategory != null and !cardCategory.equals('')">
+				and C.CARD_CATEGORY = #{cardCategory}
+			</when>
+			<when test="annualFeeRange_min != null and !annualFeeRange_min.equals('')">
+				and C.ANNUAL_FEE BETWEEN #{annualFeeRange_min} AND #{annualFeeRange_max}
 			</when>
 		</choose>
 
