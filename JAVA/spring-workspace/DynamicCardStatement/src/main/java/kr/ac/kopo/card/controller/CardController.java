@@ -92,6 +92,33 @@ public class CardController {
 		
 		mav.addObject("card", card);
 		
+		System.out.println(card);
+		
+		List<BenefitVO> notice = cardService.selectNotice(no);
+		System.out.println(notice);
+		
+		mav.addObject("notice", notice);
+		
+		return mav;
+	}
+	
+	
+	@GetMapping("/test/{no}")
+	public ModelAndView detail2(@PathVariable("no") int no) throws Exception {
+		ModelAndView mav = new ModelAndView("test");
+		
+		CardBenefitVO card = cardService.selectByNo(no);		
+		mav.addObject("card", card);
+		
+		
+		List<BenefitVO> notice = cardService.selectNotice(1002);
+		System.out.println(notice);
+		
+		mav.addObject("notice", notice);
+		
+		
+		
+		System.out.println(card);
 		
 		return mav;
 	}

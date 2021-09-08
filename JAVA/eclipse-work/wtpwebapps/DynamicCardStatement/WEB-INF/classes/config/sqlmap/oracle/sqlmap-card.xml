@@ -7,6 +7,8 @@
 	<!-- resultMap -->
 	<resultMap type="benefitVO" id="benefitMap">
 		<result column="CATEGORY_KOR" property="categoryKor" />
+		<result column="CARD_CODE" property="cardCode" />
+		<result column="CARD_NAME" property="cardName" />
 	</resultMap>
 
 	<resultMap type="cardBenefitVO" id="cardBenefitMap">
@@ -61,7 +63,7 @@
 	<select id="selectByNo" resultType="cardBenefitVO"
 		resultMap="cardBenefitMap">
 		<include refid="selectBenefit" />
-			AND C.CARD_CODE=#{no}
+		AND C.CARD_CODE=#{no}
 	</select>
 
 
@@ -87,7 +89,13 @@
 		CARD_BENEFITS_CATEGORY
 	</select>
 
-
+	<select id="selectNotice" resultType="benefitVO"
+		resultMap="benefitMap">
+		SELECT C.CARD_CODE, C.CARD_NAME, N.CATEGORY,
+		B.CATEGORY_KOR, N.NOTICE FROM CREDITCARD_NOTICE N, CARD C,
+		CARD_BENEFITS_CATEGORY B WHERE N.CARD_NAME = C.CARD_NAME AND
+		N.CATEGORY = B.CATEGORY AND C.CARD_CODE=#{cardCode}
+	</select>
 
 
 	<select id="selectByFilter" parameterType="hashmap"

@@ -1,5 +1,5 @@
 package kr.ac.kopo.card.vo;
-
+// 아직 사용안햇음
 public class UserCardVO {
 	private String cardCode;
 	private String cardType;

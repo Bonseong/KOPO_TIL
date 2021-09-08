@@ -85,6 +85,12 @@ public class CardServiceImpl implements CardService{
 		CardBenefitVO card = cardDAO.selectByNo(no);
 		return card;
 	}
+
+	public List<BenefitVO> selectNotice(int no) {
+		List<BenefitVO> notice = cardDAO.selectNotice(no);
+		return notice;
+	}
+	
 	
 	
 	

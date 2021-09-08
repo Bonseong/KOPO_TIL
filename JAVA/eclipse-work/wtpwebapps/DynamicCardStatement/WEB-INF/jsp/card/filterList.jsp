@@ -63,9 +63,8 @@
 									</div>
 								</div>
 								<div class="jobs_right">
-									<div class="apply_now">
-										<a class="heart_mark" href="detail/${ cardFilterList.cardCode }"> <i class="fa fa-heart"></i>
-										</a> <a href="job_details.html" class="boxed-btn3">상세 혜택</a>
+									<div class="apply_now" align="center">
+										<a href="detail/${ cardFilterList.cardCode }" class="boxed-btn3">상세 혜택</a>
 									</div>
 									<div class="date">
 										<p>n명의 선택을 받은 카드!</p>

@@ -98,8 +98,7 @@
 										'type' : 'post',
 										'contentType' : "application/json; charset=utf-8",
 										'url' : '${pageContext.request.contextPath}/cardlist/filterList',
-										'data' : JSON.stringify(json_data)
-										,
+										'data' : JSON.stringify(json_data),
 
 										'success' : function(data) {
 											$('#cardListDiv').empty()
@@ -212,7 +211,7 @@
 										<div class="single_field">
 
 											<select class="wide" id="cardType" name="cardType">
-												<option value = "" data-display="카드 종류 선택">카드 종류 선택</option>
+												<option value="" data-display="카드 종류 선택">카드 종류 선택</option>
 												<option value="CREDIT">신용카드</option>
 												<option value="CHECK">체크카드</option>
 											</select>
@@ -285,7 +284,8 @@
 								<div class="col-lg-12">
 									<div class="single_field">
 										<div class="reset_btn">
-											<a href="cardlist"><button type="button" class="boxed-btn3 w-100" >RESET</button></a>
+											<a href="cardlist"><button type="button"
+													class="boxed-btn3 w-100">RESET</button></a>
 										</div>
 									</div>
 								</div>
@@ -343,10 +343,11 @@
 														style="width: 827px">
 														<div class="jobs_left d-flex align-items-center">
 															<div class="thumb" style="width: 150px; padding: 0">
-																<img style="width: 148px; height: 80px;"
+																<a href="detail/${ cardList.cardCode }"><img
+																	style="width: 148px; height: 80px;"
 																	src="${ pageContext.request.contextPath }/resources/img/card/<c:out
 														value="${ cardList.cardCode }" />.png"
-																	alt="" />
+																	alt="" /></a>
 															</div>
 															<div class="jobs_conetent">
 																<c:choose>
@@ -359,7 +360,7 @@
 																	</c:when>
 																	<c:otherwise>
 																		<h4>
-																			<a href="#"> <c:out
+																			<a href="detail/${ cardList.cardCode }"> <c:out
 																					value="${ cardList.cardName }" />
 																			</a>
 																		</h4>
@@ -387,10 +388,12 @@
 															</div>
 														</div>
 														<div class="jobs_right">
-															<div class="apply_now">
-																<a class="heart_mark" href="#"> <i
+															<div class="apply_now" align="center">
+																<!-- <a class="heart_mark" href="#"> <i
 																	class="fa fa-heart"></i>
-																</a> <a href="detail/${ cardList.cardCode }" class="boxed-btn3">상세 혜택</a>
+																</a> -->
+																<a href="detail/${ cardList.cardCode }"
+																	class="boxed-btn3">상세 혜택</a>
 															</div>
 															<div class="date">
 																<p>n명의 선택을 받은 카드!</p>

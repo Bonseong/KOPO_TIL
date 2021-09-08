@@ -42,6 +42,13 @@ public class CardDAOImpl implements CardDAO {
 		CardBenefitVO card = sqlSessionTemplate.selectOne("card.CardDAO.selectByNo", no);
 		return card;
 	}
+
+	public List<BenefitVO> selectNotice(int no) {
+		List<BenefitVO> notice = sqlSessionTemplate.selectList("card.CardDAO.selectNotice", no);
+		return notice;
+	}
+	
+	
 	
 	
 	

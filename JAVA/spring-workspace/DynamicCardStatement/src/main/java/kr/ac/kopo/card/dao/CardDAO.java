@@ -18,4 +18,6 @@ public interface CardDAO {
 	int getLength();
 	
 	CardBenefitVO selectByNo(int no);
+	
+	List<BenefitVO> selectNotice(int no);
 }

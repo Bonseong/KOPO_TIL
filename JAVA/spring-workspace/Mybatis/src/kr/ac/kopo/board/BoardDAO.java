@@ -18,7 +18,7 @@ public class BoardDAO {
 
 	public void work() {
 		selectOne2();
-		
+
 		// selectWhere();
 		// selectNos();
 		// selectOne();
@@ -69,15 +69,15 @@ public class BoardDAO {
 		BoardVO result = session.selectOne("board.BoardDAO.selectOne3", 1);
 		System.out.println(result);
 	}
-	
+
 	public void selectOne2() {
 		BoardVO board = new BoardVO();
 		board.setNo(1);
-		
+
 		Map<String, Object> map = session.selectOne("board.BoardDAO.selectOne4", board);
-		
+
 		Set<String> keys = map.keySet();
-		for(String key : keys) {
+		for (String key : keys) {
 			System.out.println(key + " : " + map.get(key));
 		}
 	}
@@ -104,19 +104,19 @@ public class BoardDAO {
 		System.out.println("석세스");
 
 	}
-	
+
 	private void insert2() {
-		ArrayList <BoardVO> list = new ArrayList<>();
+		ArrayList<BoardVO> list = new ArrayList<>();
 		BoardVO board1 = new BoardVO();
 		board1.setTitle("암온더넥스트레블");
 		board1.setWriter("글쓴이1");
 		board1.setContent("절대적 룰을지켜");
-		
+
 		BoardVO board2 = new BoardVO();
 		board2.setTitle("암온더넥스트레블");
 		board2.setWriter("글쓴이1");
 		board2.setContent("절대적 룰을지켜");
-		
+
 		BoardVO board3 = new BoardVO();
 		board3.setTitle("암온더넥스트레블");
 		board3.setWriter("글쓴이1");
@@ -124,7 +124,6 @@ public class BoardDAO {
 		list.add(board1);
 		list.add(board2);
 		list.add(board3);
-		
-		
+
 	}
 }

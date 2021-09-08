@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
+import kr.ac.kopo.card.service.CardService;
+import kr.ac.kopo.card.vo.CardBenefitVO;
 import kr.ac.kopo.member.service.MemberService;
 import kr.ac.kopo.member.vo.MemberVO;
 
@@ -89,11 +93,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 
-	// 테스트 페이지 -> 나중에 꼭 지우기
-	@GetMapping("/test")
-	public String test() {
-		return "test";
-
-	}
+	
+	
 
 }

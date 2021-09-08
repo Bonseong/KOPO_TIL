@@ -20,6 +20,8 @@ public interface CardService {
 	
 	CardBenefitVO selectByNo(int no);
 	
+	List<BenefitVO> selectNotice(int no);
+	
 	
 	
 }
