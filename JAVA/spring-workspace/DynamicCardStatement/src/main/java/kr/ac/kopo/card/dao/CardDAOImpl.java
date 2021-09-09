@@ -9,15 +9,16 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.card.vo.BenefitVO;
 import kr.ac.kopo.card.vo.CardBenefitVO;
+import kr.ac.kopo.card.vo.DemographyVO;
 import kr.ac.kopo.card.vo.UserCardVO;
 import kr.ac.kopo.util.PagingVO;
 
 @Repository
 public class CardDAOImpl implements CardDAO {
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-		
+
 	public List<UserCardVO> selectCardList(PagingVO vo) {
 		List<UserCardVO> cardList = sqlSessionTemplate.selectList("card.CardDAO.selectAllCard", vo);
 		return cardList;
@@ -47,10 +48,13 @@ public class CardDAOImpl implements CardDAO {
 		List<BenefitVO> notice = sqlSessionTemplate.selectList("card.CardDAO.selectNotice", no);
 		return notice;
 	}
-	
-	
-	
-	
-	
+
+	public List<DemographyVO> selectStatByNo(int no) {
+		System.out.println("여기까지 오긴하니");
+		System.out.println(no);
+		List<DemographyVO> userStat = sqlSessionTemplate.selectList("card.CardDAO.selectStatByNo", no);
+
+		return userStat;
+	}
 
 }

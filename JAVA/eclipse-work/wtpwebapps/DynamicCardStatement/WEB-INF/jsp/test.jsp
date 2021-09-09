@@ -3,47 +3,50 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
-
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <head>
 <meta charset="utf-8">
 <title>jQuery UI Slider</title>
-<body>
+<script>
+ // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
 
-<c:set var="tempname" value=""/>
-<c:forEach items="${requestScope.notice}" var="notice" varStatus="status">
-	<c:if test="${notice.categoryKor ne tempname }">
-		<h6><c:out value="${ notice.categoryKor }" /></h6><br>
-	</c:if>
-	<c:out value="${ notice.notice }" /><br>
-	<c:set var="tempname" value="${notice.categoryKor}"/>
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
 
-</c:forEach>
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
 
-	<%-- <c:forEach items="${requestScope.notice}" var="notice" varStatus="status">
-		<c:choose>
-			<c:when test="${ status.index eq 0 }">
-				<h6><c:out value="${ notice.categoryKor }" /></h6><br>
-				<c:out value="${ notice.notice }" />
-			</c:when>
-			<c:when test="${ status.index ne 0 }">
-				<c:if  test="${notice[status.index- 1].categoryKor ne notice.categoryKor} ">
-					<h6><c:out value="${ notice.categoryKor }" /></h6><br>
-				</c:if>
-					<c:out value="${ notice.notice }" />
-				
-				
-				
-			</c:when>
-			
-			
-		</c:choose>
-		<c:out value="${loop.index}" /><br>
-		<c:out value="${ notice.categoryKor }" /> <br><c:out value="${ notice.notice }" /><hr> 
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Mushrooms', 3],
+          ['Onions', 1],
+          ['Olives', 1],
+          ['Zucchini', 1],
+          ['Pepperoni', 2]
+        ]);
 
+        // Set chart options
+        var options = {'title':'How Much Pizza I Ate Last Night',
+                       'width':400,
+                       'height':300};
 
-	</c:forEach> --%>
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
 
-</body>
+  <body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+  </body>
 </html>
 
 

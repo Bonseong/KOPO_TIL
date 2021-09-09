@@ -14,6 +14,46 @@
 <title>Job Board</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+
+	// Load the Visualization API and the corechart package.
+	google.charts.load('current', {
+		'packages' : [ 'corechart' ]
+	});
+
+	// Set a callback to run when the Google Visualization API is loaded.
+	google.charts.setOnLoadCallback(drawChart);
+
+	// Callback that creates and populates a data table,
+	// instantiates the pie chart, passes in the data and
+	// draws it.
+	
+	function drawChart() {
+
+		// Create the data table.
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', '성별');
+		data.addColumn('number', '가입 비율');
+		data.addRows([ [ 'Mushrooms', 3 ], [ 'Onions', 1 ], [ 'Olives', 1 ],
+				[ 'Zucchini', 1 ], [ 'Pepperoni', 2 ] ]);
+
+		// Set chart options
+		var options = {
+			'title' : '${ card.cardName }' + '가입 성비',
+			'width' : 400,
+			'height' : 300,
+			'tooltip' : {text : 'percentage'}
+		};
+
+		// Instantiate and draw our chart, passing in some options.
+		var chart = new google.visualization.PieChart(document
+				.getElementById('chart_div'));
+		chart.draw(data, options);
+	}
+</script>
 
 </head>
 
@@ -52,7 +92,7 @@
 										alt="" />
 								</div>
 								<div class="jobs_conetent">
-									<h4 style="margin-bottom:15px">
+									<h4 style="margin-bottom: 15px">
 										<c:out value="${ card.cardName }" />
 									</h4>
 									<div class="links_locat d-flex align-items-center">
@@ -104,16 +144,17 @@
 									</h4>
 								</c:if>
 								<ul style="margin-bottom: 10px;">
-									<li style="margin-bottom: 5px;"><c:out value="${ notice.notice }" /></li>
+									<li style="margin-bottom: 5px;"><c:out
+											value="${ notice.notice }" /></li>
 								</ul>
 								<c:set var="tempname" value="${notice.categoryKor}" />
 
 							</c:forEach>
 
 
-							
+
 						</div>
-						
+
 						<div class="single_wrap">
 							<h4>여기는 그래프를 그릴거야</h4>
 							<ul>
@@ -128,64 +169,10 @@
 						</div>
 						<div class="single_wrap">
 							<h4>여기는 혜택을 정리할거야</h4>
-							<p>There are many variations of passages of Lorem Ipsum
-								available, but the majority have suffered alteration in some
-								form, by injected humour, or randomised words which don't look
-								even slightly believable. If you are going to use a passage of
-								Lorem Ipsum, you need to be sure there isn't anything
-								embarrassing.</p>
+							<div id="chart_div"></div>
 						</div>
 					</div>
-					<%-- <div class="apply_job_form white-bg">
-						<h4>Apply for the job</h4>
-						<form action="#">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="input_field">
-										<input type="text" placeholder="Your name">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="input_field">
-										<input type="text" placeholder="Email">
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="input_field">
-										<input type="text" placeholder="Website/Portfolio link">
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="input-group">
-										<div class="input-group-prepend">
-											<button type="button" id="inputGroupFileAddon03">
-												<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-											</button>
-										</div>
-										<div class="custom-file">
-											<input type="file" class="custom-file-input"
-												id="inputGroupFile03"
-												aria-describedby="inputGroupFileAddon03"> <label
-												class="custom-file-label" for="inputGroupFile03">Upload
-												CV</label>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="input_field">
-										<textarea name="#" id="" cols="30" rows="10"
-											placeholder="Coverletter"></textarea>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="submit_btn">
-										<button class="boxed-btn3 w-100" type="submit">Apply
-											Now</button>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div> --%>
+
 				</div>
 				<div class="col-lg-4">
 					<div class="job_sumary">
@@ -229,5 +216,6 @@
 		<jsp:include page="../include/bottom.jsp" />
 	</footer>
 </body>
+
 
 </html>
