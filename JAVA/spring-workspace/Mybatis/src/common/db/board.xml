@@ -113,6 +113,15 @@
 		<!-- title, writer 가 각각 null일떄의 문제를 where태그를 통해 해결 -->
 	</select>
 	
+	<insert id="jbtest" parameterType ="java.util.Map">
+		INSERT ALL
+    	
+
+		<foreach collection="list" item="item">
+		INTO T_BOARD VALUES TITLE, WRITER, CONTENT VALUES (#{item.title}, #{item.writer}, #{item.content})
+		</foreach>
+		SELECT * FROM DUAL
 	
+	</insert>
 
 </mapper>

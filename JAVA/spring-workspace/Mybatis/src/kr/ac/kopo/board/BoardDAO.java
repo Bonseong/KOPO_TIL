@@ -1,6 +1,7 @@
 package kr.ac.kopo.board;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,13 +18,13 @@ public class BoardDAO {
 	}
 
 	public void work() {
-		selectOne2();
+		//selectOne2();
 		
 		// selectWhere();
 		// selectNos();
 		// selectOne();
 		// selectAll();
-		// insert();
+		insert2();
 	}
 
 	public void selectWhere() {
@@ -124,6 +125,16 @@ public class BoardDAO {
 		list.add(board1);
 		list.add(board2);
 		list.add(board3);
+		System.out.println(list);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("list", list);
+
+		session.insert("board.BoardDAO.jbtest", map);
+
+		
+		
 		
 		
 	}
