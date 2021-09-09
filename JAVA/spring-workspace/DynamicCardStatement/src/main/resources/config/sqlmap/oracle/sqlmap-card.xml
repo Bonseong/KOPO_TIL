@@ -7,6 +7,8 @@
 	<!-- resultMap -->
 	<resultMap type="benefitVO" id="benefitMap">
 		<result column="CATEGORY_KOR" property="categoryKor" />
+		<result column="CARD_CODE" property="cardCode" />
+		<result column="CARD_NAME" property="cardName" />
 	</resultMap>
 
 	<resultMap type="cardBenefitVO" id="cardBenefitMap">
@@ -61,7 +63,7 @@
 	<select id="selectByNo" resultType="cardBenefitVO"
 		resultMap="cardBenefitMap">
 		<include refid="selectBenefit" />
-			AND C.CARD_CODE=#{no}
+		AND C.CARD_CODE=#{no}
 	</select>
 
 
@@ -87,8 +89,46 @@
 		CARD_BENEFITS_CATEGORY
 	</select>
 
+	<select id="selectNotice" resultType="benefitVO"
+		resultMap="benefitMap">
+		SELECT C.CARD_CODE, C.CARD_NAME, N.CATEGORY,
+		B.CATEGORY_KOR,
+		N.NOTICE FROM CREDITCARD_NOTICE N, CARD C,
+		CARD_BENEFITS_CATEGORY B
+		WHERE N.CARD_NAME = C.CARD_NAME AND
+		N.CATEGORY = B.CATEGORY AND
+		C.CARD_CODE=#{cardCode}
+	</select>
 
 
+	<select id="selectStatByNo" parameterType="int"
+		resultType="demographyVO">
+		<![CDATA[
+		SELECT SUM(DECODE(GENDER, 'M', 1, 0)) AS MALE,
+		SUM(DECODE(GENDER, 'F',
+		1, 0)) AS FEMALE,
+		SUM(DECODE(AGE_GROUP, '미성년자', 1, 0)) AS MINOR,
+		SUM(DECODE(AGE_GROUP, '20대', 1, 0)) AS
+		age20,
+		SUM(DECODE(AGE_GROUP,
+		'30대', 1, 0)) AS age30, SUM(DECODE(AGE_GROUP, '40대', 1, 0)) AS age40,
+		SUM(DECODE(AGE_GROUP, '50대', 1, 0)) AS age50, SUM(DECODE(GENDER, '60대
+		이상', 1, 0)) AS SENIOR
+		FROM(
+		SELECT M.GENDER, CASE
+		WHEN M.AGE < 20 THEN '미성년자'
+		WHEN M.AGE < 30 THEN '20대'
+		WHEN M.AGE < 40 THEN '30대'
+		WHEN M.AGE < 50 THEN '40대'
+		WHEN M.AGE < 60 THEN '50대'
+		WHEN M.AGE >= 60 THEN '60대 이상' END AS AGE_GROUP ,
+		C.CARD_CODE, D.CARD_NAME
+		FROM T_MEMBER M, MEMBER_CARD C, CARD D WHERE
+		C.CARD_CODE = #{no} AND
+		M.MEMBER_NO = C.MEMBER_NO AND C.CARD_CODE =
+		D.CARD_CODE)
+		]]>
+	</select>
 
 	<select id="selectByFilter" parameterType="hashmap"
 		resultType="cardBenefitVO" resultMap="cardBenefitMap">

@@ -16,6 +16,7 @@ import kr.ac.kopo.card.dao.CardDAO;
 import kr.ac.kopo.card.service.CardService;
 import kr.ac.kopo.card.vo.BenefitVO;
 import kr.ac.kopo.card.vo.CardBenefitVO;
+import kr.ac.kopo.card.vo.DemographyVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:config/spring/spring-mvc.xml" })
@@ -90,6 +91,7 @@ public class CardTest {
 		System.out.println(result);
 	}
 	
+	@Ignore
 	@Test
 	public void mapTest() throws Exception{
 		Map<String, String> paramMap = new HashMap<>();
@@ -105,6 +107,14 @@ public class CardTest {
 		System.out.println("cardList : " + cardFilterList);
 		
 		
+	}
+	
+	@Ignore
+	@Test
+	public void 인구통계학Test() throws Exception{
+		
+		List<DemographyVO> temp = cardService.selectStatByNo(1001);
+		System.out.println(temp);
 	}
 
 }
