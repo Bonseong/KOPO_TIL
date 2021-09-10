@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!doctype html>
@@ -14,10 +15,10 @@
 <title>Job Board</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+<<<<<<< HEAD
 	// Load the Visualization API and the corechart package.
 	google.charts.load('current', {
 		'packages' : [ 'corechart' ]
@@ -53,9 +54,61 @@
 		var chart = new google.visualization.PieChart(document
 				.getElementById('chart_div'));
 		chart.draw(data, options);
+=======
+	window.onload = function() {
+		pieChartDraw();
+		pieChart2Draw();
+>>>>>>> 424c2626bb6c99fe7947e5f0b43421ab366b381c
 	}
-</script>
 
+	let pieChartData = {
+		labels : [ '남성', '여성' ],
+		datasets : [ {
+			data : [ '${userStat.male}', '${userStat.female}' ],
+			backgroundColor : [ 'rgb(255, 99, 132)', 'rgb(255, 159, 64)' ]
+		} ]
+	};
+
+	let pieChartDraw = function() {
+		let ctx = document.getElementById('pieChartCanvas').getContext('2d');
+
+		window.pieChart = new Chart(ctx, {
+			type : 'pie',
+			data : pieChartData,
+			options : {
+				responsive : false,
+				pieceLabel: { mode:"label", fontSize: 11, fontStyle: 'bold' }
+			}
+		});
+	};
+
+	let pieChart2Data = {
+		labels : [ '20대', '30대', '40대', '50대', '60대 이상' ],
+		datasets : [ {
+			data : [ '${userStat.age20}', '${userStat.age30}',
+					'${userStat.age40}', '${userStat.age50}',
+					'${userStat.senior}' ],
+			backgroundColor : [ 'rgb(255, 99, 132)', 'rgb(255, 159, 64)',
+					'rgb(255, 205, 86)', 'rgb(75, 192, 192)',
+					'rgb(54, 162, 235)' ]
+		} ]
+	};
+
+	let pieChart2Draw = function() {
+		let ctx = document.getElementById('pieChartCanvas2').getContext('2d');
+
+		window.pieChart = new Chart(ctx, {
+			type : 'pie',
+			data : pieChart2Data,
+			options : {
+				responsive : false,
+				pieceLabel: { mode:"label", fontSize: 11, fontStyle: 'bold' }
+
+				
+			}
+		});
+	};
+</script>
 </head>
 
 <body>
@@ -93,7 +146,7 @@
 										alt="" />
 								</div>
 								<div class="jobs_conetent">
-									<h4 style="margin-bottom: 15px">
+									<h4 class="mg-bottom-10">
 										<c:out value="${ card.cardName }" />
 									</h4>
 									<div class="links_locat d-flex align-items-center">
@@ -119,7 +172,7 @@
 							<div class="jobs_right"></div>
 						</div>
 					</div>
-					<div class="descript_wrap white-bg">
+					<div class="descript_wrap white-bg" style="height:1000px">
 						<!-- <div class="single_wrap">
 							<h4>Job description</h4>
 							<p>There are many variations of passages of Lorem Ipsum
@@ -140,11 +193,11 @@
 							<c:forEach items="${requestScope.notice}" var="notice"
 								varStatus="status">
 								<c:if test="${notice.categoryKor ne tempname }">
-									<h4>
+									<h4 class="mg-bottom-10">
 										<c:out value="${ notice.categoryKor }" />
 									</h4>
 								</c:if>
-								<ul style="margin-bottom: 10px;">
+								<ul class="mg-bottom-10">
 									<li style="margin-bottom: 5px;"><c:out
 											value="${ notice.notice }" /></li>
 								</ul>
@@ -156,23 +209,40 @@
 
 						</div>
 						<div class="single_wrap">
+<<<<<<< HEAD
 
 							<h4>여기는 그래프를 그릴거야</h4>
 							<div id="chart_div"></div>
 						</div>
 						<div class="single_wrap">
 							<h4>여기는 혜택을 쓸거야</h4>
+=======
+							<h4>내가 이 카드를 사용하면?</h4>
+>>>>>>> 424c2626bb6c99fe7947e5f0b43421ab366b381c
 							<ul>
-								<li>The applicants should have experience in the following
-									areas.</li>
-								<li>Have sound knowledge of commercial activities.</li>
-								<li>Leadership, analytical, and problem-solving abilities.</li>
-								<li>Should have vast knowledge in IAS/ IFRS, Company Act,
-									Income Tax, VAT.</li>
+								
 							</ul>
 
 						</div>
+<<<<<<< HEAD
 
+=======
+						<div class="single_wrap">
+							<h4>
+								<c:out value="${ card.cardName }" />
+								가입자 정보
+							</h4>
+							<div style="float: left;">
+								<canvas id="pieChartCanvas" width="170px" height="150px"></canvas>
+							</div>
+							<div style="float: left;">
+								<canvas id="pieChartCanvas2" width="480px" height="150px"></canvas>
+							</div>
+
+
+
+						</div>
+>>>>>>> 424c2626bb6c99fe7947e5f0b43421ab366b381c
 					</div>
 
 				</div>

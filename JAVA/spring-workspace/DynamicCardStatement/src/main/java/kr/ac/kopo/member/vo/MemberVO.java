@@ -1,6 +1,7 @@
 package kr.ac.kopo.member.vo;
 
 public class MemberVO {
+	private int memberNo;
 	private String id;
 	private String name;
 	private String pw;
@@ -18,9 +19,11 @@ public class MemberVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MemberVO(String id, String name, String pw, String mobileNo, String rrn, String birthday, int age,
-			String gender, String isNative, String managerNo, String userType, String address, String addressDetail) {
+	public MemberVO(int memberNo, String id, String name, String pw, String mobileNo, String rrn, String birthday,
+			int age, String gender, String isNative, String managerNo, String userType, String address,
+			String addressDetail) {
 		super();
+		this.memberNo = memberNo;
 		this.id = id;
 		this.name = name;
 		this.pw = pw;
@@ -34,6 +37,12 @@ public class MemberVO {
 		this.userType = userType;
 		this.address = address;
 		this.addressDetail = addressDetail;
+	}
+	public int getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 	public String getId() {
 		return id;
@@ -115,12 +124,11 @@ public class MemberVO {
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [id=" + id + ", name=" + name + ", pw=" + pw + ", mobileNo=" + mobileNo + ", rrn=" + rrn
-				+ ", birthday=" + birthday + ", age=" + age + ", gender=" + gender + ", isNative=" + isNative
-				+ ", managerNo=" + managerNo + ", userType=" + userType + ", address=" + address + ", addressDetail="
-				+ addressDetail + "]";
+		return "MemberVO [memberNo=" + memberNo + ", id=" + id + ", name=" + name + ", pw=" + pw + ", mobileNo="
+				+ mobileNo + ", rrn=" + rrn + ", birthday=" + birthday + ", age=" + age + ", gender=" + gender
+				+ ", isNative=" + isNative + ", managerNo=" + managerNo + ", userType=" + userType + ", address="
+				+ address + ", addressDetail=" + addressDetail + "]";
 	}
 
 	
-
 }

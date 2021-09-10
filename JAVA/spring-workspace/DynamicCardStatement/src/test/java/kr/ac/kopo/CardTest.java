@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -112,9 +113,28 @@ public class CardTest {
 	@Ignore
 	@Test
 	public void 인구통계학Test() throws Exception{
-		
-		List<DemographyVO> temp = cardService.selectStatByNo(1001);
+		DemographyVO temp = cardService.selectStatByNo(1001);
 		System.out.println(temp);
 	}
+	
+	@Test
+	public void 카드혜택Test() throws Exception{
+		
+		CardBenefitVO cardBenefit = cardDAO.selectByNo(1001);
+		CardBenefitVO userBenefit = cardDAO.selectUserBenefit(1);
+		
+		
+		System.out.println(cardBenefit);
+		System.out.println("두번째거"+userBenefit);
+		
+		
+		
+		
+		
+	}
+	
 
 }
+
+
+

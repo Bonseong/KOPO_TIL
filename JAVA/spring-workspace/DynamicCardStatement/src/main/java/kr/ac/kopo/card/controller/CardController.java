@@ -3,6 +3,8 @@ package kr.ac.kopo.card.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,7 @@ import kr.ac.kopo.card.vo.BenefitVO;
 import kr.ac.kopo.card.vo.CardBenefitVO;
 import kr.ac.kopo.card.vo.DemographyVO;
 import kr.ac.kopo.card.vo.UserCardVO;
+import kr.ac.kopo.member.vo.MemberVO;
 import kr.ac.kopo.util.PagingVO;
 
 @Controller
@@ -85,17 +88,28 @@ public class CardController {
 	}
 
 	@GetMapping("/detail/{no}")
-	public ModelAndView detail(@PathVariable("no") int no) throws Exception {
+	public ModelAndView detail(@PathVariable("no") int no, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView("card/detail");
 
 		CardBenefitVO card = cardService.selectByNo(no);
-		mav.addObject("card", card);
+		mav.addObject("card", card); // 카드 상세정보
+		
+
+		System.out.println("카드정보 : " + card);
 
 		List<BenefitVO> notice = cardService.selectNotice(no);
-		mav.addObject("notice", notice);
+		mav.addObject("notice", notice); // 카드에 대한 공지
 		
-		List<DemographyVO> userStat = cardService.selectStatByNo(no);
-		mav.addObject("userStat", userStat);
+		DemographyVO userStat = cardService.selectStatByNo(no);
+		mav.addObject("userStat", userStat); // 카드에 대한 인구통계학 정보
+		
+		MemberVO user = (MemberVO) session.getAttribute("userVO");
+	
+		CardBenefitVO userBenefit = cardService.selectUserBenefit(user.getMemberNo()); // 실적
+		mav.addObject("userBenefit", userBenefit);
+		System.out.println(userBenefit);
+		
+		
 
 		return mav;
 	}
@@ -106,13 +120,14 @@ public class CardController {
 
 		CardBenefitVO card = cardService.selectByNo(no);
 		mav.addObject("card", card);
+		
 
 		List<BenefitVO> notice = cardService.selectNotice(1002);
-		System.out.println(notice);
+		
 
+		
 		mav.addObject("notice", notice);
-
-		System.out.println(card);
+		
 
 		return mav;
 	}

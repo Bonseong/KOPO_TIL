@@ -3,50 +3,64 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
 <head>
 <meta charset="utf-8">
 <title>jQuery UI Slider</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
- // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
+	var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(
+			ctx,
+			{
+				type : 'pie',
+				data : {
+					labels : [ 'confirmed', 'pending' ],
+					datasets : [ {
+						data : [ 67, 33 ],
+						backgroundColor : [ 'rgba(41, 121, 255, 1)',
+								'rgba(38, 198, 218, 1)',
+								'rgba(138, 178, 248, 1)',
+								'rgba(255, 100, 200, 1)',
+								'rgba(116, 96, 238, 1)',
+								'rgba(215, 119, 74, 1)',
+								'rgba(173, 92, 210, 1)',
+								'rgba(255, 159, 64, 1)',
+								'rgba(247, 247, 247, 1)',
+								'rgba(227, 247, 227, 1)', ],
+					} ]
+				},
+				options : {
+					responsive : true,
+					maintainAspectRatio : false,
+					cutoutPercentage : 80,
+					tooltips : {
+						callbacks : {
+							label : function(tooltipItem, data) {
+								return data['labels'][tooltipItem['index']]
+										+ ': '
+										+ data['datasets'][0]['data'][tooltipItem['index']]
+										+ '%';
+							}
+						}
+					}
+				}
+			});
+</script>
+</head>
 
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
+<body>
+	<!--Div that will hold the pie chart-->
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
-
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
-        ]);
-
-        // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-
-  <body>
-    <!--Div that will hold the pie chart-->
-    <div id="chart_div"></div>
-  </body>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+	<canvas id="myChart"></canvas>
+</body>
 </html>
 
 

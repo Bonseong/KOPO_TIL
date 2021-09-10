@@ -88,9 +88,23 @@ public class CardServiceImpl implements CardService {
 		return notice;
 	}
 
-	public List<DemographyVO> selectStatByNo(int no) {
-		List<DemographyVO> userStat = cardDAO.selectStatByNo(no);
+	public DemographyVO selectStatByNo(int no) {
+		DemographyVO userStat = cardDAO.selectStatByNo(no);
 		return userStat;
+	}
+
+	public CardBenefitVO selectUserBenefit(int memberNo) {
+		CardBenefitVO userBenefit = cardDAO.selectUserBenefit(memberNo);
+		
+		
+		
+
+
+
+		
+		
+		
+		return userBenefit;
 	}
 
 }

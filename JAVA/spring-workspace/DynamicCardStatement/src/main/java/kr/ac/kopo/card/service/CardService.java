@@ -23,7 +23,9 @@ public interface CardService {
 	
 	List<BenefitVO> selectNotice(int no);
 	
-	List<DemographyVO> selectStatByNo(int no);
+	DemographyVO selectStatByNo(int no);
+	
+	CardBenefitVO selectUserBenefit(int memberNo);
 	
 	
 	

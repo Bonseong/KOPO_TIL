@@ -333,3 +333,8 @@
 0:0:0:0:0:0:0:1 - - [09/Sep/2021:12:53:37 +0900] "GET /DynamicCardStatement/resources/css/style.css.map HTTP/1.1" 404 867
 0:0:0:0:0:0:0:1 - - [09/Sep/2021:12:53:37 +0900] "GET /DynamicCardStatement/resources/js/popper.min.js.map HTTP/1.1" 404 870
 0:0:0:0:0:0:0:1 - - [09/Sep/2021:14:49:00 +0900] "POST /DynamicCardStatement/cardlist/filterList HTTP/1.1" 200 53454
+127.0.0.1 - - [09/Sep/2021:22:56:34 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [09/Sep/2021:22:56:34 +0900] "GET /DynamicCardStatement/ HTTP/1.1" 200 32316
+0:0:0:0:0:0:0:1 - - [09/Sep/2021:22:56:34 +0900] "GET /DynamicCardStatement/resources/css/bootstrap.min.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [09/Sep/2021:22:56:34 +0900] "GET /DynamicCardStatement/resources/css/style.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [09/Sep/2021:22:56:34 +0900] "GET /DynamicCardStatement/resources/img/favicon.png HTTP/1.1" 200 1150
