@@ -1,5 +1,6 @@
 package kr.ac.kopo.card.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,8 +53,6 @@ public class CardController {
 
 		List<BenefitVO> benefitList = cardService.selectBenefitList();
 		mav.addObject("benefitList", benefitList);
-		System.out.println(cardList);
-		System.out.println(benefitList);
 		return mav;
 
 	}
@@ -74,13 +73,11 @@ public class CardController {
 
 	@PostMapping("/cardlist/filterList")
 	public ModelAndView benefitFiltering(@RequestBody Map<String, String> paramMap) {
-		System.out.println("paramMap : " + paramMap);
 
 		ModelAndView mav = new ModelAndView("card/filterList");
 
 		List<CardBenefitVO> cardFilterList = cardService.selectByFilter(paramMap);
 		mav.addObject("cardFilterList", cardFilterList);
-		System.out.println("cardList : " + cardFilterList);
 		List<BenefitVO> benefitList = cardService.selectBenefitList();
 		mav.addObject("benefitList", benefitList);
 
@@ -91,43 +88,24 @@ public class CardController {
 	public ModelAndView detail(@PathVariable("no") int no, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView("card/detail");
 
-		CardBenefitVO card = cardService.selectByNo(no);
-		mav.addObject("card", card); // 카드 상세정보
-		
-
-		System.out.println("카드정보 : " + card);
-
 		List<BenefitVO> notice = cardService.selectNotice(no);
 		mav.addObject("notice", notice); // 카드에 대한 공지
-		
+
 		DemographyVO userStat = cardService.selectStatByNo(no);
 		mav.addObject("userStat", userStat); // 카드에 대한 인구통계학 정보
-		
+
 		MemberVO user = (MemberVO) session.getAttribute("userVO");
-	
-		CardBenefitVO userBenefit = cardService.selectUserBenefit(user.getMemberNo()); // 실적
-		mav.addObject("userBenefit", userBenefit);
-		System.out.println(userBenefit);
-		
-		
 
-		return mav;
-	}
+		List<CardBenefitVO> cardInfoList = cardService.selectCardAllInfo(no, user.getMemberNo());
 
-	@GetMapping("/test/{no}")
-	public ModelAndView detail2(@PathVariable("no") int no) throws Exception {
-		ModelAndView mav = new ModelAndView("test");
-
-		CardBenefitVO card = cardService.selectByNo(no);
+		CardBenefitVO card = cardInfoList.get(0);
 		mav.addObject("card", card);
-		
 
-		List<BenefitVO> notice = cardService.selectNotice(1002);
-		
+		CardBenefitVO userConsumption = cardInfoList.get(1);
+		mav.addObject("userConsumption", userConsumption);
 
-		
-		mav.addObject("notice", notice);
-		
+		System.out.println(card);
+		System.out.println(userConsumption);
 
 		return mav;
 	}

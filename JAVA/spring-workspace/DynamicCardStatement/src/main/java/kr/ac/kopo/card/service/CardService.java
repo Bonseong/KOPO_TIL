@@ -1,5 +1,6 @@
 package kr.ac.kopo.card.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,10 @@ public interface CardService {
 	
 	DemographyVO selectStatByNo(int no);
 	
-	CardBenefitVO selectUserBenefit(int memberNo);
+	CardBenefitVO selectUserConsumption(int memberNo);
+	
+	List<CardBenefitVO> selectCardAllInfo(int no, int memberNo);
+
 	
 	
 	

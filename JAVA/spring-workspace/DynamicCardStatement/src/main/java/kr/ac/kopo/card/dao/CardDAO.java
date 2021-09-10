@@ -1,5 +1,6 @@
 package kr.ac.kopo.card.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,18 +12,19 @@ import kr.ac.kopo.util.PagingVO;
 
 public interface CardDAO {
 	List<UserCardVO> selectCardList(PagingVO vo);
-	
+
 	List<BenefitVO> selectBenefitList();
+	
 
 	List<CardBenefitVO> selectByFilter(Map<String, String> paramMap);
-	
+
 	int getLength();
-	
+
 	CardBenefitVO selectByNo(int no);
-	
+
 	List<BenefitVO> selectNotice(int no);
-	
+
 	DemographyVO selectStatByNo(int no);
-	
-	CardBenefitVO selectUserBenefit(int memberNo);
+
+	CardBenefitVO selectUserConsumption(int memberNo);
 }

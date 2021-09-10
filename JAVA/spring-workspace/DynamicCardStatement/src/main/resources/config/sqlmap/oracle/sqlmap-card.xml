@@ -60,8 +60,7 @@
 
 
 	<!-- select -->
-	<select id="selectByNo" resultType="cardBenefitVO"
-		resultMap="cardBenefitMap">
+	<select id="selectByNo" resultType="cardBenefitVO" resultMap="cardBenefitMap">
 		<include refid="selectBenefit" />
 		AND C.CARD_CODE=#{no}
 	</select>
@@ -88,6 +87,7 @@
 		SELECT DISTINCT CATEGORY_KOR, CATEGORY FROM
 		CARD_BENEFITS_CATEGORY
 	</select>
+	
 
 	<select id="selectNotice" resultType="benefitVO"
 		resultMap="benefitMap">
@@ -100,8 +100,8 @@
 		C.CARD_CODE=#{cardCode}
 	</select>
 
-	<select id="selectUserBenefit" parameterType="int"
-		resultType="CardBenefitVO" resultMap="cardBenefitMap">
+	<select id="selectUserConsumption" parameterType="int"
+		resultType="cardBenefitVO" resultMap="cardBenefitMap">
 		SELECT
 		nvl(always_Discount,0) as
 		always_Discount,

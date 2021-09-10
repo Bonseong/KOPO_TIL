@@ -1,5 +1,6 @@
 package kr.ac.kopo.card.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,7 +69,6 @@ public class CardServiceImpl implements CardService {
 
 		}
 
-		System.out.println(map);
 		List<CardBenefitVO> cardList = cardDAO.selectByFilter(map);
 		return cardList;
 	}
@@ -76,11 +76,6 @@ public class CardServiceImpl implements CardService {
 	public int getLength() {
 		int totalLength = cardDAO.getLength();
 		return totalLength;
-	}
-
-	public CardBenefitVO selectByNo(int no) {
-		CardBenefitVO card = cardDAO.selectByNo(no);
-		return card;
 	}
 
 	public List<BenefitVO> selectNotice(int no) {
@@ -93,18 +88,31 @@ public class CardServiceImpl implements CardService {
 		return userStat;
 	}
 
-	public CardBenefitVO selectUserBenefit(int memberNo) {
-		CardBenefitVO userBenefit = cardDAO.selectUserBenefit(memberNo);
-		
-		
-		
+	public CardBenefitVO selectUserConsumption(int memberNo) {
+		CardBenefitVO userBenefit = cardDAO.selectUserConsumption(memberNo);
 
-
-
-		
-		
-		
 		return userBenefit;
+	}
+
+	public CardBenefitVO selectByNo(int no) {
+		CardBenefitVO card = cardDAO.selectByNo(no);
+		return card;
+	}
+
+	public List<CardBenefitVO> selectCardAllInfo(int no, int memberNo) {
+		List<CardBenefitVO> infoMap = new ArrayList<CardBenefitVO>();
+
+		CardBenefitVO card = selectByNo(no);
+		CardBenefitVO userConsumption = selectUserConsumption(memberNo);
+
+		System.out.println(card);
+		System.out.println(userConsumption);
+
+		infoMap.add(card);
+		infoMap.add(userConsumption);
+		
+		
+		return infoMap;
 	}
 
 }

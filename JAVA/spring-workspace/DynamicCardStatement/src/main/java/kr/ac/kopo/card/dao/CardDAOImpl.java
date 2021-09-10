@@ -1,5 +1,6 @@
 package kr.ac.kopo.card.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -55,9 +56,16 @@ public class CardDAOImpl implements CardDAO {
 		return userStat;
 	}
 
-	public CardBenefitVO selectUserBenefit(int memberNo) {
-		CardBenefitVO userBenefit = sqlSessionTemplate.selectOne("card.CardDAO.selectUserBenefit", memberNo);
+	public CardBenefitVO selectUserConsumption(int memberNo) {
+		CardBenefitVO userBenefit = sqlSessionTemplate.selectOne("card.CardDAO.selectUserConsumption",
+				memberNo);
+
 		return userBenefit;
+	}
+	
+	public List<Map<String, Object>> selectBenefitMap() {
+		List<Map<String, Object>> benefitMap = sqlSessionTemplate.selectList("card.CardDAO.selectBenefitMap");		
+		return benefitMap;
 	}
 	
 	
