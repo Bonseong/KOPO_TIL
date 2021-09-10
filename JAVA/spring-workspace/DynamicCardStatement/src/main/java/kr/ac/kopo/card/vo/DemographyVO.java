@@ -3,14 +3,13 @@ package kr.ac.kopo.card.vo;
 public class DemographyVO {
 	private int male;
 	private int female;
-	
+	        
 	private int minor;
 	private int age20;
 	private int age30;
 	private int age40;
 	private int age50;
 	private int senior;
-	
 	public DemographyVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -79,6 +78,6 @@ public class DemographyVO {
 		return "DemographyVO [male=" + male + ", female=" + female + ", minor=" + minor + ", age20=" + age20
 				+ ", age30=" + age30 + ", age40=" + age40 + ", age50=" + age50 + ", senior=" + senior + "]";
 	}
-	
+
 	
 }

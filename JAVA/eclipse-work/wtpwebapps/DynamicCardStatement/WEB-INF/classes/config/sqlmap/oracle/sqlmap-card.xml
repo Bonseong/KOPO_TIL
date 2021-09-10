@@ -100,6 +100,78 @@
 		C.CARD_CODE=#{cardCode}
 	</select>
 
+	<select id="selectUserBenefit" parameterType="int"
+		resultType="CardBenefitVO" resultMap="cardBenefitMap">
+		SELECT
+		nvl(always_Discount,0) as
+		always_Discount,
+		nvl(cvs,0) as cvs,
+		nvl(air_Mileage,0) as air_Mileage,
+		nvl(beauty,0) as beauty,
+		nvl(communication,0) as communication,
+		nvl(cafe_Bakery,0) as cafe_Bakery,
+		nvl(movie,0) as movie,
+		nvl(hypermart,0) as hypermart,
+		nvl(education,0) as education,
+		nvl(culture,0) as culture,
+		nvl(annual_Fee_Support,0) as
+		annual_Fee_Support,
+		nvl(public_Transportation,0) as
+		public_Transportation,
+		nvl(rental,0) as rental,
+		nvl(oil,0) as oil,
+		nvl(shopping,0) as shopping,
+		nvl(leisure,0) as leisure,
+		nvl(national_Voucher,0) as national_Voucher,
+		nvl(point_Cashback,0) as
+		point_Cashback,
+		nvl(automobiles,0) as automobiles,
+		nvl(medical,0) as
+		medical,
+		nvl(finance,0) as finance,
+		nvl(eat_Out,0) as eat_Out,
+		nvl(easy_Pay,0) as easy_Pay,
+		nvl(maintenance,0) as maintenance,
+		nvl(premium,0) as premium,
+		nvl(voucher,0) as voucher,
+		nvl(priority_Pass,0) as priority_Pass
+		FROM
+		(
+		SELECT T.CATEGORY,
+		SUM(T.AMOUNT) AS AMOUNT FROM
+		MEMBER_CARD C,
+		TRANSACTION_HISTORY T WHERE
+		C.CARD_NO = T.CARD_NO AND
+		T.HISTORY_DATE BETWEEN '18/12/01' AND
+		'18/12/31' AND MEMBER_NO=#{memberNo}
+		GROUP
+		BY CATEGORY
+		)
+		PIVOT
+		(
+		SUM(AMOUNT)
+		FOR CATEGORY IN ('교육' AS EDUCATION,'오토'
+		AS AUTOMOBILES,'쇼핑'
+		AS
+		SHOPPING,'레저' AS LEISURE,'PRIORITY_PASS' AS
+		PRIORITY_PASS ,'금융' AS
+		FINANCE,'항공마일리지' AS AIR_MILEAGE,'뷰티' AS
+		BEAUTY,'통신' AS COMMUNICATION
+		,'외식' AS EAT_OUT,'국민행복카드' AS
+		NATIONAL_VOUCHER,'문화' AS CULTURE
+		,'카페/베이커리' AS CAFE_BAKERY,'의료' AS
+		MEDICAL,'프리미엄' AS PREMIUM,'연회비지원' AS
+		ANNUAL_FEE_SUPPORT,'바우처' AS
+		VOUCHER,'언제나 할인' AS ALWAYS_DISCOUNT,'대중교통'
+		AS
+		PUBLIC_TRANSPORTATION,'영화' AS MOVIE,'포인트/캐시백' AS
+		POINT_CASHBACK,'간편결제'
+		AS EASY_PAY,'대형마트' AS HYPERMART,'렌탈' AS
+		RENTAL,'주유' AS OIL,'관리비' AS
+		MAINTENANCE,'편의점' AS CVS)
+		)
+	</select>
+
 
 	<select id="selectStatByNo" parameterType="int"
 		resultType="demographyVO">
@@ -112,8 +184,7 @@
 		age20,
 		SUM(DECODE(AGE_GROUP,
 		'30대', 1, 0)) AS age30, SUM(DECODE(AGE_GROUP, '40대', 1, 0)) AS age40,
-		SUM(DECODE(AGE_GROUP, '50대', 1, 0)) AS age50, SUM(DECODE(GENDER, '60대
-		이상', 1, 0)) AS SENIOR
+		SUM(DECODE(AGE_GROUP, '50대', 1, 0)) AS age50, SUM(DECODE(AGE_GROUP, '60대 이상', 1, 0)) AS SENIOR
 		FROM(
 		SELECT M.GENDER, CASE
 		WHEN M.AGE < 20 THEN '미성년자'
@@ -162,7 +233,8 @@
 			AND B.COMMUNICATION BETWEEN #{COMMUNICATION_min} AND
 			#{COMMUNICATION_max}
 		</if>
-		<if test="EDUCATION_min!=null">
+		n
+		<if test="EDUCATION_min!=ull">
 			AND B.EDUCATION BETWEEN #{EDUCATION_min} AND
 			#{EDUCATION_max}
 		</if>
@@ -249,6 +321,8 @@
 
 
 	</select>
+
+
 
 	<!-- <insert id="register" parameterType="memberVO"> INSERT INTO T_MEMBER(ID, 
 		PW, NAME, MOBILE_NO, RRN, BIRTHDAY, AGE, GENDER, ISNATIVE, ADDRESS, ADDRESS_DETAIL) 

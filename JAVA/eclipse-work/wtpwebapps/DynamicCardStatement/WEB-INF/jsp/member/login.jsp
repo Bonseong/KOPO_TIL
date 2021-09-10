@@ -61,14 +61,14 @@
 						<p class="txt-left">아이디</p>
 						<input type="text" id="id" name="id" placeholder="ID"
 							onfocus="this.placeholder = ''" onblur="this.placeholder = 'Id'"
-							class="single-input" value="test1">
+							class="single-input" value="test">
 					</div>
 					<div class="mt-10">
 						<p class="txt-left">비밀번호</p>
 						<input type="password" id="pw" name="pw" placeholder="PASSWORD"
 							onfocus="this.placeholder = ''"
 							onblur="this.placeholder = 'Pw'" class="single-input"
-							value="test1">
+							value="test">
 					</div>
 
 					<div class="mt-30">

@@ -49,12 +49,17 @@ public class CardDAOImpl implements CardDAO {
 		return notice;
 	}
 
-	public List<DemographyVO> selectStatByNo(int no) {
-		System.out.println("여기까지 오긴하니");
-		System.out.println(no);
-		List<DemographyVO> userStat = sqlSessionTemplate.selectList("card.CardDAO.selectStatByNo", no);
+	public DemographyVO selectStatByNo(int no) {
+		DemographyVO userStat = sqlSessionTemplate.selectOne("card.CardDAO.selectStatByNo", no);
 
 		return userStat;
 	}
+
+	public CardBenefitVO selectUserBenefit(int memberNo) {
+		CardBenefitVO userBenefit = sqlSessionTemplate.selectOne("card.CardDAO.selectUserBenefit", memberNo);
+		return userBenefit;
+	}
+	
+	
 
 }
