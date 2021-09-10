@@ -104,6 +104,11 @@ public class MemberTest {
 		System.out.println(temp);
 		
 	}
+	
+	@Test
+	public void TestDataInput() {
+		
+	}
 
 
 }

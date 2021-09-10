@@ -18,7 +18,6 @@
 	src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script>
-
 	// Load the Visualization API and the corechart package.
 	google.charts.load('current', {
 		'packages' : [ 'corechart' ]
@@ -30,7 +29,7 @@
 	// Callback that creates and populates a data table,
 	// instantiates the pie chart, passes in the data and
 	// draws it.
-	
+
 	function drawChart() {
 
 		// Create the data table.
@@ -45,7 +44,9 @@
 			'title' : '${ card.cardName }' + '가입 성비',
 			'width' : 400,
 			'height' : 300,
-			'tooltip' : {text : 'percentage'}
+			'tooltip' : {
+				text : 'percentage'
+			}
 		};
 
 		// Instantiate and draw our chart, passing in some options.
@@ -154,9 +155,13 @@
 
 
 						</div>
-
 						<div class="single_wrap">
+
 							<h4>여기는 그래프를 그릴거야</h4>
+							<div id="chart_div"></div>
+						</div>
+						<div class="single_wrap">
+							<h4>여기는 혜택을 쓸거야</h4>
 							<ul>
 								<li>The applicants should have experience in the following
 									areas.</li>
@@ -167,10 +172,7 @@
 							</ul>
 
 						</div>
-						<div class="single_wrap">
-							<h4>여기는 혜택을 정리할거야</h4>
-							<div id="chart_div"></div>
-						</div>
+
 					</div>
 
 				</div>
