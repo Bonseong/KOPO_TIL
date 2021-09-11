@@ -7,6 +7,7 @@ import java.util.Map;
 import kr.ac.kopo.card.vo.BenefitVO;
 import kr.ac.kopo.card.vo.CardBenefitVO;
 import kr.ac.kopo.card.vo.DemographyVO;
+import kr.ac.kopo.card.vo.HistoryVO;
 import kr.ac.kopo.card.vo.UserCardVO;
 import kr.ac.kopo.util.PagingVO;
 
@@ -27,4 +28,12 @@ public interface CardDAO {
 	DemographyVO selectStatByNo(int no);
 
 	CardBenefitVO selectUserConsumption(int memberNo);
+	
+	List<UserCardVO> selectUserCardList(int memberNo);
+	
+	int checkCardPassword(UserCardVO usercard);
+	
+	List<HistoryVO> selectTransactionHistory(String cardNo);
+
+
 }

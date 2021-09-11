@@ -10,8 +10,8 @@
 
 
 		<table class="paginated">
-			<c:forEach items="${requestScope.cardFilterList }" var="cardFilterList"
-				varStatus="loop">
+			<c:forEach items="${requestScope.cardFilterList }"
+				var="cardFilterList" varStatus="loop">
 				<tr>
 					<td>
 						<div class="col-lg-12 col-md-12">
@@ -64,7 +64,8 @@
 								</div>
 								<div class="jobs_right">
 									<div class="apply_now" align="center">
-										<a href="detail/${ cardFilterList.cardCode }" class="boxed-btn3">상세 혜택</a>
+										<a href="detail/${ cardFilterList.cardCode }"
+											class="boxed-btn3">상세 혜택</a>
 									</div>
 									<div class="date">
 										<p>n명의 선택을 받은 카드!</p>
@@ -82,30 +83,4 @@
 
 
 	</div>
-
-
-
-</div><%-- 
-<div style="display: block; text-align: center;">
-	<c:if test="${paging.startPage != 1 }">
-		<a
-			href="${pageContext.request.contextPath}/cardlist?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-	</c:if>
-	<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
-		var="p">
-		<c:choose>
-			<c:when test="${p == paging.nowPage }">
-				<b>${p }</b>
-			</c:when>
-			<c:when test="${p != paging.nowPage }">
-				<a
-					href="${pageContext.request.contextPath}/cardlist?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-			</c:when>
-		</c:choose>
-	</c:forEach>
-	<c:if test="${paging.endPage != paging.lastPage}">
-		<a
-			href="${pageContext.request.contextPath}/cardlist?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-	</c:if>
 </div>
- --%>

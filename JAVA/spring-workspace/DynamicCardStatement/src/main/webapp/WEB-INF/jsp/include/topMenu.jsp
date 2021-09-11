@@ -120,7 +120,7 @@
 									<li><a
 										href="${ pageContext.request.contextPath }/cardlist">나만의
 											카드</a></li>
-									<li><a href="${ pageContext.request.contextPath }/">실시간
+									<li><a href="${ pageContext.request.contextPath }/cardSelect">실시간
 											카드 내역서</a></li>
 									<li><a href="${ pageContext.request.contextPath }/">월간
 											거래 리포트</a></li>

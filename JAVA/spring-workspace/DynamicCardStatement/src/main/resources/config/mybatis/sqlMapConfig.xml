@@ -10,6 +10,7 @@
 		<typeAlias type="kr.ac.kopo.card.vo.CardBenefitVO" alias="cardBenefitVO"/>
 		<typeAlias type="kr.ac.kopo.card.vo.UserCardVO" alias="userCardVO"/>
 		<typeAlias type="kr.ac.kopo.card.vo.DemographyVO" alias="demographyVO"/>
+		<typeAlias type="kr.ac.kopo.card.vo.HistoryVO" alias="historyVO"/>
 		
 	</typeAliases>
 </configuration>

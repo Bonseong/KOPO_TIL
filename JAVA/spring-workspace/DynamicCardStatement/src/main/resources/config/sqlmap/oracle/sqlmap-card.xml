@@ -30,11 +30,22 @@
 	</resultMap>
 
 	<resultMap type="userCardVO" id="userCardMap">
+		<result column="CARD_NO" property="cardNo" />
 		<result column="CARD_CODE" property="cardCode" />
 		<result column="CARD_NAME" property="cardName" />
 		<result column="CARD_TYPE" property="cardType" />
+		<result column="CARD_PASSWORD" property="cardPassword" />
 		<result column="ANNUAL_FEE" property="annualFee" />
 	</resultMap>
+
+	<resultMap type="historyVO" id="historyMap">
+		<result column="HISTORY_DATE" property="historyDate" />
+		<result column="CARD_NAME" property="cardName" />
+		<result column="CARD_NO" property="cardNo" />
+		<result column="CARD_CODE" property="cardCode" />
+	</resultMap>
+
+
 
 	<!-- commonQuery -->
 	<sql id="selectBenefit">
@@ -60,7 +71,8 @@
 
 
 	<!-- select -->
-	<select id="selectByNo" resultType="cardBenefitVO" resultMap="cardBenefitMap">
+	<select id="selectByNo" resultType="cardBenefitVO"
+		resultMap="cardBenefitMap">
 		<include refid="selectBenefit" />
 		AND C.CARD_CODE=#{no}
 	</select>
@@ -87,7 +99,7 @@
 		SELECT DISTINCT CATEGORY_KOR, CATEGORY FROM
 		CARD_BENEFITS_CATEGORY
 	</select>
-	
+
 
 	<select id="selectNotice" resultType="benefitVO"
 		resultMap="benefitMap">
@@ -98,6 +110,35 @@
 		WHERE N.CARD_NAME = C.CARD_NAME AND
 		N.CATEGORY = B.CATEGORY AND
 		C.CARD_CODE=#{cardCode}
+	</select>
+
+	<select id="selectUserCardList" parameterType="int"
+		resultType="List" resultMap="userCardMap">
+		SELECT C.CARD_NAME, M.CARD_NO,
+		M.CARD_PASSWORD, M.CARD_CODE FROM CARD C, MEMBER_CARD M WHERE
+		C.CARD_CODE = M.CARD_CODE AND M.MEMBER_NO=#{memberNo}
+
+	</select>
+
+	<select id="checkCardPassword" parameterType="userCardVO"
+		resultType="int">
+		SELECT count(*) FROM MEMBER_CARD WHERE
+		CARD_NO=#{ cardNo }
+		AND CARD_PASSWORD=#{cardPassword}
+
+	</select>
+
+	<select id="selectTransactionHistory" parameterType="String"
+		resultType="List" resultMap="historyMap">
+		SELECT T.HISTORY_DATE, T.CATEGORY,
+		T.AMOUNT, T.STORE, C.CARD_NAME, M.CARD_NO, M.CARD_CODE FROM CARD C,
+		MEMBER_CARD M, TRANSACTION_HISTORY T
+		WHERE T.HISTORY_DATE BETWEEN
+		SYSDATE-90 AND SYSDATE AND C.CARD_CODE =
+		M.CARD_CODE AND T.CARD_NO =
+		M.CARD_NO AND M.CARD_NO=#{cardNo} ORDER BY
+		HISTORY_DATE DESC
+
 	</select>
 
 	<select id="selectUserConsumption" parameterType="int"

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import kr.ac.kopo.card.vo.BenefitVO;
 import kr.ac.kopo.card.vo.CardBenefitVO;
 import kr.ac.kopo.card.vo.DemographyVO;
+import kr.ac.kopo.card.vo.HistoryVO;
 import kr.ac.kopo.card.vo.UserCardVO;
 import kr.ac.kopo.util.PagingVO;
 
@@ -57,15 +58,29 @@ public class CardDAOImpl implements CardDAO {
 	}
 
 	public CardBenefitVO selectUserConsumption(int memberNo) {
-		CardBenefitVO userBenefit = sqlSessionTemplate.selectOne("card.CardDAO.selectUserConsumption",
-				memberNo);
+		CardBenefitVO userBenefit = sqlSessionTemplate.selectOne("card.CardDAO.selectUserConsumption", memberNo);
 
 		return userBenefit;
 	}
-	
+
 	public List<Map<String, Object>> selectBenefitMap() {
-		List<Map<String, Object>> benefitMap = sqlSessionTemplate.selectList("card.CardDAO.selectBenefitMap");		
+		List<Map<String, Object>> benefitMap = sqlSessionTemplate.selectList("card.CardDAO.selectBenefitMap");
 		return benefitMap;
+	}
+
+	public List<UserCardVO> selectUserCardList(int memberNo) {
+		List<UserCardVO> userCardList = sqlSessionTemplate.selectList("card.CardDAO.selectUserCardList", memberNo);
+		return userCardList;
+	}
+	
+	public int checkCardPassword(UserCardVO usercard) {
+		int result = sqlSessionTemplate.selectOne("card.CardDAO.checkCardPassword", usercard);
+		return result;
+	}
+
+	public List<HistoryVO> selectTransactionHistory(String cardNo) {
+		List<HistoryVO> card = sqlSessionTemplate.selectList("card.CardDAO.selectTransactionHistory",cardNo);
+		return card;
 	}
 	
 	

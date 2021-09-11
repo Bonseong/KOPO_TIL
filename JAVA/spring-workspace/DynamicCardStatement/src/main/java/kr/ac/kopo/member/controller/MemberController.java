@@ -79,7 +79,6 @@ public class MemberController {
 
 		if (dest != null) { // 로그인 인터셉터를 거쳐왔다면
 			session.removeAttribute("dest");
-			System.out.println("인터셉터거쳐왔어");
 			return "redirect:/" + dest;
 		}
 

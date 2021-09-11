@@ -17,6 +17,8 @@ import kr.ac.kopo.card.service.CardService;
 import kr.ac.kopo.card.vo.BenefitVO;
 import kr.ac.kopo.card.vo.CardBenefitVO;
 import kr.ac.kopo.card.vo.DemographyVO;
+import kr.ac.kopo.card.vo.HistoryVO;
+import kr.ac.kopo.card.vo.UserCardVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:config/spring/spring-mvc.xml" })
@@ -114,6 +116,31 @@ public class CardTest {
 		System.out.println(temp);
 	}
 
+	@Ignore
+	@Test
+	public void 카드List() throws Exception {
+		List<UserCardVO> usercard = cardService.selectUserCardList(1);
+		System.out.println(usercard);
+	}
 
+	@Ignore
+	@Test
+	public void 카드비밀번호() throws Exception {
+		UserCardVO user = new UserCardVO();
+		user.setCardNo("2222-2222-2222-2222");
+		user.setCardPassword("12342");
+		
+		int pwcheck = cardService.checkCardPassword(user);
+		System.out.println(pwcheck);
+		
+	}
+	
+	@Test
+	public void 카드내역() throws Exception {
+		List<HistoryVO> history = cardService.selectTransactionHistory("1111-1111-2222-2222");
+		
+		System.out.println(history);
+		
+	}
 
 }

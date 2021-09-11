@@ -18,14 +18,7 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- <link rel="manifest" href="site.webmanifest"> -->
-<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
-<!-- Place favicon.ico in the root directory -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
@@ -63,6 +56,7 @@
 							onfocus="this.placeholder = ''" onblur="this.placeholder = 'Id'"
 							class="single-input" value="test">
 					</div>
+					
 					<div class="mt-10">
 						<p class="txt-left">비밀번호</p>
 						<input type="password" id="pw" name="pw" placeholder="PASSWORD"

@@ -12,6 +12,7 @@ import kr.ac.kopo.card.dao.CardDAO;
 import kr.ac.kopo.card.vo.BenefitVO;
 import kr.ac.kopo.card.vo.CardBenefitVO;
 import kr.ac.kopo.card.vo.DemographyVO;
+import kr.ac.kopo.card.vo.HistoryVO;
 import kr.ac.kopo.card.vo.UserCardVO;
 import kr.ac.kopo.util.PagingVO;
 
@@ -105,14 +106,28 @@ public class CardServiceImpl implements CardService {
 		CardBenefitVO card = selectByNo(no);
 		CardBenefitVO userConsumption = selectUserConsumption(memberNo);
 
-		System.out.println(card);
-		System.out.println(userConsumption);
-
 		infoMap.add(card);
 		infoMap.add(userConsumption);
-		
-		
+
 		return infoMap;
+	}
+
+	public List<UserCardVO> selectUserCardList(int memberNo) {
+		List<UserCardVO> userCarsList = cardDAO.selectUserCardList(memberNo);
+		return userCarsList;
+	}
+
+	public int checkCardPassword(UserCardVO usercard) {
+		int result = cardDAO.checkCardPassword(usercard);
+
+		
+		return result;
+	}
+
+	public List<HistoryVO> selectTransactionHistory(String cardNo) {
+		List<HistoryVO> history = cardDAO.selectTransactionHistory(cardNo);
+		
+		return history;
 	}
 
 }

@@ -1,6 +1,5 @@
 package kr.ac.kopo.card.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +20,7 @@ import kr.ac.kopo.card.service.CardService;
 import kr.ac.kopo.card.vo.BenefitVO;
 import kr.ac.kopo.card.vo.CardBenefitVO;
 import kr.ac.kopo.card.vo.DemographyVO;
+import kr.ac.kopo.card.vo.HistoryVO;
 import kr.ac.kopo.card.vo.UserCardVO;
 import kr.ac.kopo.member.vo.MemberVO;
 import kr.ac.kopo.util.PagingVO;
@@ -104,8 +105,48 @@ public class CardController {
 		CardBenefitVO userConsumption = cardInfoList.get(1);
 		mav.addObject("userConsumption", userConsumption);
 
-		System.out.println(card);
-		System.out.println(userConsumption);
+		return mav;
+	}
+
+	@GetMapping("/cardSelect")
+	public ModelAndView cardSelect(HttpSession session) throws Exception {
+		MemberVO user = (MemberVO) session.getAttribute("userVO");
+		ModelAndView mav = new ModelAndView("card/cardselect");
+
+		List<UserCardVO> usercard = cardService.selectUserCardList(user.getMemberNo());
+		mav.addObject("usercard", usercard);
+
+		return mav;
+	}
+
+	@PostMapping("/cardSelect")
+	@ResponseBody
+	public int checkCardPassword(UserCardVO usercard, HttpSession session) {
+		
+		int result = cardService.checkCardPassword(usercard);
+		
+		if(result==1) {
+			session.setAttribute("usercard", usercard);
+		}
+			
+			
+	
+		return result;
+		
+		
+	}
+
+	@RequestMapping("/cardstmt")
+	public ModelAndView cardstmt(HttpSession session) throws Exception {
+		
+		UserCardVO card = (UserCardVO) session.getAttribute("usercard");
+		
+		List<HistoryVO> history = cardService.selectTransactionHistory(card.getCardNo());
+		ModelAndView mav = new ModelAndView("card/cardstmt");
+
+		mav.addObject("history",history);
+		
+		
 
 		return mav;
 	}

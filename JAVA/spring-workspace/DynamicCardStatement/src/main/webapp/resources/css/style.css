@@ -4908,23 +4908,28 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 361, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
 .progress-table .serial {
-	width: 11.83%;
+	width: 30%;
+	padding-left: 30px;
+}
+
+.progress-table .datetime {
+	width: 20;
 	padding-left: 30px;
 }
 
 /* line 365, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
 .progress-table .country {
-	width: 28.07%;
+	width: 15%;
 }
 
 /* line 368, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
 .progress-table .visit {
-	width: 19.74%;
+	width: 30%;
 }
 
 /* line 371, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
 .progress-table .percentage {
-	width: 40.36%;
+	width: 15%;
 	padding-right: 50px;
 }
 
@@ -4935,7 +4940,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 377, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
 .progress-table .table-head .serial, .progress-table .table-head .country,
-	.progress-table .table-head .visit, .progress-table .table-head .percentage
+	.progress-table .table-head .visit, .progress-table .table-head .percentage .datetime .object .category .amount
 	{
 	color: #415094;
 	line-height: 40px;
@@ -4951,8 +4956,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* line 391, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
-.progress-table .table-row .serial, .progress-table .table-row .country,
-	.progress-table .table-row .visit, .progress-table .table-row .percentage
+.progress-table .table-row .serial, .progress-table .table-row .object .category .amount .country,
+	.progress-table .table-row .visit, .progress-table .table-row .percentage .datetime
 	{
 	display: flex;
 	align-items: center;
@@ -4965,7 +4970,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 404, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */
 .progress-table .table-row .percentage .progress {
-	width: 80%;
+	width: 10%;
 	border-radius: 0px;
 	background: transparent;
 }
@@ -7550,4 +7555,6 @@ h1, h2, h3, h4, h5, h6 {
 	text-align: left;
 	padding-left: 10%
 }
+
+
 /*# sourceMappingURL=style.css.map */
