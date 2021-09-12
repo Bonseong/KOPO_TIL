@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import kr.ac.kopo.card.vo.BenefitVO;
 import kr.ac.kopo.card.vo.CardBenefitVO;
 import kr.ac.kopo.card.vo.DemographyVO;
@@ -33,7 +35,9 @@ public interface CardDAO {
 	
 	int checkCardPassword(UserCardVO usercard);
 	
-	List<HistoryVO> selectTransactionHistory(String cardNo);
+	List<HistoryVO> selectTransactionHistory(HistoryVO history);
 
+
+	int getHistoryLength(String cardNo);
 
 }

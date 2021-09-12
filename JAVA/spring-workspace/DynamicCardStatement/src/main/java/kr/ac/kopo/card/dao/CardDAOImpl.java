@@ -1,9 +1,9 @@
 package kr.ac.kopo.card.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -78,10 +78,19 @@ public class CardDAOImpl implements CardDAO {
 		return result;
 	}
 
-	public List<HistoryVO> selectTransactionHistory(String cardNo) {
-		List<HistoryVO> card = sqlSessionTemplate.selectList("card.CardDAO.selectTransactionHistory",cardNo);
+	public List<HistoryVO> selectTransactionHistory(HistoryVO history) {
+		List<HistoryVO> card = sqlSessionTemplate.selectList("card.CardDAO.selectTransactionHistory", history);
 		return card;
 	}
+
+	public int getHistoryLength(String cardNo) {
+		int length = sqlSessionTemplate.selectOne("card.CardDAO.getHistoryLength", cardNo);
+		return length;
+	}
+
+	
+	
+	
 	
 	
 

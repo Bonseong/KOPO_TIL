@@ -91,7 +91,6 @@
 												+ "_amount").value
 								console.log(json_data)
 							}
-							console.log(json_data)
 
 							$
 									.ajax({

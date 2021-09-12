@@ -124,10 +124,23 @@ public class CardServiceImpl implements CardService {
 		return result;
 	}
 
-	public List<HistoryVO> selectTransactionHistory(String cardNo) {
-		List<HistoryVO> history = cardDAO.selectTransactionHistory(cardNo);
+	public List<HistoryVO> selectTransactionHistory(String cardNo, PagingVO vo) {
+		HistoryVO userhistory = new HistoryVO();
+		userhistory.setCardNo(cardNo);
+		userhistory.setStart(vo.getStart());
+		userhistory.setEnd(vo.getEnd());
+		List<HistoryVO> history = cardDAO.selectTransactionHistory(userhistory);
 		
 		return history;
 	}
+
+
+
+	public int getHistoryLength(String cardNo) {
+		int length = cardDAO.getHistoryLength(cardNo);
+		return length;
+	}
+	
+	
 
 }

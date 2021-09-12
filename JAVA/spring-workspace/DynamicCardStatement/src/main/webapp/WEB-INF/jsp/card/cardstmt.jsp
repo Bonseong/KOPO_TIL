@@ -11,13 +11,61 @@
 <title>Job Board</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 
 <script>
-	function selChange() {
-		var sel = document.getElementById('cntPerPage').value;
-		location.href = "${pageContext.request.contextPath}/cardlist?nowPage=${paging.nowPage}&cntPerPage="
-				+ sel;
+	$(document).ready(function() {
+		
+		
+		$("#cntPerInput").change(function() {
+			selChange(1)
+
+		})
+	})
+
+	var nowPage;
+	var cntPerPage; 
+	function selChange(p) { //p : 현재페이지 번호
+		/* location.href = "${pageContext.request.contextPath}/cardstmt?nowPage=${paging.nowPage}&cntPerPage="
+				+ sel; */
+		console.log('현재 페이지 번호 : ' + p)
+		$.ajax({
+			'type' : 'get',
+			async: false,
+			'contentType' : "application/json; charset=utf-8",
+			'url' : '${pageContext.request.contextPath}/cardstmt/filterList',
+			'data' : {
+				txt: $("historySearch").val(),
+				nowPage : p,
+				cntPerPage : $("#cntPerInput").val(),
+				
+
+			},
+
+			'success' : function(data) {
+				nowPage = p
+				cntPerPage=$("#cntPerInput").val()
+				$('#historyTable').empty()
+				$('#historyTable').html(data)
+				/* $('.pagingGroup').css('color','black')
+				eval("$('page_"+p+").css('color','green')") */
+				console.log("nowPage : " + nowPage)
+				console.log("cntPerPage : " + cntPerPage) 
+				console.log("석세스")
+				
+				 /* "pagingGroup" id= "page_${p}" */
+
+				/* #('.number').css("color","black"); */
+
+			},
+			'error' : function() {
+				console.log("실패")
+
+			}
+		})
+		
 	}
 </script>
 </head>
@@ -54,12 +102,13 @@
 							<div class="recent_joblist white-bg ">
 								<div class="row align-items-center">
 									<div class="col-md-6">
-										<h4>하나카드 카드목록</h4>
+										<h4>최근 거래 내역</h4>
 									</div>
+
 									<div class="col-md-6">
 										<div class="serch_cat d-flex justify-content-end">
 
-											<select id="cntPerPage" name="sel" onchange="selChange()">
+											<select id="cntPerInput" name="sel">
 												<option value="5"
 													<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개씩
 													보기</option>
@@ -77,27 +126,55 @@
 									</div>
 								</div>
 							</div>
-							<h3 class="mb-30">최근 거래 내역</h3>
-							<table border="1" id="list"
-								class="table table-bordered paginated">
-								<tr>
-									<th width="30%" class="th-center">일시</th>
-									<th width="15%" class="th-center">카테고리</th>
-									<th width="40%" class="th-center">항목</th>
-									<th width="15%" class="th-center">금액</th>
 
-								</tr>
-								<c:forEach items="${requestScope.history }" var="history"
-									varStatus="loop">
+							<div id="historyTable">
+								<table border="1" class="table table-bordered paginated">
 									<tr>
-										<td><c:out value="${ history.historyDate }" /></td>
-										<td><c:out value="${ history.category }" /></td>
-										<td><c:out value="${ history.store }" /></td>
-										<td><c:out value="${ history.amount }" /></td>
-									</tr>
-								</c:forEach>
-							</table>
+										<th width="30%" class="txt-center">일시</th>
+										<th width="15%" class="txt-center">카테고리</th>
+										<th width="40%" class="txt-center">항목</th>
+										<th width="15%" class="txt-center">금액</th>
 
+									</tr>
+									<c:forEach items="${requestScope.history }" var="history"
+										varStatus="loop">
+										<tr>
+											<td class="txt-center"><c:out
+													value="${ history.historyDate }" /></td>
+											<td class="txt-center"><c:out
+													value="${ history.category }" /></td>
+											<td class="txt-center"><c:out value="${ history.store }" /></td>
+											<td class="txt-center"><c:out
+													value="${ history.amount }" /></td>
+										</tr>
+									</c:forEach>
+								</table>
+
+
+
+								<div style="display: block; text-align: center;">
+									<c:if test="${paging.startPage != 1 }">
+										<a
+											href="${pageContext.request.contextPath}/cardstmt?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+									</c:if>
+									<c:forEach begin="${paging.startPage }"
+										end="${paging.endPage }" var="p">
+										<c:choose>
+											<c:when test="${p == paging.nowPage }">
+												<b>${p }</b>
+											</c:when>
+											<c:when test="${p != paging.nowPage }">
+												<a class="pagingGroup" id="page_${p}"
+													onclick="selChange(${p})"<%-- href="${pageContext.request.contextPath}/cardstmt?nowPage=${p }&cntPerPage=${paging.cntPerPage}" --%>>${p }</a>
+											</c:when>
+										</c:choose>
+									</c:forEach>
+									<c:if test="${paging.endPage != paging.lastPage}">
+										<a
+											href="${pageContext.request.contextPath}/cardstmt?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+									</c:if>
+								</div>
+							</div>
 						</div>
 
 						<article class="blog_item">
@@ -221,8 +298,8 @@
 							<form action="#">
 								<div class="form-group">
 									<div class="input-group mb-3">
-										<input type="text" class="form-control"
-											placeholder='Search Keyword' onfocus="this.placeholder = ''"
+										<input id="historySearch" type="text" class="form-control"
+											placeholder='항목을 입력하세요' onfocus="this.placeholder = ''"
 											onblur="this.placeholder = 'Search Keyword'">
 										<div class="input-group-append">
 											<button class="btn" type="button">
@@ -233,12 +310,12 @@
 								</div>
 								<button
 									class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-									type="submit">Search</button>
+									onclick="selChange(0)">검색</button>
 							</form>
 						</aside>
 
 						<aside class="single_sidebar_widget post_category_widget">
-							<h4 class="widget_title">Category</h4>
+							<h4 class="widget_title">항목 필터링</h4>
 							<ul class="list cat-list">
 								<li><a href="#" class="d-flex">
 										<p>Resaurant food</p>

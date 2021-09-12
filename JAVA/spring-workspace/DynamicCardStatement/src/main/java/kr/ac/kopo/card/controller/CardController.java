@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -122,33 +121,77 @@ public class CardController {
 	@PostMapping("/cardSelect")
 	@ResponseBody
 	public int checkCardPassword(UserCardVO usercard, HttpSession session) {
-		
+
 		int result = cardService.checkCardPassword(usercard);
-		
-		if(result==1) {
+
+		if (result == 1) {
 			session.setAttribute("usercard", usercard);
 		}
-			
-			
-	
+
 		return result;
-		
-		
+
 	}
 
-	@RequestMapping("/cardstmt")
-	public ModelAndView cardstmt(HttpSession session) throws Exception {
-		
-		UserCardVO card = (UserCardVO) session.getAttribute("usercard");
-		
-		List<HistoryVO> history = cardService.selectTransactionHistory(card.getCardNo());
+	@GetMapping("/cardstmt")
+	public ModelAndView cardstmt(PagingVO vo, @RequestParam(value = "nowPage", required = false) String nowPage,
+			@RequestParam(value = "cntPerPage", required = false) String cntPerPage, HttpSession session)
+			throws Exception {
 		ModelAndView mav = new ModelAndView("card/cardstmt");
+		UserCardVO card = (UserCardVO) session.getAttribute("usercard");
 
-		mav.addObject("history",history);
+		int total = cardService.getHistoryLength(card.getCardNo());
+		
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "5";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		
 		
+		
+		List<HistoryVO> history = cardService.selectTransactionHistory(card.getCardNo(), vo);
+
+		mav.addObject("paging", vo);
+		mav.addObject("history", history);
 
 		return mav;
 	}
+	
+	@GetMapping("/cardstmt/filterList")
+	public ModelAndView cardstmt2(PagingVO vo, @RequestParam(value = "nowPage", required = false) String nowPage,
+			@RequestParam(value = "cntPerPage", required = false) String cntPerPage, HttpSession session)
+					throws Exception {
+		ModelAndView mav = new ModelAndView("card/cardstmtFilter");
+		UserCardVO card = (UserCardVO) session.getAttribute("usercard");
+		
+		int total = cardService.getHistoryLength(card.getCardNo());
+		
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "5";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		
+		
+		List<HistoryVO> history = cardService.selectTransactionHistory(card.getCardNo(), vo);
+		
+		mav.addObject("paging", vo);
+		mav.addObject("history", history);
+		
+		return mav;
+	}
+	
+	
 
 }

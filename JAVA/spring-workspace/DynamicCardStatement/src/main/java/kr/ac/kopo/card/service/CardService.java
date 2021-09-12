@@ -35,6 +35,9 @@ public interface CardService {
 	
 	int checkCardPassword(UserCardVO usercard);
 	
-	List<HistoryVO> selectTransactionHistory(String cardNo);
+	
+	List<HistoryVO> selectTransactionHistory(String cardNo, PagingVO vo);
+	
+	int getHistoryLength(String cardNo);
 	
 }

@@ -9,13 +9,16 @@ public class HistoryVO {
 	private String cardNo;
 	private String cardCode;
 
+	private int start;
+	private int end;
+
 	public HistoryVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public HistoryVO(String historyDate, String category, int amount, String store, String cardName, String cardNo,
-			String cardCode) {
+			String cardCode, int start, int end) {
 		super();
 		this.historyDate = historyDate;
 		this.category = category;
@@ -24,6 +27,8 @@ public class HistoryVO {
 		this.cardName = cardName;
 		this.cardNo = cardNo;
 		this.cardCode = cardCode;
+		this.start = start;
+		this.end = end;
 	}
 
 	public String getHistoryDate() {
@@ -82,10 +87,27 @@ public class HistoryVO {
 		this.cardCode = cardCode;
 	}
 
+	public int getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		this.start = start;
+	}
+
+	public int getEnd() {
+		return end;
+	}
+
+	public void setEnd(int end) {
+		this.end = end;
+	}
+
 	@Override
 	public String toString() {
 		return "HistoryVO [historyDate=" + historyDate + ", category=" + category + ", amount=" + amount + ", store="
-				+ store + ", cardName=" + cardName + ", cardNo=" + cardNo + ", cardCode=" + cardCode + "]";
+				+ store + ", cardName=" + cardName + ", cardNo=" + cardNo + ", cardCode=" + cardCode + ", start="
+				+ start + ", end=" + end + "]";
 	}
 
 }

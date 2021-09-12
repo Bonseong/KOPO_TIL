@@ -128,17 +128,36 @@
 
 	</select>
 
-	<select id="selectTransactionHistory" parameterType="String"
-		resultType="List" resultMap="historyMap">
-		SELECT T.HISTORY_DATE, T.CATEGORY,
-		T.AMOUNT, T.STORE, C.CARD_NAME, M.CARD_NO, M.CARD_CODE FROM CARD C,
-		MEMBER_CARD M, TRANSACTION_HISTORY T
+	<select id="selectTransactionHistory" resultType="List"
+		parameterType="historyVO" resultMap="historyMap">
+		SELECT HISTORY_DATE, CATEGORY,
+		AMOUNT,
+		STORE, CARD_NAME, CARD_NO, CARD_CODE FROM (SELECT ROWNUM RN,
+		A.* FROM
+		(SELECT T.HISTORY_DATE, T.CATEGORY,
+		T.AMOUNT, T.STORE,
+		C.CARD_NAME,
+		M.CARD_NO, M.CARD_CODE FROM CARD C,
+		MEMBER_CARD M,
+		TRANSACTION_HISTORY
+		T
 		WHERE T.HISTORY_DATE BETWEEN
-		SYSDATE-90 AND SYSDATE AND C.CARD_CODE =
+		SYSDATE-90 AND SYSDATE
+		AND C.CARD_CODE =
 		M.CARD_CODE AND T.CARD_NO =
-		M.CARD_NO AND M.CARD_NO=#{cardNo} ORDER BY
-		HISTORY_DATE DESC
+		M.CARD_NO AND
+		M.CARD_NO=#{cardNo} ORDER BY
+		HISTORY_DATE DESC) A
+		)
+		WHERE RN BETWEEN
+		#{start} AND #{end}
 
+	</select>
+
+	<select id="getHistoryLength" parameterType="String"
+		resultType="int">
+		SELECT COUNT(*) FROM TRANSACTION_HISTORY WHERE
+		CARD_NO=#{cardNo}
 	</select>
 
 	<select id="selectUserConsumption" parameterType="int"
@@ -253,14 +272,14 @@
 		<if test="cardType != null and !cardType.equals('')">
 			AND C.CARD_TYPE = #{cardType}
 		</if>
+		
 		<if
 			test="annualFeeRange_min != null and !annualFeeRange_min.equals('')">
 			AND C.ANNUAL_FEE BETWEEN #{annualFeeRange_min} AND
 			#{annualFeeRange_max}
 		</if>
 
-		<if
-			test="annualFeeRange_min != null and !annualFeeRange_min.equals('')">
+		<if	test="annualFeeRange_min != null and !annualFeeRange_min.equals('')">
 			AND C.ANNUAL_FEE BETWEEN #{annualFeeRange_min} AND
 			#{annualFeeRange_max}
 		</if>
@@ -274,7 +293,7 @@
 			AND B.COMMUNICATION BETWEEN #{COMMUNICATION_min} AND
 			#{COMMUNICATION_max}
 		</if>
-		n
+		
 		<if test="EDUCATION_min!=ull">
 			AND B.EDUCATION BETWEEN #{EDUCATION_min} AND
 			#{EDUCATION_max}
@@ -287,6 +306,7 @@
 			AND B.MAINTENANCE BETWEEN #{MAINTENANCE_min} AND
 			#{MAINTENANCE_max}
 		</if>
+
 		<if test="AUTOMOBILES_min!=null">
 			AND B.AUTOMOBILES BETWEEN #{AUTOMOBILES_min} AND
 			#{AUTOMOBILES_max}
@@ -297,6 +317,7 @@
 		<if test="CULTURE_min!=null">
 			AND B.CULTURE BETWEEN #{CULTURE_min} AND #{CULTURE_max}
 		</if>
+
 		<if test="FINANCE_min!=null">
 			AND B.FINANCE BETWEEN #{FINANCE_min} AND #{FINANCE_max}
 		</if>
@@ -359,7 +380,7 @@
 		<if test="RENTAL_min!=null">
 			AND B.RENTAL BETWEEN #{RENTAL_min} AND #{RENTAL_max}
 		</if>
-
+	
 
 	</select>
 

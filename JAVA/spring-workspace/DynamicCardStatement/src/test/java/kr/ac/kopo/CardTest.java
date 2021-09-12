@@ -135,12 +135,23 @@ public class CardTest {
 		
 	}
 	
+	@Ignore
 	@Test
 	public void 카드내역() throws Exception {
-		List<HistoryVO> history = cardService.selectTransactionHistory("1111-1111-2222-2222");
+		//List<HistoryVO> history = cardService.selectTransactionHistory("1111-1111-2222-2222");
 		
-		System.out.println(history);
+		//System.out.println(history);
 		
 	}
+	
+	@Test
+	public void 페이징카드내역() throws Exception {
+		int total = cardService.getHistoryLength("1111-1111-2222-2222");
+		
+		System.out.println(total);
+		
+	}
+	
+	
 
 }
