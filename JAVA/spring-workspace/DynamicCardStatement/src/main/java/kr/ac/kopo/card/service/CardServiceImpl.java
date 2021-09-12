@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -120,27 +122,27 @@ public class CardServiceImpl implements CardService {
 	public int checkCardPassword(UserCardVO usercard) {
 		int result = cardDAO.checkCardPassword(usercard);
 
-		
 		return result;
 	}
 
 	public List<HistoryVO> selectTransactionHistory(String cardNo, PagingVO vo) {
+		
+		
+		
+		
 		HistoryVO userhistory = new HistoryVO();
+
 		userhistory.setCardNo(cardNo);
 		userhistory.setStart(vo.getStart());
 		userhistory.setEnd(vo.getEnd());
 		List<HistoryVO> history = cardDAO.selectTransactionHistory(userhistory);
-		
+
 		return history;
 	}
-
-
 
 	public int getHistoryLength(String cardNo) {
 		int length = cardDAO.getHistoryLength(cardNo);
 		return length;
 	}
-	
-	
 
 }

@@ -8,6 +8,7 @@ public class HistoryVO {
 	private String cardName;
 	private String cardNo;
 	private String cardCode;
+	private int cnt;
 
 	private int start;
 	private int end;
@@ -18,7 +19,7 @@ public class HistoryVO {
 	}
 
 	public HistoryVO(String historyDate, String category, int amount, String store, String cardName, String cardNo,
-			String cardCode, int start, int end) {
+			String cardCode, int cnt, int start, int end) {
 		super();
 		this.historyDate = historyDate;
 		this.category = category;
@@ -27,6 +28,7 @@ public class HistoryVO {
 		this.cardName = cardName;
 		this.cardNo = cardNo;
 		this.cardCode = cardCode;
+		this.cnt = cnt;
 		this.start = start;
 		this.end = end;
 	}
@@ -87,6 +89,14 @@ public class HistoryVO {
 		this.cardCode = cardCode;
 	}
 
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
 	public int getStart() {
 		return start;
 	}
@@ -106,8 +116,8 @@ public class HistoryVO {
 	@Override
 	public String toString() {
 		return "HistoryVO [historyDate=" + historyDate + ", category=" + category + ", amount=" + amount + ", store="
-				+ store + ", cardName=" + cardName + ", cardNo=" + cardNo + ", cardCode=" + cardCode + ", start="
-				+ start + ", end=" + end + "]";
+				+ store + ", cardName=" + cardName + ", cardNo=" + cardNo + ", cardCode=" + cardCode + ", cnt=" + cnt
+				+ ", start=" + start + ", end=" + end + "]";
 	}
 
 }

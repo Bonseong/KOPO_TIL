@@ -40,4 +40,10 @@ public interface CardService {
 	
 	int getHistoryLength(String cardNo);
 	
+	/*
+	 * List<HistoryVO> category =
+	 * cardService.selectTransactionCategory(card.getCardNo());
+	 */
+
+	
 }
