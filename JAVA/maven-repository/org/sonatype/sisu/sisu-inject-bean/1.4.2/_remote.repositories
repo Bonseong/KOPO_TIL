@@ -1,3 +1,5 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Aug 02 15:01:29 KST 2021
+#Wed Sep 15 20:18:23 KST 2021
+sisu-inject-bean-1.4.2.jar>central=
+sisu-inject-bean-1.4.2-sources.jar>central=
 sisu-inject-bean-1.4.2.pom>central=

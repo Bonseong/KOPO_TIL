@@ -1,4 +1,0 @@
-127.0.0.1 - - [02/Aug/2021:21:55:11 +0900] "GET / HTTP/1.1" 404 807
-0:0:0:0:0:0:0:1 - - [02/Aug/2021:21:55:13 +0900] "GET /spring-mvc/index.jsp HTTP/1.1" 200 1096
-0:0:0:0:0:0:0:1 - - [02/Aug/2021:21:55:14 +0900] "GET /spring-mvc/file/uploadForm.do HTTP/1.1" 200 450
-0:0:0:0:0:0:0:1 - - [02/Aug/2021:21:55:18 +0900] "POST /spring-mvc/file/upload.do HTTP/1.1" 200 154

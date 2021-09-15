@@ -93,6 +93,10 @@ public class MemberController {
 	}
 
 	
+	@GetMapping("/test")
+	public String test() {
+		return "test";
+	}
 	
 
 }

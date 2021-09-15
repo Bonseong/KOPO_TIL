@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Sep 15 20:20:08 KST 2021
+@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1631704808150
+https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact org.apache.velocity\:velocity-tools\:jar\:javadoc\:2.0 from/to central (https\://repo.maven.apache.org/maven2)\: The operation was cancelled.
