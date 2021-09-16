@@ -7,7 +7,7 @@
 /* Large Mobile :480px. */
 /* line 6, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Noto Sans KR', "Roboto", sans-serif;
   font-weight: normal;
   font-style: normal;
 }
@@ -59,7 +59,7 @@ button {
 
 /* line 40, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */
 h1, h2, h3, h4, h5 {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Noto Sans KR', "Roboto", sans-serif;
   color: #191d34;
 }
 
@@ -91,7 +91,7 @@ p {
   line-height: 28px;
   color: #7A838B;
   margin-bottom: 13px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Noto Sans KR', "Roboto", sans-serif;
 }
 
 /* line 69, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */

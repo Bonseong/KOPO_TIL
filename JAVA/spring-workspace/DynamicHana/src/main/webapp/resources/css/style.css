@@ -36,7 +36,7 @@
 /* Large Mobile :480px. */
 /* line 6, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */
 body {
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 	font-weight: normal;
 	font-style: normal;
 }
@@ -82,7 +82,7 @@ a, button {
 
 /* line 40, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */
 h1, h2, h3, h4, h5 {
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 	color: #191d34;
 }
 
@@ -109,7 +109,7 @@ p {
 	line-height: 28px;
 	color: #7A838B;
 	margin-bottom: 13px;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 }
 
 /* line 69, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */
@@ -413,7 +413,7 @@ h3 {
 	color: #131313;
 	display: inline-block;
 	padding: 14px 44px;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 	font-size: 14px;
 	font-weight: 400;
 	border: 0;
@@ -443,7 +443,7 @@ h3 {
 	color: #fff;
 	display: inline-block;
 	padding: 11px 27px 11px 27px;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 	font-size: 16px;
 	font-weight: 500;
 	border: 0;
@@ -477,7 +477,7 @@ h3 {
 .boxed-btn4 {
 	display: inline-block;
 	padding: 11px 29px 13px 29px;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 	font-size: 16px;
 	font-weight: 500;
 	-webkit-border-radius: 5px;
@@ -516,7 +516,7 @@ h3 {
 	color: #F91842 !important;
 	display: inline-block;
 	padding: 14px 31px;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 	font-size: 15px;
 	font-weight: 500;
 	border: 0;
@@ -573,7 +573,7 @@ h3 {
 	font-weight: 600;
 	display: inline-block;
 	padding: 12px 36px;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 	cursor: pointer;
 }
 
@@ -687,7 +687,7 @@ h3 {
 	color: #7A838B;
 	margin-bottom: 0;
 	font-weight: 400;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 }
 
 @media ( max-width : 767px) {
@@ -1147,7 +1147,7 @@ h3 {
 	font-weight: 500;
 	display: inline-block;
 	padding: 35px 0px 35px 0px;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 	position: relative;
 	text-transform: capitalize;
 }
@@ -1459,7 +1459,7 @@ h3 {
 
 /* line 34, ../../Arafath/CL/December/235. Job board/HTML/scss/_slider.scss */
 .slider_area .single_slider .slider_text h3 {
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 	font-size: 56px;
 	font-weight: 500;
 	color: #fff;
@@ -1505,7 +1505,7 @@ h3 {
 	font-size: 16px;
 	font-weight: 400;
 	color: #FFFFFF;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 	margin-bottom: 35px;
 }
 
@@ -1553,7 +1553,7 @@ h3 {
 	font-size: 14px;
 	color: #fff;
 	font-weight: #000;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 	padding: 5px 19px;
 	display: inline-block;
 	margin: 0 3px;
@@ -1625,7 +1625,7 @@ h3 {
 	top: 50%;
 	transition: all 0.15s ease-in-out;
 	width: 5px;
-	font-family: 'fontawesome';
+	font-family: 'Noto Sans KR', 'fontawesome';
 	color: #ddd;
 	transform: translateY(-50%);
 	font-size: 16px;
@@ -1937,7 +1937,7 @@ h3 {
 	top: 9px;
 	right: 12px;
 	height: auto;
-	font-family: 'themify';
+	font-family: 'Noto Sans KR', 'themify';
 	color: #0f2137;
 	font-size: 14px;
 	left: -24px;
@@ -2239,7 +2239,7 @@ h3 {
 
 /* line 7, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
 .footer p {
-	font-family: "Roboto", 'Noto Sans KR', sans-serif !important;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif !important;
 }
 
 /* line 10, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
@@ -2277,7 +2277,7 @@ h3 {
 	color: #FFFFFF;
 	text-transform: capitalize;
 	margin-bottom: 40px;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 }
 
 @media ( max-width : 767px) {
@@ -2370,7 +2370,7 @@ h3 {
 .footer .footer_top .footer_widget ul li a {
 	color: #AAB1B7;
 	font-weight: 400;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 }
 
 /* line 98, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
@@ -2395,7 +2395,7 @@ h3 {
 	border: none;
 	border: 1px solid #334A60;
 	border-radius: 5px;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 }
 
 /* line 118, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
@@ -2427,7 +2427,7 @@ h3 {
 	right: 5px;
 	font-size: 14px;
 	font-weight: 500;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 }
 
 /* line 146, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
@@ -2633,7 +2633,7 @@ h3 {
 	color: #fff;
 	font-size: 16px;
 	font-weight: 400;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 }
 
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_category.scss */
@@ -6372,7 +6372,7 @@ h1, h2, h3, h4, h5, h6 {
 /* line 537, ../../Arafath/CL/December/235. Job board/HTML/scss/_blog.scss */
 .blog_details p {
 	margin-bottom: 30px;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 }
 
 /* line 542, ../../Arafath/CL/December/235. Job board/HTML/scss/_blog.scss */
@@ -6809,7 +6809,7 @@ h1, h2, h3, h4, h5, h6 {
 	background: #fff;
 	padding: 15px 15px 15px 20px;
 	border-left: 2px solid;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 }
 
 @media ( min-width : 768px) {
@@ -7123,7 +7123,7 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 10px;
 	color: #777777;
 	font-size: 15px;
-	font-family: "Roboto", 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', "Roboto", 'Noto Sans KR', sans-serif;
 }
 
 /* line 1393, ../../Arafath/CL/December/235. Job board/HTML/scss/_blog.scss */

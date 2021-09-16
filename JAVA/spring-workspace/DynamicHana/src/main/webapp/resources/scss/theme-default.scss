@@ -4,7 +4,7 @@
 @import 'mixins.scss';
 @import 'responsive';
 body {
-	font-family: $font2;
+	font-family: 'Noto Sans KR', $font2;
 	font-weight: normal;
     font-style: normal;
     
@@ -38,7 +38,7 @@ button {
 	outline: medium none;
 }
 h1,h2,h3,h4,h5{
-	font-family: $font1;
+	font-family: 'Noto Sans KR', $font1;
 	color: $heading-color;
 }
 h1 a,
@@ -63,7 +63,7 @@ p {
 	line-height: 28px;
 	color: #7A838B;
 	margin-bottom: 13px;
-	font-family: $font2;
+	font-family: 'Noto Sans KR', $font2;
 }
 
 label {

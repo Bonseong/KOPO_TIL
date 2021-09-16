@@ -32,7 +32,7 @@
                 font-weight: 400;
             }
             h3{
-                font-family: $font1;
+                font-family: 'Noto Sans KR', $font1;
                 font-size: 56px;
                 font-weight: 500;
                 color: #fff;
@@ -60,7 +60,7 @@
                 font-size: 16px;
                 font-weight: 400;
                 color: #FFFFFF;
-                font-family: $font2;
+                font-family: 'Noto Sans KR', $font2;
                 margin-bottom: 35px;
             }
             .button_search{
@@ -87,7 +87,7 @@
                             font-size: 14px;
                             color :#fff;
                             font-weight: #000;
-                            font-family: $font2;
+                            font-family: 'Noto Sans KR', $font2;
                             padding: 5px 19px;
                             display: inline-block;
                             margin: 0 3px;
@@ -144,7 +144,7 @@
 	top: 50%;
 	transition: all 0.15s ease-in-out;
 	width: 5px;
-	font-family: 'fontawesome';
+	font-family: 'Noto Sans KR', 'fontawesome';
 	color: #ddd;
 	transform: translateY(-50%);
 	font-size: 16px;

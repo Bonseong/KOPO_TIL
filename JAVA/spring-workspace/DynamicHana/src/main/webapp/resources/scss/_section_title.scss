@@ -33,7 +33,7 @@
         color: #7A838B;
         margin-bottom: 0;
         font-weight: 400;
-        font-family: $font2;
+        font-family: 'Noto Sans KR', $font2;
         br{
             @media #{$mobile_device} {
                 display: none;

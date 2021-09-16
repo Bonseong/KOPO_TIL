@@ -322,7 +322,7 @@
 
         h4 {
             // color: $title-color;
-            // font-family: $rob;
+            // font-family: 'Noto Sans KR', $rob;
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 15px;
@@ -351,7 +351,7 @@
             line-height: 50px;
             // background: $title-color;
             color: #fff;
-            // font-family: $rob;
+            // font-family: 'Noto Sans KR', $rob;
             font-size: 14px;
             font-weight: 500;
 
@@ -536,7 +536,7 @@
 
     p {
         margin-bottom: 30px;
-        font-family: $font2;
+        font-family: 'Noto Sans KR', $font2;
     }
 
     a {
@@ -1103,7 +1103,7 @@
         background: $white_color;
         padding: 15px 15px 15px 20px;
         border-left: 2px solid;
-        font-family: $font2;
+        font-family: 'Noto Sans KR', $font2;
         @media(min-width: 768px) {
             padding: 25px 25px 25px 30px;
         }
@@ -1387,7 +1387,7 @@
         margin-bottom: 10px;
         color: #777777;
         font-size: 15px;
-        font-family: $font2;
+        font-family: 'Noto Sans KR', $font2;
     }
 
     .btn-reply {

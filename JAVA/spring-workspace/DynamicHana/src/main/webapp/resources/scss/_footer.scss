@@ -5,7 +5,7 @@
     background-size: cover;
     background: #001D38;
     p{
-        font-family: $font2 !important;
+        font-family: 'Noto Sans KR', $font2 !important;
     }
     .footer_top{
         padding-top: 145px;
@@ -27,7 +27,7 @@
                 color: #FFFFFF;
                 text-transform: capitalize;
                 margin-bottom: 40px;
-                font-family: $font2;
+                font-family: 'Noto Sans KR', $font2;
                 @media #{$mobile_device} {
                     margin-bottom: 20px;
                 }
@@ -94,7 +94,7 @@
                     a{
                         color: #AAB1B7 ;
                         font-weight: 400;
-                        font-family: $font2;
+                        font-family: 'Noto Sans KR', $font2;
                         &:hover{
                             color: #FFFFFF;
                         }
@@ -114,7 +114,7 @@
                     border: none;
                     border: 1px solid #334A60;
                     border-radius: 5px;
-                    font-family: $font2;
+                    font-family: 'Noto Sans KR', $font2;
                     &::placeholder{
                         font-size: 14px;
                         color: #AAB1B7 ;
@@ -140,7 +140,7 @@
                     right: 5px;
                     font-size: 14px;
                     font-weight: 500;
-                    font-family: $font2;
+                    font-family: 'Noto Sans KR', $font2;
                 }
             }
             .newsletter_text{

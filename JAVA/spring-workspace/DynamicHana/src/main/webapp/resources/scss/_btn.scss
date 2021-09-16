@@ -3,7 +3,7 @@
 	color: #131313;
 	display: inline-block;
 	padding: 14px 44px;
-	font-family: $font2;
+	font-family: 'Noto Sans KR', $font2;
 	font-size: 14px;
     font-weight: 400;
     border: 0;
@@ -27,7 +27,7 @@
 	color: #fff;
 	display: inline-block;
 	padding: 13px 29px 13px 29px;
-	font-family: $font2;
+	font-family: 'Noto Sans KR', $font2;
 	font-size: 16px;
     font-weight: 500;
     border: 0;
@@ -52,7 +52,7 @@
 .boxed-btn4 {
 	display: inline-block;
 	padding: 11px 29px 13px 29px;
-	font-family: $font2;
+	font-family: 'Noto Sans KR', $font2;
 	font-size: 16px;
     font-weight: 500;
     @include border-radius(5px);
@@ -80,7 +80,7 @@
 	color: #F91842 !important;
 	display: inline-block;
     padding: 14px 31px;
-	font-family: $font2;
+	font-family: 'Noto Sans KR', $font2;
 	font-size: 15px;
     font-weight: 500;
     border: 0;
@@ -120,7 +120,7 @@
     font-weight: 600;
     display: inline-block;
     padding: 12px 36px;
-    font-family: $font2;
+    font-family: 'Noto Sans KR', $font2;
     cursor: pointer;
     &:hover{
         background: #F91842;
